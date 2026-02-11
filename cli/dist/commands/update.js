@@ -75,6 +75,7 @@ function update() {
     (0, fs_1.writeFileSync)((0, path_1.join)(cwd, "CLAUDE.md"), (0, init_js_1.generateClaudeMdPointer)());
     (0, fs_1.mkdirSync)((0, path_1.join)(cwd, ".github"), { recursive: true });
     (0, fs_1.writeFileSync)((0, path_1.join)(cwd, ".github", "copilot-instructions.md"), (0, init_js_1.generateCopilotInstructions)());
+    (0, fs_1.writeFileSync)((0, path_1.join)(cwd, "README.md"), (0, init_js_1.generateReadme)(clientName));
     // Check for missing context files
     const contextPath = config.client.contextPath || "./context";
     checkMissingContext(tmpDir, (0, path_1.join)(cwd, contextPath));

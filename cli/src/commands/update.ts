@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, rmSync
 import { join, basename } from "path";
 import { readConfig, writeConfig } from "../config.js";
 import { getLatestTag, isNewer, cloneAtTag } from "../git.js";
-import { generateAgentsMd, generateClaudeMdPointer, generateCopilotInstructions } from "./init.js";
+import { generateAgentsMd, generateClaudeMdPointer, generateCopilotInstructions, generateReadme } from "./init.js";
 import { load } from "js-yaml";
 import { execSync } from "child_process";
 
@@ -86,6 +86,7 @@ export function update(): void {
   writeFileSync(join(cwd, "CLAUDE.md"), generateClaudeMdPointer());
   mkdirSync(join(cwd, ".github"), { recursive: true });
   writeFileSync(join(cwd, ".github", "copilot-instructions.md"), generateCopilotInstructions());
+  writeFileSync(join(cwd, "README.md"), generateReadme(clientName));
 
   // Check for missing context files
   const contextPath = config.client.contextPath || "./context";
