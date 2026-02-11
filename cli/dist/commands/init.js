@@ -239,10 +239,25 @@ async function init() {
         ["Frameworks:", `${frameworkCount}`],
         ["Scripts:", `${scriptCount}`],
     ]);
+    // Context importance + file listing
+    console.log(`  ${ui.bold("Context is what makes the system yours.")}`);
+    console.log(`  Every skill uses your context to produce personalized output.`);
+    console.log(`  The more detailed your context, the better every skill performs.\n`);
+    console.log(`  ${ui.dim("Your context files:")}`);
+    console.log(`    ${ui.accent("core/identity.md")}         ${ui.dim("— who you are, what you do, differentiators")}`);
+    console.log(`    ${ui.accent("core/voice.md")}            ${ui.dim("— tone, language rules, brand personality")}`);
+    console.log(`    ${ui.accent("extended/product.md")}       ${ui.dim("— features, workflows, technical details")}`);
+    console.log(`    ${ui.accent("extended/users.md")}         ${ui.dim("— personas, goals, pain points")}`);
+    console.log(`    ${ui.accent("extended/icp.md")}           ${ui.dim("— ideal customer profile, buyer psychology")}`);
+    console.log(`    ${ui.accent("extended/competitive.md")}   ${ui.dim("— competitors, positioning, alternatives")}`);
+    console.log(`    ${ui.accent("extended/pricing.md")}       ${ui.dim("— tiers, objection handling, value props")}`);
+    console.log(`    ${ui.accent("extended/technical.md")}     ${ui.dim("— tech stack, integrations, constraints")}`);
+    console.log(`    ${ui.accent("extended/visual-identity.md")} ${ui.dim("— colors, fonts, visual style")}`);
+    console.log(`    ${ui.accent("extended/formatting.md")}    ${ui.dim("— document structure, heading rules")}`);
+    console.log();
     ui.nextSteps([
-        `Open ${ui.accent("context/core/")} and review your identity & voice files`,
-        `Fill in extended context files — start with ${ui.accent("product")}, ${ui.accent("users")}, ${ui.accent("icp")}`,
-        `Run ${ui.accent("npx baseline context")} to update context with guided prompts`,
+        `Fill in your context files — start with ${ui.accent("identity")}, ${ui.accent("voice")}, ${ui.accent("product")}, ${ui.accent("users")}`,
+        `Run ${ui.accent("npx baseline context")} for guided prompts to help you fill them in`,
         `Open this folder in your AI tool and start using skills`,
     ]);
     console.log();
