@@ -73,13 +73,13 @@ function update() {
     (0, config_js_1.writeConfig)(config);
     // Replace cli/ LAST — this is the currently running code, so anything
     // after this point may fail if Node can't resolve replaced modules.
+    // IMPORTANT: Overwrite in-place instead of delete-then-copy. The client's
+    // node_modules/baseline-cli is a symlink to cli/, so deleting cli/ first
+    // would break the symlink and leave dist/index.js missing if anything fails.
     const cliSrc = (0, path_1.join)(tmpDir, "cli");
     const cliDest = (0, path_1.join)(cwd, "cli");
     if ((0, fs_1.existsSync)(cliSrc)) {
-        if ((0, fs_1.existsSync)(cliDest)) {
-            (0, fs_1.rmSync)(cliDest, { recursive: true });
-        }
-        (0, fs_1.cpSync)(cliSrc, cliDest, { recursive: true });
+        (0, fs_1.cpSync)(cliSrc, cliDest, { recursive: true, force: true });
         // Remove CLI source files (clients only need bin/, dist/, package.json)
         const cliCleanup = ["src", "tsconfig.json", "package-lock.json"];
         for (const item of cliCleanup) {
