@@ -6,7 +6,9 @@ import { generateAgentsMd, generateClaudeMdPointer, generateCopilotInstructions,
 import { load } from "js-yaml";
 import { execSync } from "child_process";
 
-const SYNC_DIRS = ["skills", "frameworks", "scripts", "cli"];
+// Sync skills, frameworks, scripts first — cli/ is replaced LAST
+// so the currently running process doesn't lose its own files mid-execution.
+const CONTENT_DIRS = ["skills", "frameworks", "scripts"];
 
 export function update(): void {
   const config = readConfig();
@@ -30,21 +32,21 @@ export function update(): void {
   // Clone the latest tag to a temp directory
   const tmpDir = cloneAtTag(config.coreRepo, latest);
 
-  // Sync each directory: full replace
+  // Sync content directories first (skills, frameworks, scripts)
   const stats = { skills: 0, frameworks: 0, scripts: 0 };
 
-  for (const dir of SYNC_DIRS) {
+  for (const dir of CONTENT_DIRS) {
     const srcDir = join(tmpDir, dir);
     const destDir = join(cwd, dir);
 
     if (!existsSync(srcDir)) continue;
 
-    // Count items for summary (skip cli in counts)
+    // Count items for summary
     if (dir === "skills") {
       stats.skills = readdirSync(srcDir).filter((f) =>
         statSync(join(srcDir, f)).isDirectory()
       ).length;
-    } else if (dir !== "cli") {
+    } else {
       stats[dir as keyof typeof stats] = readdirSync(srcDir).filter(
         (f) => f.endsWith(".md") || statSync(join(srcDir, f)).isDirectory()
       ).length;
@@ -55,22 +57,6 @@ export function update(): void {
       rmSync(destDir, { recursive: true });
     }
     cpSync(srcDir, destDir, { recursive: true });
-  }
-
-  // Remove CLI source files (clients only need bin/, dist/, package.json)
-  const cliCleanup = ["src", "tsconfig.json", "package-lock.json"];
-  for (const item of cliCleanup) {
-    const p = join(cwd, "cli", item);
-    if (existsSync(p)) rmSync(p, { recursive: true });
-  }
-
-  // Re-install CLI dependencies after update
-  if (existsSync(join(cwd, "package.json"))) {
-    try {
-      execSync("npm install --silent", { cwd, stdio: "pipe" });
-    } catch {
-      // Non-fatal — CLI still works from previous install
-    }
   }
 
   // Regenerate AI instruction files
@@ -92,13 +78,42 @@ export function update(): void {
   const contextPath = config.client.contextPath || "./context";
   checkMissingContext(tmpDir, join(cwd, contextPath));
 
-  // Clean up temp dir
-  rmSync(tmpDir, { recursive: true });
-
-  // Update config
+  // Update config version BEFORE replacing cli/ — if the cli/ swap
+  // causes the process to error, the version is already recorded so
+  // a re-run won't re-download and re-apply the same update.
   config.version = latest;
   config.lastUpdated = new Date().toISOString();
   writeConfig(config);
+
+  // Replace cli/ LAST — this is the currently running code, so anything
+  // after this point may fail if Node can't resolve replaced modules.
+  const cliSrc = join(tmpDir, "cli");
+  const cliDest = join(cwd, "cli");
+  if (existsSync(cliSrc)) {
+    if (existsSync(cliDest)) {
+      rmSync(cliDest, { recursive: true });
+    }
+    cpSync(cliSrc, cliDest, { recursive: true });
+
+    // Remove CLI source files (clients only need bin/, dist/, package.json)
+    const cliCleanup = ["src", "tsconfig.json", "package-lock.json"];
+    for (const item of cliCleanup) {
+      const p = join(cwd, "cli", item);
+      if (existsSync(p)) rmSync(p, { recursive: true });
+    }
+  }
+
+  // Re-install CLI dependencies after update
+  if (existsSync(join(cwd, "package.json"))) {
+    try {
+      execSync("npm install --silent", { cwd, stdio: "pipe" });
+    } catch {
+      // Non-fatal — CLI still works from previous install
+    }
+  }
+
+  // Clean up temp dir
+  rmSync(tmpDir, { recursive: true });
 
   console.log(`\n  Updated v${config.version} successfully.`);
   console.log(`  Skills: ${stats.skills} | Frameworks: ${stats.frameworks} | Scripts: ${stats.scripts}`);
