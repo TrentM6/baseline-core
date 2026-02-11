@@ -1,28 +1,33 @@
 import { readConfig } from "../config.js";
 import { getLatestTag, isNewer } from "../git.js";
+import * as ui from "../ui.js";
 
 export function status(): void {
   const config = readConfig();
 
-  console.log(`\n  Baseline System`);
-  console.log(`  ───────────────────────────`);
-  console.log(`  Client:       ${config.client.name}`);
-  console.log(`  Version:      v${config.version}`);
-  console.log(`  Core repo:    ${config.coreRepo}`);
-  console.log(`  Last updated: ${config.lastUpdated}`);
+  ui.header("Baseline System");
 
-  console.log(`\n  Checking for updates...`);
+  console.log(`  ${ui.dim("Client:")}       ${config.client.name}`);
+  console.log(`  ${ui.dim("Version:")}      v${config.version}`);
+  console.log(`  ${ui.dim("Core repo:")}    ${config.coreRepo}`);
+  console.log(`  ${ui.dim("Last updated:")} ${ui.formatDate(config.lastUpdated)}`);
+  console.log();
+
+  const spin = ui.spinner("Checking for updates...");
   const latest = getLatestTag(config.coreRepo);
+  spin.stop("Checked for updates");
 
   if (!latest) {
-    console.log(`  Could not determine latest version.\n`);
+    ui.error("Could not determine latest version.");
+    console.log();
     return;
   }
 
   if (isNewer(latest, config.version)) {
-    console.log(`  Update available: v${config.version} → v${latest}`);
-    console.log(`  Run \`baseline update\` to pull the latest.\n`);
+    ui.warn(`Update available: v${config.version} ${ui.accent("→")} v${latest}`);
+    console.log(`    Run ${ui.accent("npx baseline update")} to pull the latest.\n`);
   } else {
-    console.log(`  Up to date (v${config.version}).\n`);
+    ui.success(`Up to date (v${config.version})`);
+    console.log();
   }
 }

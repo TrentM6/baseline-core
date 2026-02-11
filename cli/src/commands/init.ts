@@ -12,6 +12,7 @@ import { join, dirname } from "path";
 import { load } from "js-yaml";
 import { cloneAtTag, getLatestTag } from "../git.js";
 import { execSync } from "child_process";
+import * as ui from "../ui.js";
 
 const SYNC_DIRS = ["skills", "frameworks", "scripts", "cli"];
 
@@ -47,27 +48,31 @@ export async function init(): Promise<void> {
   const rl = createInterface({ input: process.stdin, output: process.stdout });
   rl.on("close", () => { rlClosed = true; });
 
-  console.log(`\n  Baseline System — New Client Setup`);
-  console.log(`  ───────────────────────────────────\n`);
+  // 1. Banner and gather basic info
+  ui.banner("New Client Setup");
 
-  // 1. Gather basic info
-  const clientName = await ask(rl, "  What's your company or project name? ");
+  const clientName = await ask(rl, ui.formatPrompt("What's your company or project name?"));
   const repo = "TrentM6/baseline-core";
 
   // Always scaffold in the current directory
   const destDir = process.cwd();
 
   // 2. Fetch latest from core
-  console.log(`\n  Fetching latest from ${repo}...`);
+  console.log();
+  const spin1 = ui.spinner("Fetching latest version...");
   const latest = getLatestTag(repo);
   if (!latest) {
-    console.error("  Could not determine latest version.\n");
+    spin1.stop();
+    ui.error("Could not determine latest version.");
+    console.log();
     rl.close();
     process.exit(1);
   }
-  console.log(`  Using v${latest}\n`);
+  spin1.stop(`Using v${latest}`);
 
+  const spin2 = ui.spinner("Downloading system files...");
   const tmpDir = cloneAtTag(repo, latest);
+  spin2.stop("System files downloaded");
 
   // 3. Create folder structure
   mkdirSync(join(destDir, "context", "core"), { recursive: true });
@@ -99,8 +104,13 @@ export async function init(): Promise<void> {
   }
 
   // 7. Ask questions and write context files
-  console.log("  Let's set up your context files.\n");
-  console.log("  (Press Enter to skip any question)\n");
+  console.log();
+  ui.info("Let's set up your context files.");
+  ui.skipHint();
+
+  // Count sections with prompts for progress tracking
+  const promptSections = contextFiles.filter((f) => prompts[f]);
+  let sectionIndex = 0;
 
   for (const ctxFile of contextFiles) {
     const prompt = prompts[ctxFile];
@@ -112,19 +122,26 @@ export async function init(): Promise<void> {
       continue;
     }
 
-    console.log(`  ── ${prompt.title} ──\n`);
+    sectionIndex++;
+    ui.sectionHeader(prompt.title, sectionIndex, promptSections.length);
 
     const answers: string[] = [];
+    let answeredCount = 0;
 
     // Pre-fill company name into identity file
     if (ctxFile === "core/identity.md") {
       answers.push(`**What is your company name?**\n${clientName}`);
     }
 
-    for (const q of prompt.questions) {
-      const answer = await ask(rl, `  ${q}\n  > `);
+    for (let qi = 0; qi < prompt.questions.length; qi++) {
+      const q = prompt.questions[qi];
+      const answer = await ask(
+        rl,
+        ui.formatPromptWithProgress(q, qi + 1, prompt.questions.length)
+      );
       if (answer.trim()) {
         answers.push(`**${q}**\n${answer.trim()}`);
+        answeredCount++;
       }
       console.log();
     }
@@ -143,6 +160,8 @@ export async function init(): Promise<void> {
         `# ${prompt.title}\n\n<!-- Add your content here -->\n`
       );
     }
+
+    ui.sectionComplete(prompt.title, answeredCount, prompt.questions.length);
   }
 
   // 8. Create context.yaml
@@ -204,8 +223,9 @@ export async function init(): Promise<void> {
   );
 
   // 12. Install CLI locally so npx baseline works
-  console.log(`\n  Installing CLI...`);
+  const spin3 = ui.spinner("Installing CLI...");
   execSync("npm install --silent", { cwd: destDir, stdio: "pipe" });
+  spin3.stop("CLI installed");
 
   // 13. Create .gitignore
   writeFileSync(
@@ -214,12 +234,14 @@ export async function init(): Promise<void> {
   );
 
   // 14. Initialize git repo
+  const spin4 = ui.spinner("Initializing repository...");
   execSync("git init", { cwd: destDir, stdio: "pipe" });
   execSync("git add -A", { cwd: destDir, stdio: "pipe" });
   execSync(
     `git commit -m "Initialize ${clientName} Baseline System (v${latest})"`,
     { cwd: destDir, stdio: "pipe" }
   );
+  spin4.stop("Repository initialized");
 
   // Clean up
   rmSync(tmpDir, { recursive: true });
@@ -229,13 +251,17 @@ export async function init(): Promise<void> {
   const frameworkCount = existsSync(join(destDir, "frameworks")) ? readdirSync(join(destDir, "frameworks")).filter((f) => !f.startsWith(".") && !f.startsWith("_")).length : 0;
   const scriptCount = existsSync(join(destDir, "scripts")) ? readdirSync(join(destDir, "scripts")).filter((f) => !f.startsWith(".") && !f.startsWith("_")).length : 0;
 
-  console.log(`  ───────────────────────────────────`);
-  console.log(`  ${clientName} system ready!`);
-  console.log(`  Version: v${latest}`);
-  console.log(`  ${skillCount} skills | ${frameworkCount} frameworks | ${scriptCount} scripts`);
-  console.log(`\n  Next steps:`);
-  console.log(`    Edit context/ files to add more detail`);
-  console.log(`    Run \`npx baseline status\` to check for updates\n`);
+  ui.summary(`${clientName} system ready!`, [
+    ["Version:", `v${latest}`],
+    ["Skills:", `${skillCount}`],
+    ["Frameworks:", `${frameworkCount}`],
+    ["Scripts:", `${scriptCount}`],
+  ]);
+
+  ui.nextSteps([
+    `Edit ${ui.accent("context/")} files to add more detail`,
+    `Run ${ui.accent("npx baseline status")} to check for updates`,
+  ]);
 }
 
 /** Scan all skill manifests and return unique context file paths (relative to context/) */

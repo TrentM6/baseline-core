@@ -1,4 +1,37 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.context = context;
 const readline_1 = require("readline");
@@ -6,6 +39,7 @@ const fs_1 = require("fs");
 const path_1 = require("path");
 const js_yaml_1 = require("js-yaml");
 const config_js_1 = require("../config.js");
+const ui = __importStar(require("../ui.js"));
 let rlClosed = false;
 function ask(rl, question) {
     if (rlClosed)
@@ -32,33 +66,41 @@ async function contextRefresh() {
     const config = (0, config_js_1.readConfig)();
     const cwd = process.cwd();
     const contextDir = (0, path_1.join)(cwd, config.client.contextPath || "./context");
+    ui.header("Baseline Context", "Update Context Files");
     // Load prompts from local skills (they were pulled from core via update)
-    const skillsDir = (0, path_1.join)(cwd, "skills");
+    const spin = ui.spinner("Fetching latest prompts...");
     const prompts = loadPromptsFromLocal(cwd);
+    spin.stop("Prompts loaded");
     if (Object.keys(prompts).length === 0) {
-        console.error("  Error: No context prompts found. Run `baseline update` first.\n");
+        ui.error("No context prompts found. Run `baseline update` first.");
+        console.log();
         process.exit(1);
     }
     const rl = (0, readline_1.createInterface)({ input: process.stdin, output: process.stdout });
     rl.on("close", () => { rlClosed = true; });
-    console.log(`\n  Baseline Context — Update Context Files`);
-    console.log(`  ────────────────────────────────────────\n`);
-    console.log(`  Existing answers shown in [brackets]. Press Enter to keep them.\n`);
+    console.log();
+    ui.info("Existing answers shown in [brackets]. Press Enter to keep them.");
+    console.log();
     let filesUpdated = 0;
-    for (const [ctxFile, prompt] of Object.entries(prompts)) {
+    const entries = Object.entries(prompts);
+    let sectionIndex = 0;
+    for (const [ctxFile, prompt] of entries) {
+        sectionIndex++;
         const fullPath = (0, path_1.join)(contextDir, ctxFile);
         const existingContent = (0, fs_1.existsSync)(fullPath) ? (0, fs_1.readFileSync)(fullPath, "utf-8") : "";
         const existingAnswers = parseExistingAnswers(existingContent, prompt.questions);
-        console.log(`  ── ${prompt.title} ──\n`);
+        ui.sectionHeader(prompt.title, sectionIndex, entries.length);
         const answers = [];
+        let answeredCount = 0;
         for (let i = 0; i < prompt.questions.length; i++) {
             const q = prompt.questions[i];
             const existing = existingAnswers[i] || "";
-            const hint = existing ? ` [${truncate(existing, 60)}]` : "";
-            const answer = await ask(rl, `  ${q}${hint}\n  > `);
+            const hint = existing ? truncate(existing, 60) : undefined;
+            const answer = await ask(rl, ui.formatPromptWithProgress(q, i + 1, prompt.questions.length, hint));
             const final = answer.trim() || existing;
             if (final) {
                 answers.push(`**${q}**\n${final}`);
+                answeredCount++;
             }
             console.log();
         }
@@ -70,10 +112,12 @@ async function contextRefresh() {
         else if (!(0, fs_1.existsSync)(fullPath)) {
             (0, fs_1.writeFileSync)(fullPath, `# ${prompt.title}\n\n<!-- Add your content here -->\n`);
         }
+        ui.sectionComplete(prompt.title, answeredCount, prompt.questions.length);
     }
     rl.close();
-    console.log(`  ────────────────────────────────────────`);
-    console.log(`  Updated ${filesUpdated} context files.\n`);
+    ui.divider();
+    ui.success(`Updated ${filesUpdated} context files.`);
+    console.log();
 }
 /** Create a new context file and wire it into context.yaml */
 async function contextAdd(name) {
@@ -85,7 +129,8 @@ async function contextAdd(name) {
     const fileName = name.endsWith(".md") ? name : `${name}.md`;
     const filePath = (0, path_1.join)(contextDir, "extended", fileName);
     if ((0, fs_1.existsSync)(filePath)) {
-        console.error(`\n  Error: context/extended/${fileName} already exists.\n`);
+        ui.error(`context/extended/${fileName} already exists.`);
+        console.log();
         process.exit(1);
     }
     // Get available skills
@@ -101,21 +146,21 @@ async function contextAdd(name) {
     skills.sort();
     const rl = (0, readline_1.createInterface)({ input: process.stdin, output: process.stdout });
     rl.on("close", () => { rlClosed = true; });
-    console.log(`\n  Baseline Context — Add New File`);
-    console.log(`  ───────────────────────────────\n`);
-    console.log(`  Creating: context/extended/${fileName}\n`);
+    ui.header("Baseline Context", "Add New File");
+    ui.info(`Creating: context/extended/${fileName}`);
+    console.log();
     // Ask for a title
-    const title = await ask(rl, `  Title for this context file: `);
+    const title = await ask(rl, ui.formatPrompt("Title for this context file"));
     const fileTitle = title.trim() || name.replace(/\.md$/, "").replace(/-/g, " ");
     console.log();
     // Ask which skills should use this context
-    console.log(`  Which skills should use this context file?`);
-    console.log(`  Available skills:\n`);
+    console.log(`  ${ui.bold("Which skills should use this context file?")}`);
+    console.log();
     for (let i = 0; i < skills.length; i++) {
-        console.log(`    ${i + 1}. ${skills[i]}`);
+        console.log(`    ${ui.dim(`${i + 1}.`)} ${skills[i]}`);
     }
     console.log();
-    const selection = await ask(rl, `  Enter skill numbers (comma-separated) or "all":\n  > `);
+    const selection = await ask(rl, ui.formatPrompt(`Enter skill numbers (comma-separated) or "all"`));
     let selectedSkills;
     if (selection.trim().toLowerCase() === "all") {
         selectedSkills = [...skills];
@@ -150,8 +195,8 @@ async function contextAdd(name) {
         yamlOut += `  - ${c}\n`;
     }
     yamlOut += "extended:\n";
-    const entries = Object.entries(contextYaml.extended || {}).sort(([a], [b]) => a.localeCompare(b));
-    for (const [file, skillList] of entries) {
+    const yamlEntries = Object.entries(contextYaml.extended || {}).sort(([a], [b]) => a.localeCompare(b));
+    for (const [file, skillList] of yamlEntries) {
         yamlOut += `  ${file}:\n`;
         for (const s of skillList) {
             yamlOut += `    - ${s}\n`;
@@ -159,12 +204,14 @@ async function contextAdd(name) {
     }
     (0, fs_1.writeFileSync)(contextYamlPath, yamlOut);
     rl.close();
-    console.log(`\n  ───────────────────────────────`);
-    console.log(`  Created context/extended/${fileName}`);
+    console.log();
+    ui.divider();
+    ui.success(`Created context/extended/${fileName}`);
     if (selectedSkills.length > 0) {
-        console.log(`  Wired to: ${selectedSkills.join(", ")}`);
+        ui.info(`Wired to: ${selectedSkills.join(", ")}`);
     }
-    console.log(`  Updated context/context.yaml\n`);
+    ui.success("Updated context/context.yaml");
+    console.log();
 }
 /** Load context prompts from the local context-prompts.yaml or skill manifests */
 function loadPromptsFromLocal(cwd) {

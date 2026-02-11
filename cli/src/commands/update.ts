@@ -5,6 +5,7 @@ import { getLatestTag, isNewer, cloneAtTag } from "../git.js";
 import { generateAgentsMd, generateClaudeMdPointer, generateCopilotInstructions, generateReadme } from "./init.js";
 import { load } from "js-yaml";
 import { execSync } from "child_process";
+import * as ui from "../ui.js";
 
 // Sync skills, frameworks, scripts first — cli/ is replaced LAST
 // so the currently running process doesn't lose its own files mid-execution.
@@ -14,23 +15,30 @@ export function update(): void {
   const config = readConfig();
   const cwd = process.cwd();
 
-  console.log(`\n  Checking for updates...`);
+  console.log();
+  const spin1 = ui.spinner("Checking for updates...");
   const latest = getLatestTag(config.coreRepo);
 
   if (!latest) {
-    console.log(`  Could not determine latest version.\n`);
+    spin1.stop();
+    ui.error("Could not determine latest version.");
+    console.log();
     return;
   }
 
   if (!isNewer(latest, config.version)) {
-    console.log(`  Already up to date (v${config.version}).\n`);
+    spin1.stop(`Already up to date (v${config.version})`);
+    console.log();
     return;
   }
 
-  console.log(`  Updating v${config.version} → v${latest}...`);
+  spin1.stop(`Update available: v${config.version} ${ui.accent("→")} v${latest}`);
+  console.log();
 
   // Clone the latest tag to a temp directory
+  const spin2 = ui.spinner("Downloading...");
   const tmpDir = cloneAtTag(config.coreRepo, latest);
+  spin2.stop("Downloaded");
 
   // Sync content directories first (skills, frameworks, scripts)
   const stats = { skills: 0, frameworks: 0, scripts: 0 };
@@ -57,6 +65,8 @@ export function update(): void {
       rmSync(destDir, { recursive: true });
     }
     cpSync(srcDir, destDir, { recursive: true });
+
+    ui.success(`${dir.charAt(0).toUpperCase() + dir.slice(1)} updated (${stats[dir as keyof typeof stats]})`);
   }
 
   // Regenerate AI instruction files
@@ -73,6 +83,7 @@ export function update(): void {
   mkdirSync(join(cwd, ".github"), { recursive: true });
   writeFileSync(join(cwd, ".github", "copilot-instructions.md"), generateCopilotInstructions());
   writeFileSync(join(cwd, "README.md"), generateReadme(clientName));
+  ui.success("AI instructions regenerated");
 
   // Check for missing context files
   const contextPath = config.client.contextPath || "./context";
@@ -102,21 +113,27 @@ export function update(): void {
       if (existsSync(p)) rmSync(p, { recursive: true });
     }
   }
+  ui.success("CLI updated");
 
   // Re-install CLI dependencies after update
   if (existsSync(join(cwd, "package.json"))) {
+    const spin3 = ui.spinner("Installing dependencies...");
     try {
       execSync("npm install --silent", { cwd, stdio: "pipe" });
+      spin3.stop("Dependencies installed");
     } catch {
-      // Non-fatal — CLI still works from previous install
+      spin3.stop("Dependencies (using previous install)");
     }
   }
 
   // Clean up temp dir
   rmSync(tmpDir, { recursive: true });
 
-  console.log(`\n  Updated v${config.version} successfully.`);
-  console.log(`  Skills: ${stats.skills} | Frameworks: ${stats.frameworks} | Scripts: ${stats.scripts}`);
+  ui.summary(`Updated to v${latest}`, [
+    ["Skills:", `${stats.skills}`],
+    ["Frameworks:", `${stats.frameworks}`],
+    ["Scripts:", `${stats.scripts}`],
+  ]);
   console.log();
 }
 
@@ -160,10 +177,11 @@ function checkMissingContext(coreDir: string, contextDir: string): void {
   }
 
   if (missingMap.size > 0) {
-    console.log(`\n  Missing context files:`);
+    console.log();
+    ui.warn("Missing context files:");
     for (const [file, skills] of missingMap) {
-      console.log(`    → ${file} (used by ${skills.join(", ")})`);
+      console.log(`    ${ui.dim("→")} ${file} ${ui.dim(`(used by ${skills.join(", ")})`)}`);
     }
-    console.log(`  Create these files to get the most out of these skills.`);
+    ui.info("Create these files to get the most out of these skills.");
   }
 }

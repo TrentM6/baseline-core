@@ -1,0 +1,25 @@
+import chalk from "chalk";
+declare const brand: chalk.Chalk;
+declare const accent: chalk.Chalk;
+declare const dim: chalk.Chalk;
+declare const bold: chalk.Chalk;
+export declare function banner(subtitle?: string): void;
+export declare function header(title: string, subtitle?: string): void;
+export declare function sectionHeader(title: string, index: number, total: number): void;
+export declare function questionPrefix(current: number, total: number): string;
+export declare function formatPrompt(question: string, hint?: string): string;
+export declare function formatPromptWithProgress(question: string, current: number, total: number, hint?: string): string;
+export declare function sectionComplete(title: string, answered: number, total: number): void;
+export declare function spinner(message: string): {
+    stop: (finalMessage?: string) => void;
+};
+export declare function success(message: string): void;
+export declare function error(message: string): void;
+export declare function warn(message: string): void;
+export declare function info(message: string): void;
+export declare function summary(title: string, rows: [string, string][]): void;
+export declare function nextSteps(steps: string[]): void;
+export declare function divider(): void;
+export declare function formatDate(isoString: string): string;
+export declare function skipHint(): void;
+export { brand, accent, dim, bold };
