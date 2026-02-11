@@ -1,6 +1,7 @@
 import { Command } from "commander";
 import { status } from "./commands/status.js";
 import { update } from "./commands/update.js";
+import { init } from "./commands/init.js";
 
 const program = new Command();
 
@@ -18,5 +19,10 @@ program
   .command("update")
   .description("Pull latest skills, frameworks, and scripts from baseline-core")
   .action(update);
+
+program
+  .command("init")
+  .description("Set up a new client system with guided onboarding")
+  .action(init);
 
 program.parse();
