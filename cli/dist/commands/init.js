@@ -167,6 +167,8 @@ function collectContextPaths(coreDir) {
     // Always include core files
     paths.add("core/identity.md");
     paths.add("core/voice.md");
+    // Always include co-founder context (used by Co-Founder Mode, not a skill)
+    paths.add("extended/co-founder.md");
     for (const skill of (0, fs_1.readdirSync)(skillsDir)) {
         const manifestPath = (0, path_1.join)(skillsDir, skill, "manifest.yaml");
         if (!(0, fs_1.existsSync)(manifestPath))
@@ -232,6 +234,8 @@ function buildContextYaml(coreDir, contextFiles) {
     yaml += "  - identity.md       # loaded by all skills\n";
     yaml += "  - voice.md          # loaded by all skills\n";
     yaml += "extended:\n";
+    yaml += "  co-founder.md:\n";
+    yaml += "    - co-founder-mode  # loaded by Co-Founder Mode (not a skill)\n";
     for (const [file, skills] of [...extendedMap.entries()].sort()) {
         yaml += `  ${file}:\n`;
         for (const s of skills.sort()) {
@@ -318,6 +322,47 @@ After loading all files, follow the workflow defined in the skill file and the w
 ### Step 5: Deliver (If Requested)
 
 If the user wants output delivered to an external tool, read the relevant script from \`scripts/\` and follow its instructions.
+
+---
+
+## Co-Founder Mode
+
+When the user wants to brainstorm, strategize, or think through problems without invoking a specific skill, activate co-founder mode.
+
+### When to Activate
+
+Activate when the user:
+- Asks to "brainstorm" or "strategize" without naming a skill
+- Wants to "talk through" a problem or decision
+- Asks for strategic advice or a thinking partner
+- Phrases requests as open-ended questions about direction or approach
+
+**Do NOT activate when:**
+- The user invokes a specific skill by name or task mapping
+- The user asks for a specific deliverable (PRD, wireframe, content, etc.)
+- The request maps clearly to a skill in the table above
+
+### How to Use
+
+1. **Load context files:**
+   \`\`\`
+   context/core/identity.md
+   context/core/voice.md
+   context/extended/co-founder.md
+   \`\`\`
+   If \`co-founder.md\` does not exist, load only core context and proceed without the persona.
+
+2. **Adopt the persona.** Use the co-founder file to guide your thinking style, questions, and decision-making approach.
+
+3. **No workflow structure.** This is NOT a skill. No Plan/Clarify/Execute/Validate steps. No deliverables. No quality checks. Just strategic thinking partnership.
+
+4. **Ask probing questions.** Use the Default Questions and Assumptions to Challenge from the co-founder file to surface blind spots.
+
+5. **Reference principles when relevant.** When the conversation touches on strategic decisions, reference the Strategic Principles and Non-Negotiables from the co-founder file.
+
+### When to Exit
+
+If the conversation shifts to executing a specific deliverable (e.g., "now write a PRD for this"), switch to the appropriate skill and follow the Skill Execution Protocol above.
 
 ---
 

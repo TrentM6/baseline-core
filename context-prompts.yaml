@@ -145,6 +145,17 @@ extended/formatting.md:
     - "What are your spacing rules? (Between sections, around headers, divider usage)"
     - "Describe the structure of a typical document you produce. (e.g., blockquote intro, H2 sections, tables for comparisons)"
 
+extended/co-founder.md:
+  title: "Co-Founder Persona"
+  questions:
+    - "What kind of strategic partner should this be? (e.g., product-focused, technical, business, operations)"
+    - "What are your 3-5 core strategic principles — the beliefs that guide how you make decisions?"
+    - "What are your non-negotiables — the lines that should never be crossed?"
+    - "Describe your thinking style: how do you approach problems? (decision framework, risk tolerance, time horizon, communication style)"
+    - "What are the 3-5 default questions you always ask when exploring a problem?"
+    - "What assumptions do you always challenge? What do people say that makes you push back?"
+    - "Describe your decision-making philosophy in 2-3 sentences. How do you make hard calls?"
+
 extended/proof-points.md:
   title: "Proof Points & Social Proof"
   questions:
