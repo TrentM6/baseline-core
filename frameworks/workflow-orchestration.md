@@ -303,3 +303,4 @@ When using any skill:
 7. **Manage sessions** — one major task per session, start fresh after milestones
 
 The skill teaches you WHAT to do in this domain. This document teaches you HOW to work effectively regardless of domain.
+
