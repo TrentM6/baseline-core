@@ -1,0 +1,22 @@
+# Init Prompts — Slim set of questions asked during `baseline init`.
+# These are the essential questions that create a usable first layer of context.
+# The full question set lives in context-prompts.yaml and is used by `baseline context`.
+
+core/identity.md:
+  title: "Company Identity"
+  questions:
+    - "What does your company do in one sentence?"
+    - "Who are your primary customers?"
+    - "What stage is your company at? (pre-launch, early, growth, mature)"
+    - "What are your core services or product lines? List each with a brief description."
+    - "What makes you different from alternatives? List your top 3-4 differentiators."
+    - "What is your company NOT? (e.g., not an agency, not a marketplace — what do people incorrectly assume?)"
+
+core/voice.md:
+  title: "Brand Voice"
+  questions:
+    - "List 3-5 words that describe your brand's voice. (e.g., confident, direct, human, honest)"
+    - "What language rules should always be followed? (e.g., use 'I' not 'we', active voice, short sentences)"
+    - "What language rules should never be broken? (e.g., no jargon, no emojis, no em dashes)"
+    - "Write a sentence that sounds exactly like your brand at its best."
+    - "Write a sentence that sounds nothing like your brand — the anti-example."

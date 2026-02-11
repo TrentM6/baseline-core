@@ -102,30 +102,31 @@ async function init() {
     }
     // 5. Collect unique context file paths from manifests
     const contextFiles = collectContextPaths(tmpDir);
-    // 6. Load context-prompts.yaml from core
-    const promptsPath = (0, path_1.join)(tmpDir, "context-prompts.yaml");
-    let prompts = {};
-    if ((0, fs_1.existsSync)(promptsPath)) {
-        prompts = (0, js_yaml_1.load)((0, fs_1.readFileSync)(promptsPath, "utf-8"));
+    // 6. Load prompts
+    // init-prompts.yaml has the slim essential questions for onboarding
+    // context-prompts.yaml has the full question set (used for template titles)
+    const initPromptsPath = (0, path_1.join)(tmpDir, "init-prompts.yaml");
+    const fullPromptsPath = (0, path_1.join)(tmpDir, "context-prompts.yaml");
+    let initPrompts = {};
+    let fullPrompts = {};
+    if ((0, fs_1.existsSync)(initPromptsPath)) {
+        initPrompts = (0, js_yaml_1.load)((0, fs_1.readFileSync)(initPromptsPath, "utf-8"));
     }
-    // 7. Ask questions and write context files
+    if ((0, fs_1.existsSync)(fullPromptsPath)) {
+        fullPrompts = (0, js_yaml_1.load)((0, fs_1.readFileSync)(fullPromptsPath, "utf-8"));
+    }
+    // 7. Ask essential questions (slim init)
     console.log();
-    ui.info("Let's set up your context files.");
+    ui.info("Let's set up your core context — the essential info that powers every skill.");
     ui.skipHint();
-    // Count sections with prompts for progress tracking
-    const promptSections = contextFiles.filter((f) => prompts[f]);
+    const initSections = Object.keys(initPrompts);
     let sectionIndex = 0;
-    for (const ctxFile of contextFiles) {
-        const prompt = prompts[ctxFile];
-        if (!prompt) {
-            // Create empty template for files without prompts
-            const fullPath = (0, path_1.join)(destDir, "context", ctxFile);
-            (0, fs_1.mkdirSync)((0, path_1.dirname)(fullPath), { recursive: true });
-            (0, fs_1.writeFileSync)(fullPath, `# ${ctxFile}\n\n<!-- Add your content here -->\n`);
+    for (const ctxFile of initSections) {
+        const prompt = initPrompts[ctxFile];
+        if (!prompt)
             continue;
-        }
         sectionIndex++;
-        ui.sectionHeader(prompt.title, sectionIndex, promptSections.length);
+        ui.sectionHeader(prompt.title, sectionIndex, initSections.length);
         const answers = [];
         let answeredCount = 0;
         // Pre-fill company name into identity file
@@ -151,7 +152,18 @@ async function init() {
         }
         ui.sectionComplete(prompt.title, answeredCount, prompt.questions.length);
     }
-    // 8. Create context.yaml
+    // 8. Create empty templates for all remaining context files
+    for (const ctxFile of contextFiles) {
+        if (initPrompts[ctxFile])
+            continue; // Already handled above
+        const fullPath = (0, path_1.join)(destDir, "context", ctxFile);
+        if ((0, fs_1.existsSync)(fullPath))
+            continue; // Don't overwrite
+        (0, fs_1.mkdirSync)((0, path_1.dirname)(fullPath), { recursive: true });
+        const title = fullPrompts[ctxFile]?.title || ctxFile;
+        (0, fs_1.writeFileSync)(fullPath, `# ${title}\n\n<!-- Add your content here -->\n`);
+    }
+    // 9. Create context.yaml
     const contextYaml = buildContextYaml(tmpDir, contextFiles);
     (0, fs_1.writeFileSync)((0, path_1.join)(destDir, "context", "context.yaml"), contextYaml);
     // 9. Create baseline.config.json
@@ -218,10 +230,12 @@ async function init() {
         ["Frameworks:", `${frameworkCount}`],
         ["Scripts:", `${scriptCount}`],
     ]);
-    ui.nextSteps([
-        `Edit ${ui.accent("context/")} files to add more detail`,
-        `Run ${ui.accent("npx baseline status")} to check for updates`,
-    ]);
+    console.log(`  ${ui.bold("Add more context to improve output quality:")}`);
+    console.log(`  The more context you provide, the better every skill performs.`);
+    console.log(`  Run ${ui.accent("npx baseline context")} to fill out any section.\n`);
+    console.log(`    ${ui.dim("Priority:")}  ${ui.accent("product")} ${ui.dim("→")} ${ui.accent("users")} ${ui.dim("→")} ${ui.accent("icp")} ${ui.dim("→")} ${ui.accent("competitive")}`);
+    console.log(`    ${ui.dim("Also:")}      ${ui.accent("pricing")} ${ui.dim("·")} ${ui.accent("technical")} ${ui.dim("·")} ${ui.accent("visual-identity")} ${ui.dim("·")} ${ui.accent("formatting")}`);
+    console.log();
 }
 /** Scan all skill manifests and return unique context file paths (relative to context/) */
 function collectContextPaths(coreDir) {
