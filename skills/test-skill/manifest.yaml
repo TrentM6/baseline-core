@@ -1,0 +1,13 @@
+skill: test-skill
+description: Test skill for verification
+
+always_load:
+  - frameworks/workflow-orchestration.md
+  - skills/test-skill/test-skill.md
+
+context:
+  core:
+    - context/{client}/core/identity.md
+    - context/{client}/core/voice.md
+  extended:
+    - context/{client}/extended/new-context-file.md
