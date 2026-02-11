@@ -163,4 +163,4 @@ Yes. Run `npx baseline context add <name>` to create a new file and wire it to s
 Any AI tool. Claude Code has full automation. Code editors like Cursor work when pointed to the manifest. Chat tools like ChatGPT work when you upload skill and context files.
 
 **How do I get help?**
-Contact your Baseline Studio representative or email hello@baselinestudio.design.
+Email trent@baselinestudio.design.
