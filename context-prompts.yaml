@@ -9,7 +9,6 @@
 core/identity.md:
   title: "Company Identity"
   questions:
-    - "What is your company name?"
     - "What does your company do in one sentence?"
     - "Who are your primary customers?"
     - "What is your mission or purpose?"

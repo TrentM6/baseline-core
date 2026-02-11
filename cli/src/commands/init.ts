@@ -52,13 +52,17 @@ export async function init(): Promise<void> {
 
   // 1. Gather basic info
   const clientName = await ask(rl, "  What's your company or project name? ");
-  const folder = `${clientName.toLowerCase().replace(/\s+/g, "-")}-system`;
   const repo = "TrentM6/baseline-core";
 
-  const destDir = join(process.cwd(), folder);
+  // Use current directory if empty, otherwise create a subfolder
+  const cwd = process.cwd();
+  const cwdEntries = readdirSync(cwd).filter((f) => !f.startsWith("."));
+  const destDir = cwdEntries.length === 0
+    ? cwd
+    : join(cwd, `${clientName.toLowerCase().replace(/\s+/g, "-")}-system`);
 
-  if (existsSync(destDir)) {
-    console.error(`\n  Error: ${folder} already exists.\n`);
+  if (destDir !== cwd && existsSync(destDir)) {
+    console.error(`\n  Error: ${destDir} already exists.\n`);
     rl.close();
     process.exit(1);
   }
@@ -121,6 +125,12 @@ export async function init(): Promise<void> {
     console.log(`  ── ${prompt.title} ──\n`);
 
     const answers: string[] = [];
+
+    // Pre-fill company name into identity file
+    if (ctxFile === "core/identity.md") {
+      answers.push(`**What is your company name?**\n${clientName}`);
+    }
+
     for (const q of prompt.questions) {
       const answer = await ask(rl, `  ${q}\n  > `);
       if (answer.trim()) {
@@ -211,12 +221,19 @@ export async function init(): Promise<void> {
   rmSync(tmpDir, { recursive: true });
   rl.close();
 
+  const displayPath = destDir === cwd ? "." : `./${clientName.toLowerCase().replace(/\s+/g, "-")}-system`;
+  const skillCount = existsSync(join(destDir, "skills")) ? readdirSync(join(destDir, "skills")).filter((f) => !f.startsWith(".") && !f.startsWith("_")).length : 0;
+  const frameworkCount = existsSync(join(destDir, "frameworks")) ? readdirSync(join(destDir, "frameworks")).filter((f) => !f.startsWith(".") && !f.startsWith("_")).length : 0;
+  const scriptCount = existsSync(join(destDir, "scripts")) ? readdirSync(join(destDir, "scripts")).filter((f) => !f.startsWith(".") && !f.startsWith("_")).length : 0;
+
   console.log(`  ───────────────────────────────────`);
-  console.log(`  ${clientName} system created at ./${folder}`);
+  console.log(`  ${clientName} system created at ${displayPath}`);
   console.log(`  Version: v${latest}`);
-  console.log(`  Skills: ${SYNC_DIRS.filter((d) => d !== "cli").map((d) => existsSync(join(destDir, d)) ? readdirSync(join(destDir, d)).filter((f) => !f.startsWith(".") && !f.startsWith("_")).length : 0).join(" | ")}`);
+  console.log(`  ${skillCount} skills | ${frameworkCount} frameworks | ${scriptCount} scripts`);
   console.log(`\n  Next steps:`);
-  console.log(`    cd ${folder}`);
+  if (destDir !== cwd) {
+    console.log(`    cd ${clientName.toLowerCase().replace(/\s+/g, "-")}-system`);
+  }
   console.log(`    Edit context/ files to add more detail`);
   console.log(`    Run \`npx baseline status\` to check for updates\n`);
 }
