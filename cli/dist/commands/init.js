@@ -27,12 +27,9 @@ async function init() {
     console.log(`\n  Baseline System — New Client Setup`);
     console.log(`  ───────────────────────────────────\n`);
     // 1. Gather basic info
-    const clientName = await ask(rl, "  Client name: ");
-    const folderName = await ask(rl, `  Folder name (${clientName.toLowerCase().replace(/\s+/g, "-")}-system): `);
-    const folder = folderName.trim() ||
-        `${clientName.toLowerCase().replace(/\s+/g, "-")}-system`;
-    const coreRepo = await ask(rl, "  Core repo (TrentM6/baseline-core): ");
-    const repo = coreRepo.trim() || "TrentM6/baseline-core";
+    const clientName = await ask(rl, "  What's your company or project name? ");
+    const folder = `${clientName.toLowerCase().replace(/\s+/g, "-")}-system`;
+    const repo = "TrentM6/baseline-core";
     const destDir = (0, path_1.join)(process.cwd(), folder);
     if ((0, fs_1.existsSync)(destDir)) {
         console.error(`\n  Error: ${folder} already exists.\n`);

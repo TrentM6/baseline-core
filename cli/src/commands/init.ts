@@ -51,16 +51,9 @@ export async function init(): Promise<void> {
   console.log(`  ───────────────────────────────────\n`);
 
   // 1. Gather basic info
-  const clientName = await ask(rl, "  Client name: ");
-  const folderName = await ask(
-    rl,
-    `  Folder name (${clientName.toLowerCase().replace(/\s+/g, "-")}-system): `
-  );
-  const folder =
-    folderName.trim() ||
-    `${clientName.toLowerCase().replace(/\s+/g, "-")}-system`;
-  const coreRepo = await ask(rl, "  Core repo (TrentM6/baseline-core): ");
-  const repo = coreRepo.trim() || "TrentM6/baseline-core";
+  const clientName = await ask(rl, "  What's your company or project name? ");
+  const folder = `${clientName.toLowerCase().replace(/\s+/g, "-")}-system`;
+  const repo = "TrentM6/baseline-core";
 
   const destDir = join(process.cwd(), folder);
 
