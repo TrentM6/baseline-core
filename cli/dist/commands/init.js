@@ -104,16 +104,25 @@ async function init() {
     const contextFiles = collectContextPaths(tmpDir);
     // 6. Load prompts
     // init-prompts.yaml has the slim essential questions for onboarding
-    // context-prompts.yaml has the full question set (used for template titles)
+    // context-prompts.yaml has the full question set (used for template titles + fallback)
     const initPromptsPath = (0, path_1.join)(tmpDir, "init-prompts.yaml");
     const fullPromptsPath = (0, path_1.join)(tmpDir, "context-prompts.yaml");
     let initPrompts = {};
     let fullPrompts = {};
+    if ((0, fs_1.existsSync)(fullPromptsPath)) {
+        fullPrompts = (0, js_yaml_1.load)((0, fs_1.readFileSync)(fullPromptsPath, "utf-8"));
+    }
     if ((0, fs_1.existsSync)(initPromptsPath)) {
         initPrompts = (0, js_yaml_1.load)((0, fs_1.readFileSync)(initPromptsPath, "utf-8"));
     }
-    if ((0, fs_1.existsSync)(fullPromptsPath)) {
-        fullPrompts = (0, js_yaml_1.load)((0, fs_1.readFileSync)(fullPromptsPath, "utf-8"));
+    else {
+        // Fallback: if init-prompts.yaml doesn't exist (older tag), use core
+        // sections from the full prompts so init never skips questions entirely
+        for (const [key, val] of Object.entries(fullPrompts)) {
+            if (key.startsWith("core/")) {
+                initPrompts[key] = val;
+            }
+        }
     }
     // 7. Ask essential questions (slim init)
     console.log();
@@ -230,11 +239,12 @@ async function init() {
         ["Frameworks:", `${frameworkCount}`],
         ["Scripts:", `${scriptCount}`],
     ]);
-    console.log(`  ${ui.bold("Add more context to improve output quality:")}`);
-    console.log(`  The more context you provide, the better every skill performs.`);
-    console.log(`  Run ${ui.accent("npx baseline context")} to fill out any section.\n`);
-    console.log(`    ${ui.dim("Priority:")}  ${ui.accent("product")} ${ui.dim("→")} ${ui.accent("users")} ${ui.dim("→")} ${ui.accent("icp")} ${ui.dim("→")} ${ui.accent("competitive")}`);
-    console.log(`    ${ui.dim("Also:")}      ${ui.accent("pricing")} ${ui.dim("·")} ${ui.accent("technical")} ${ui.dim("·")} ${ui.accent("visual-identity")} ${ui.dim("·")} ${ui.accent("formatting")}`);
+    ui.nextSteps([
+        `Open ${ui.accent("context/core/")} and review your identity & voice files`,
+        `Fill in extended context files — start with ${ui.accent("product")}, ${ui.accent("users")}, ${ui.accent("icp")}`,
+        `Run ${ui.accent("npx baseline context")} to update context with guided prompts`,
+        `Open this folder in your AI tool and start using skills`,
+    ]);
     console.log();
 }
 /** Scan all skill manifests and return unique context file paths (relative to context/) */
