@@ -15,8 +15,8 @@ Skill says "prioritize features"  →  Loads prioritization.md  →  Applies RIC
 **Key principle:** Frameworks are universal. They work with any AI tool and aren't tied to specific skills.
 
 **Learn more:**
-- [The Baseline System](../GETTING_STARTED.md#the-baseline-system) — How frameworks fit with skills, context, and scripts
-- [Browse Skills](../_SKILLS/_README.md) — See which skills reference which frameworks
+- [System Overview](../README.md) — How frameworks fit with skills, context, and scripts
+- [Browse Skills](../skills/_README.md) — See which skills reference which frameworks
 
 ---
 
@@ -109,6 +109,6 @@ You typically don't load frameworks directly — skills handle it (automatically
 
 ## Related
 
-- [Skills](../_SKILLS/_README.md) — Domain expertise that references frameworks
+- [Skills](../skills/_README.md) — Domain expertise that references frameworks
 - [Workflow Orchestration](workflow-orchestration.md) — The meta-framework that all skills follow
-- [Getting Started](../GETTING_STARTED.md) — How to use frameworks with skills
+- [System Overview](../README.md) — How to use the Baseline System

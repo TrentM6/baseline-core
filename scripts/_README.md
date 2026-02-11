@@ -14,8 +14,8 @@ Scripts work with any AI tool that supports MCP — which now includes every maj
 
 **Learn more:**
 - [MCP Setup Guide](MCP-SETUP.md) — Connect scripts to external tools (one-time setup)
-- [The Baseline System](../GETTING_STARTED.md#the-baseline-system) — How scripts fit with skills, context, and frameworks
-- [Browse Skills](../_SKILLS/_README.md) — See which scripts work with which skills
+- [System Overview](../README.md) — How scripts fit with skills, context, and frameworks
+- [Browse Skills](../skills/_README.md) — See which scripts work with which skills
 
 ---
 
@@ -150,7 +150,7 @@ Each script requires a connection to its external tool (e.g., Figma for Figma sc
 ## Folder Structure
 
 ```
-_SCRIPTS/
+scripts/
 ├── _README.md                    # This file
 ├── MCP-SETUP.md                  # How to connect MCP services
 ├── script-building-guide.md      # How to create new scripts
@@ -219,19 +219,6 @@ Your AI tool will let you know. Your options:
 
 ---
 
-## For Plugin Builders
-
-When building Claude Cowork plugins:
-1. Only include scripts for services your client actually has connected
-2. Document which connections are required
-3. Provide fallback instructions for missing connections
-
-**Learn more:**
-- [What Plugins Are](../_PLUGIN/_README.md) — Overview of the Cowork plugin
-- [Plugin Building Guide](../_PLUGIN/plugin-building-guide.md) — Complete build instructions
-
----
-
 ## Creating New Scripts
 
 See [Script Building Guide](script-building-guide.md) for how to create scripts for new tools.
@@ -243,4 +230,4 @@ See [Script Building Guide](script-building-guide.md) for how to create scripts 
 
 **Related:**
 - [Script Building Guide](script-building-guide.md) — Detailed instructions for creating new scripts
-- [Getting Started](../GETTING_STARTED.md#using-scripts) — How to use scripts with skills
+- [System Overview](../README.md) — How to use the Baseline System

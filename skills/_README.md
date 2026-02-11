@@ -26,18 +26,17 @@ Skills draw on the other components of the Baseline System:
 
 | System Component | What It Provides | Location |
 |-----------------|------------------|----------|
-| **Context** | Your business knowledge (identity, voice, users, product) | `../_CONTEXT/[your-company]/` |
-| **Frameworks** | Reusable patterns that skills reference | `../_FRAMEWORKS/` |
-| **Examples** | Approved output samples that define the quality bar | `../_CONTEXT/[your-company]/examples/` or `[skill-name]/examples/` |
-| **Scripts** | Delivery to external tools after skill produces output | `../_SCRIPTS/` |
+| **Context** | Your business knowledge (identity, voice, users, product) | `../context/` |
+| **Frameworks** | Reusable patterns that skills reference | `../frameworks/` |
+| **Examples** | Approved output samples that define the quality bar | `../context/examples/` or `[skill-name]/examples/` |
+| **Scripts** | Delivery to external tools after skill produces output | `../scripts/` |
 
 **The Baseline System = Skills + Context + Frameworks + Scripts.** Skills create output. Context makes it specific to your business. Frameworks provide reusable methodology. Scripts deliver to external tools.
 
 **Learn more:**
-- [The Baseline System](../GETTING_STARTED.md#the-baseline-system) — How the four components work together
-- [Setting Up Context](../_CONTEXT/_README.md) — Create your business context files
-- [Available Frameworks](../_FRAMEWORKS/_README.md) — See what patterns skills can reference
-- [Using Scripts](../_SCRIPTS/_README.md) — Deliver output to external tools
+- [System Overview](../README.md) — How the four components work together
+- [Available Frameworks](../frameworks/_README.md) — See what patterns skills can reference
+- [Using Scripts](../scripts/_README.md) — Deliver output to external tools
 
 ---
 
@@ -103,13 +102,11 @@ Just say which skill to use (e.g., "use my marketing skill to write a LinkedIn p
 These platforms can't auto-resolve dependencies, so you need to load files manually. Each skill has a `manifest.yaml` that lists exactly which files it needs. Check it for the complete list, then load the files into your conversation:
 
 1. **Load the skill file** and its framework — from `always_load` in the manifest
-2. **Load your context** — from `context` in the manifest (files in `_CONTEXT/[your-client]/`)
+2. **Load your context** — from `context` in the manifest (files in `context/`)
 3. **Load references** — from `references` in the manifest (if the task needs detailed guidance)
 4. **State your request** — the skill guides you through clarification → execution → validation
 
-All skills follow the [Workflow Orchestration](../_FRAMEWORKS/workflow-orchestration.md) pattern for consistent execution.
-
-**For detailed usage:** See [Getting Started](../GETTING_STARTED.md) for complete step-by-step instructions.
+All skills follow the [Workflow Orchestration](../frameworks/workflow-orchestration.md) pattern for consistent execution.
 
 ---
 
@@ -123,12 +120,12 @@ Use the [Skill Building](skill-building/skill-building-skill.md) skill and its r
 | [Skill Architecture](skill-building/references/skill-architecture.md) | Structure and components of a skill |
 
 **Key requirements for new skills:**
-- Reference [workflow-orchestration.md](../_FRAMEWORKS/workflow-orchestration.md) for meta-workflow patterns
+- Reference [workflow-orchestration.md](../frameworks/workflow-orchestration.md) for meta-workflow patterns
 - Include domain-specific quality criteria
-- Define what [context files](../_CONTEXT/_README.md) are needed
+- Define what context files are needed
 - Keep universal (no Claude-specific features in the skill itself)
 
-**Related:** See [Workflow Orchestration](../_FRAMEWORKS/workflow-orchestration.md) for the meta-framework all skills follow.
+**Related:** See [Workflow Orchestration](../frameworks/workflow-orchestration.md) for the meta-framework all skills follow.
 
 ---
 
@@ -151,12 +148,12 @@ Scripts push outputs directly to external tools after a skill produces content. 
 | **Sales** | Canva presentations, email drafts, Google Docs |
 | **Skill Building** | — |
 
-See [Scripts](../_SCRIPTS/_README.md) for the full list and setup requirements.
+See [Scripts](../scripts/_README.md) for the full list and setup requirements.
 
 ---
 
 ## Related
 
-- [Frameworks](../_FRAMEWORKS/_README.md) — Methodologies referenced by skills
-- [Context](../_CONTEXT/_README.md) — Business-specific information that makes skills work
-- [Scripts](../_SCRIPTS/_README.md) — Push outputs directly to external tools
+- [Frameworks](../frameworks/_README.md) — Methodologies referenced by skills
+- [Scripts](../scripts/_README.md) — Push outputs directly to external tools
+- [System Overview](../README.md) — How the whole system works

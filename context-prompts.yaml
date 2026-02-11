@@ -1,6 +1,10 @@
 # Context Prompts — Questions asked during `baseline init` to populate context files.
 # Each key is a context file path relative to context/.
 # Questions are asked in terminal; answers written into the markdown file.
+#
+# These questions are designed to extract enough detail to make the system
+# produce high-quality, on-brand output. Short answers are fine — but the
+# more specific you are, the better the system works.
 
 core/identity.md:
   title: "Company Identity"
@@ -9,76 +13,147 @@ core/identity.md:
     - "What does your company do in one sentence?"
     - "Who are your primary customers?"
     - "What is your mission or purpose?"
-    - "What stage is your company at (pre-launch, early, growth, mature)?"
+    - "What stage is your company at? (pre-launch, early, growth, mature)"
+    - "How many people are on the team? What's the structure?"
+    - "What are your core services or product lines? List each with a brief description."
+    - "What is your tagline or positioning statement?"
+    - "What is your company NOT? (e.g., not an agency, not a marketplace — what do people incorrectly assume?)"
+    - "What makes you different from alternatives? List your top 3-4 differentiators."
+    - "What problem do you solve that others don't? Describe the core tension your customers face."
+    - "List any key terminology your company uses. What do you call things, and what should never be used? (e.g., 'engagement' not 'project', 'skills' not 'prompts')"
+    - "Who are your past or current notable clients?"
+    - "What are your best proof points or outcomes you can reference?"
+    - "What is your website URL and primary contact email?"
 
 core/voice.md:
   title: "Brand Voice"
   questions:
-    - "How would you describe your brand's tone? (e.g., professional, casual, technical)"
-    - "What words or phrases do you always use?"
-    - "What words or phrases do you never use?"
-    - "Give an example sentence that sounds like your brand."
+    - "List 3-5 words that describe your brand's voice. (e.g., confident, direct, human, honest)"
+    - "For each voice attribute, give a one-sentence description of what it means in practice."
+    - "What language rules should always be followed? (e.g., use 'I' not 'we', active voice, short sentences)"
+    - "What language rules should never be broken? (e.g., no jargon, no emojis, no em dashes)"
+    - "Write a sentence that sounds exactly like your brand at its best."
+    - "Write a sentence that sounds nothing like your brand — the anti-example."
+    - "List 5-10 words or phrases your brand should use regularly."
+    - "List 5-10 words or phrases your brand should never use."
+    - "How should the voice shift by context? (e.g., website copy vs. LinkedIn vs. cold outreach vs. proposals vs. client communication)"
+    - "Describe your headline style. (e.g., short and punchy, question-based, statement-driven)"
+    - "Describe your CTA style. (e.g., action-oriented but not pushy, conversational)"
+    - "What's the 'voice test' — what questions should you ask before publishing to make sure content sounds right?"
 
 extended/product.md:
   title: "Product Details"
   questions:
-    - "What is your core product or service?"
-    - "What are the key features or capabilities?"
-    - "What problem does it solve?"
-    - "What is your pricing model?"
+    - "What is your core product or service? Describe it in 2-3 sentences."
+    - "List each product/service tier or offering with a brief description of what's included."
+    - "For each offering, what are the key deliverables?"
+    - "For each offering, what is the typical timeline?"
+    - "What is the key workflow or process a customer goes through?"
+    - "What technology or tools does your product use or integrate with?"
+    - "What is the 'aha moment' — when does a customer first realize the value?"
+    - "What does your product NOT do? What's explicitly out of scope?"
+    - "How does the product scale or grow with the customer over time?"
+    - "What's the most common misconception about your product?"
 
 extended/users.md:
   title: "Users & Personas"
   questions:
-    - "Who are your primary user personas?"
-    - "What are their main goals when using your product?"
-    - "What are their biggest pain points?"
+    - "Who are your primary user personas? (List each with title/role)"
+    - "For each persona, what is their main goal when using your product?"
+    - "For each persona, what are their biggest pain points or frustrations?"
+    - "For each persona, what does their day-to-day look like?"
+    - "For each persona, what have they already tried to solve this problem?"
+    - "For each persona, what would make them say 'this is exactly what I needed'?"
+    - "What's the difference between your user and your buyer? (Are they the same person?)"
+    - "What does your ideal user look like vs. a bad-fit user?"
+    - "How do users typically discover your product?"
 
 extended/icp.md:
   title: "Ideal Customer Profile"
   questions:
-    - "What industry or vertical do your ideal customers operate in?"
-    - "What company size (employees, revenue) is your sweet spot?"
-    - "What role or title is your primary buyer?"
-    - "What triggers them to seek a solution like yours?"
+    - "Describe your ideal customer's company. (Stage, size, team structure, funding)"
+    - "What industry or vertical are they in? (Or is your product industry-agnostic?)"
+    - "Why is this type of company your sweet spot? What makes them ideal?"
+    - "Who is the primary buyer? (Title, role, what they're responsible for)"
+    - "Who else influences the buying decision?"
+    - "What is the buyer's mindset? What do they believe about the problem you solve?"
+    - "What triggers them to start looking for a solution like yours?"
+    - "What do they think they need vs. what they actually need?"
+    - "What are the red flags — what makes a prospect a bad fit? (Company-level and buyer-level)"
+    - "Where do your ideal customers spend time? (Communities, platforms, events, publications)"
+    - "How do they typically find you? (Referral, content, outbound, etc.)"
+    - "What's the one question you could ask a prospect to know if they're a fit?"
 
 extended/competitive.md:
   title: "Competitive Landscape"
   questions:
-    - "Who are your top 3 competitors?"
-    - "What is your primary differentiator?"
-    - "What do competitors do better than you?"
+    - "Who are your top 3-5 competitors or alternatives?"
+    - "For each competitor, what do they do well?"
+    - "For each competitor, where do they fall short?"
+    - "Where does your product/service sit in the market? (e.g., premium vs. budget, niche vs. broad)"
+    - "What is your primary differentiator — the one thing that's hardest to copy?"
+    - "What do customers typically compare you against before choosing you?"
+    - "What's the 'do nothing' alternative? What happens if the customer doesn't buy anything?"
+    - "Are there substitutes that aren't direct competitors but solve a similar need? (e.g., hiring in-house instead of buying)"
 
 extended/technical.md:
   title: "Technical Context"
   questions:
-    - "What is your tech stack?"
-    - "What are your key integrations?"
-    - "Any technical constraints to be aware of?"
+    - "What is your tech stack? (Frontend, backend, infrastructure, databases)"
+    - "What are your key integrations and how do they connect?"
+    - "What tools does your team use for development, design, and project management?"
+    - "Are there technical constraints or limitations to be aware of?"
+    - "What is your deployment model? (Cloud, self-hosted, hybrid, etc.)"
+    - "What does your development workflow look like? (Sprints, continuous deployment, etc.)"
+    - "What are the most important technical metrics you track?"
+    - "Are there platform or API dependencies that matter?"
 
 extended/pricing.md:
   title: "Pricing"
   questions:
-    - "What are your pricing tiers?"
-    - "What is your average deal size?"
-    - "How does your pricing compare to competitors?"
+    - "What is your pricing philosophy? (e.g., value-based, flat, per-seat, usage-based)"
+    - "List each pricing tier or package with its price range."
+    - "For each tier, what's included and what's not?"
+    - "What is your typical deal size or contract value?"
+    - "What are the payment terms? (Upfront, monthly, milestone-based)"
+    - "How do you present the price to a prospect? At what point in the conversation?"
+    - "What are the most common pricing objections you hear?"
+    - "How do you respond to each pricing objection?"
+    - "What are your walk-away signals — when should you stop negotiating?"
+    - "How does your pricing compare to competitors and alternatives?"
 
 extended/visual-identity.md:
   title: "Visual Identity"
   questions:
-    - "What are your brand colors (hex codes if available)?"
-    - "What fonts do you use?"
-    - "Describe your visual style in a few words."
+    - "What are your brand colors? (List each with hex codes and where it's used — primary, accent, background, text)"
+    - "What fonts do you use? (Heading font, body font, weights)"
+    - "What is your type scale? (H1, H2, H3, body sizes — approximate is fine)"
+    - "Describe your visual style in a few words. (e.g., clean, modern, dark, premium)"
+    - "What visual elements or patterns define your brand? (e.g., section numbering, card styles, dividers)"
+    - "What does your button style look like? (Shape, color, text case)"
+    - "What are the rules for spacing and layout? (Dense vs. generous, padding standards)"
+    - "How should the visual identity apply to documents and presentations? (Not just the website)"
 
 extended/formatting.md:
   title: "Formatting Preferences"
   questions:
-    - "What documentation format do you prefer (markdown, Google Docs, Notion, etc.)?"
-    - "Any specific formatting conventions or templates you follow?"
+    - "What document format do you prefer? (Markdown, Google Docs, Notion, etc.)"
+    - "What is your heading hierarchy? (When to use H1, H2, H3)"
+    - "What formatting elements do you use and when? (Bold, italic, code, blockquotes, tables, dividers)"
+    - "What are your rules for tables? (When to use them, max columns, content style)"
+    - "What are your rules for lists? (Bullets vs. numbers, max items, nesting)"
+    - "What are your rules for paragraphs? (Max length, sentence structure)"
+    - "What are your spacing rules? (Between sections, around headers, divider usage)"
+    - "Describe the structure of a typical document you produce. (e.g., blockquote intro, H2 sections, tables for comparisons)"
 
 extended/proof-points.md:
   title: "Proof Points & Social Proof"
   questions:
-    - "What are your key metrics or results you can share?"
-    - "Do you have notable customers or case studies?"
-    - "Any awards, press mentions, or certifications?"
+    - "What are your strongest metrics or outcomes? List specific numbers."
+    - "For each key customer persona, what proof points matter most to them?"
+    - "List your notable customers or clients that you can name publicly."
+    - "For your best client engagement, describe the situation, what you did, and the outcome."
+    - "What credibility statements can you make? (Years of experience, credentials, background)"
+    - "What are the most common objections prospects raise, and what evidence counters each one?"
+    - "Are there industry statistics that support why your product/service matters?"
+    - "Any awards, press mentions, partnerships, or certifications?"
