@@ -1,13 +1,40 @@
 {
-  "name": "baseline-cli",
-  "version": "1.0.0",
-  "description": "CLI for distributing and updating the Baseline System",
+  "name": "@baseline-studio/cli",
+  "version": "2.2.0",
+  "description": "CLI for distributing and updating the Baseline System — an AI-powered workflow system for product teams",
+  "keywords": [
+    "baseline",
+    "ai-system",
+    "cli",
+    "workflow",
+    "product-management",
+    "claude-code"
+  ],
+  "homepage": "https://github.com/TrentM6/baseline-core#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TrentM6/baseline-core.git",
+    "directory": "cli"
+  },
+  "bugs": {
+    "url": "https://github.com/TrentM6/baseline-core/issues"
+  },
+  "license": "MIT",
+  "author": "Baseline Studio <trent@baselinestudio.design>",
   "bin": {
     "baseline": "./bin/baseline"
   },
+  "files": [
+    "bin/",
+    "dist/"
+  ],
   "scripts": {
     "build": "tsc",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "commander": "^12.0.0",

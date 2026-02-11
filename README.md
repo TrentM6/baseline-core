@@ -2,6 +2,19 @@
 
 > A complete AI system for product teams. Skills provide methodology. Context makes it yours. Frameworks give structure. Scripts deliver to your tools.
 
+## Quick Start
+
+**New users:**
+```bash
+npx @baseline-studio/cli init
+```
+
+**Existing users:**
+```bash
+npx baseline status    # Check for updates
+npx baseline update    # Pull latest version
+```
+
 ---
 
 ## What This Is
@@ -265,7 +278,15 @@ The CLI is bundled into your repo as a local dependency — no global install ne
 
 ### First-Time Setup (for new clients)
 
-New client systems are created by your Baseline Studio representative using `baseline init`. You receive a ready-to-use repo. Just open it, run `npm install` if needed, and start working.
+Create a new Baseline System from scratch:
+
+```bash
+npx @baseline-studio/cli init
+```
+
+This scaffolds a complete system with skills, frameworks, scripts, and context files. You'll be guided through setup questions to personalize your system.
+
+If you received a pre-configured system from Baseline Studio, skip this step — just open the repo and start working.
 
 ---
 

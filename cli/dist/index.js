@@ -9,7 +9,7 @@ const program = new commander_1.Command();
 program
     .name("baseline")
     .description("Distribute and update the Baseline System")
-    .version("1.0.0");
+    .version("2.2.0");
 program
     .command("status")
     .description("Show current version and check for updates")
