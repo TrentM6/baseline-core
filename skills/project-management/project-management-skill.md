@@ -41,7 +41,7 @@ Project management is about turning plans into reality. It's the discipline of d
 
 ## Workflow
 
-> Follow the [Workflow Orchestration Pattern](../../_FRAMEWORKS/workflow-orchestration.md) for the universal workflow approach. Below are the project management-specific details for each step.
+> Follow the [Workflow Orchestration Pattern](../../frameworks/workflow-orchestration.md) for the universal workflow approach. Below are the project management-specific details for each step.
 
 ### 1. Clarify Before Starting
 
@@ -63,7 +63,7 @@ Before any project management work, understand:
 - Stakeholder map and communication preferences
 
 **Load when needed:**
-- [Project Management Framework](../../_FRAMEWORKS/project-management.md) — RACI, Risk Matrix, Estimation
+- [Project Management Framework](../../frameworks/project-management.md) — RACI, Risk Matrix, Estimation
 - Client context folder (their situation, team, constraints)
 
 ### 3. Choose the Right Approach

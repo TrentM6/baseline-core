@@ -41,7 +41,7 @@ Sales is about finding the right clients, not convincing the wrong ones. The goa
 
 ## Workflow
 
-> Follow the [Workflow Orchestration Pattern](../../_FRAMEWORKS/workflow-orchestration.md) for the universal workflow approach. Below are the sales-specific details for each step.
+> Follow the [Workflow Orchestration Pattern](../../frameworks/workflow-orchestration.md) for the universal workflow approach. Below are the sales-specific details for each step.
 
 ### 1. Clarify Before Starting
 

@@ -184,8 +184,8 @@ Example flow:
 ## Used By Skills
 
 This framework is referenced by:
-- [Marketing](../_SKILLS/marketing/marketing-skill.md) — For all content creation
-- [Sales](../_SKILLS/sales/sales-skill.md) — For outreach messaging
+- [Marketing](../skills/marketing/marketing-skill.md) — For all content creation
+- [Sales](../skills/sales/sales-skill.md) — For outreach messaging
 
 ---
 

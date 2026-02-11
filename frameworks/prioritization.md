@@ -286,9 +286,9 @@ Frameworks can work together:
 ## Used By Skills
 
 This framework is referenced by:
-- [Strategic Advisory](../_SKILLS/strategic-advisory/strategic-advisory-skill.md) — Roadmap prioritization
-- [Project Management](../_SKILLS/project-management/project-management-skill.md) — Backlog prioritization
-- [Research Synthesis](../_SKILLS/research-synthesis/research-synthesis-skill.md) — Prioritizing findings
+- [Strategic Advisory](../skills/strategic-advisory/strategic-advisory-skill.md) — Roadmap prioritization
+- [Project Management](../skills/project-management/project-management-skill.md) — Backlog prioritization
+- [Research Synthesis](../skills/research-synthesis/research-synthesis-skill.md) — Prioritizing findings
 
 ---
 

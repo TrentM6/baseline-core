@@ -365,9 +365,9 @@ We'll revisit this decision if:
 ## Used By Skills
 
 This framework is referenced by:
-- [Strategic Advisory](../_SKILLS/strategic-advisory/strategic-advisory-skill.md) — Strategic decision support
-- [Project Management](../_SKILLS/project-management/project-management-skill.md) — Project decisions
-- [Research Synthesis](../_SKILLS/research-synthesis/research-synthesis-skill.md) — Research-informed decisions
+- [Strategic Advisory](../skills/strategic-advisory/strategic-advisory-skill.md) — Strategic decision support
+- [Project Management](../skills/project-management/project-management-skill.md) — Project decisions
+- [Research Synthesis](../skills/research-synthesis/research-synthesis-skill.md) — Research-informed decisions
 
 ---
 

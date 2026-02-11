@@ -193,8 +193,8 @@ When planning an initiative, ask:
 ## Used By Skills
 
 This framework is referenced by:
-- [Strategic Advisory](../_SKILLS/strategic-advisory/strategic-advisory-skill.md) — Strategic planning and timeline setting
-- [Project Management](../_SKILLS/project-management/project-management-skill.md) — Realistic scoping and estimation
+- [Strategic Advisory](../skills/strategic-advisory/strategic-advisory-skill.md) — Strategic planning and timeline setting
+- [Project Management](../skills/project-management/project-management-skill.md) — Realistic scoping and estimation
 
 ---
 

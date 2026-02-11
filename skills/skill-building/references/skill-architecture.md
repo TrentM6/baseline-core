@@ -12,14 +12,14 @@ The Baseline System uses a **centralized architecture**:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                  _FRAMEWORKS/workflow-orchestration.md          │
+│                  frameworks/workflow-orchestration.md          │
 │                  (Meta-workflow patterns — single source)       │
 └─────────────────────────────────────────────────────────────────┘
                                  │
                                  │ reference
                                  ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                         _SKILLS/                                │
+│                         skills/                                │
 │   ┌─────────────┐  ┌─────────────┐  ┌─────────────┐           │
 │   │  marketing  │  │    sales    │  │  research   │  ...      │
 │   │   skill.md  │  │   skill.md  │  │   skill.md  │           │
@@ -31,7 +31,7 @@ The Baseline System uses a **centralized architecture**:
                                  │ load
                                  ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                         _CONTEXT/                               │
+│                         context/                               │
 │   ┌─────────────────────────────────────────────────────────┐ │
 │   │  [client]/                                               │ │
 │   │  ├── core/identity.md    ← Who they are                 │ │
@@ -91,7 +91,7 @@ description: [What this skill does]. Use when [specific triggers].
 
 ## Workflow
 
-> Follow the [Workflow Orchestration Pattern](../../_FRAMEWORKS/workflow-orchestration.md) for the universal workflow approach. Below are the [skill]-specific details for each step.
+> Follow the [Workflow Orchestration Pattern](../../frameworks/workflow-orchestration.md) for the universal workflow approach. Below are the [skill]-specific details for each step.
 
 ### 1. Clarify Before Starting
 [Domain-specific questions to answer]
@@ -128,7 +128,7 @@ Skills now reference the central workflow orchestration document instead of repe
 ```markdown
 ## Workflow
 
-> Follow the [Workflow Orchestration Pattern](../../_FRAMEWORKS/workflow-orchestration.md) for the universal workflow approach. Below are the [skill]-specific details for each step.
+> Follow the [Workflow Orchestration Pattern](../../frameworks/workflow-orchestration.md) for the universal workflow approach. Below are the [skill]-specific details for each step.
 ```
 
 This keeps skills lean and ensures consistent workflow patterns across all skills.
@@ -440,8 +440,8 @@ Skills reference context files for business-specific knowledge:
 Same skill works with different contexts:
 
 ```
-marketing/SKILL.md + _CONTEXT/baseline/ = Baseline marketing
-marketing/SKILL.md + _CONTEXT/client-x/ = Client X marketing
+marketing/SKILL.md + context/baseline/ = Baseline marketing
+marketing/SKILL.md + context/client-x/ = Client X marketing
 ```
 
 The skill's workflow stays the same. The context provides business-specific information.

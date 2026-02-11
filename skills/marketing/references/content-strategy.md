@@ -2,7 +2,7 @@
 
 > Strategic layer above individual content pieces. Tells you *which* content to create, *why*, and *what to do with it after*. Load alongside `content-playbooks.md` when planning content, or standalone when building editorial calendars.
 
-**Part of:** [Marketing](_SKILLS/marketing/marketing-skill.md)
+**Part of:** [Marketing](skills/marketing/marketing-skill.md)
 
 ---
 
@@ -355,7 +355,7 @@ CONVERSION (they're ready to decide)
 ## Related Files
 
 - [Content Playbooks](content-playbooks.md) — How to write specific content types
-- [Proof Points](../../../_CONTEXT/{client}/extended/proof-points.md) — All metrics, evidence, and client data
-- [ICP](../../../_CONTEXT/{client}/extended/icp.md) — Target audience and qualifying criteria
-- [Competitive](../../../_CONTEXT/{client}/extended/competitive.md) — Competitor positioning and differentiation
-- [Voice](../../../_CONTEXT/{client}/core/voice.md) — Tone, style, and language rules
+- [Proof Points](../../../context/{client}/extended/proof-points.md) — All metrics, evidence, and client data
+- [ICP](../../../context/{client}/extended/icp.md) — Target audience and qualifying criteria
+- [Competitive](../../../context/{client}/extended/competitive.md) — Competitor positioning and differentiation
+- [Voice](../../../context/{client}/core/voice.md) — Tone, style, and language rules

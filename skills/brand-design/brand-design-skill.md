@@ -41,7 +41,7 @@ Brand design creates visual consistency and recognition. Every visual touchpoint
 
 ## Workflow
 
-> Follow the [Workflow Orchestration Pattern](../../_FRAMEWORKS/workflow-orchestration.md) for the universal workflow approach. Below are the brand design-specific details for each step.
+> Follow the [Workflow Orchestration Pattern](../../frameworks/workflow-orchestration.md) for the universal workflow approach. Below are the brand design-specific details for each step.
 
 ### 1. Clarify Before Starting
 
@@ -198,7 +198,7 @@ Example: `client-presentation-quarterly-review-v2.pptx`
 | PDF | Documents, presentations for sharing |
 | PPT/PPTX | Editable presentations |
 
-**PDF from HTML/CSS:** If the deliverable was authored as styled HTML/CSS (whitepapers, branded documents, reports), use the [html-to-pdf](../../_SCRIPTS/file-system/html-to-pdf.md) script to convert to PDF with full CSS fidelity.
+**PDF from HTML/CSS:** If the deliverable was authored as styled HTML/CSS (whitepapers, branded documents, reports), use the [html-to-pdf](../../scripts/file-system/html-to-pdf.md) script to convert to PDF with full CSS fidelity.
 
 ---
 

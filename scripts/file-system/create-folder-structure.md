@@ -95,8 +95,8 @@
 ├── .claude-plugin/
 ├── skills/
 ├── scripts/
-├── _CONTEXT/
-└── _FRAMEWORKS/
+├── context/
+└── frameworks/
 ```
 
 ## Example

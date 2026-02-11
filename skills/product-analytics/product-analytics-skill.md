@@ -41,7 +41,7 @@ Product analytics is the discipline of measuring what matters and turning data i
 
 ## Workflow
 
-> Follow the [Workflow Orchestration Pattern](../../_FRAMEWORKS/workflow-orchestration.md) for the universal workflow approach. Below are the analytics-specific details for each step.
+> Follow the [Workflow Orchestration Pattern](../../frameworks/workflow-orchestration.md) for the universal workflow approach. Below are the analytics-specific details for each step.
 
 ### 1. Clarify Before Starting
 

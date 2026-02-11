@@ -241,9 +241,9 @@ For B2B/executive interviews, may be higher or replaced with donation to charity
 ## Used By Skills
 
 This framework is referenced by:
-- [Research Synthesis](../_SKILLS/research-synthesis/research-synthesis-skill.md) — Primary research methodology
-- [UX Design](../_SKILLS/ux-design/ux-design-skill.md) — User research methods
-- [Strategic Advisory](../_SKILLS/strategic-advisory/strategic-advisory-skill.md) — Research-informed strategy
+- [Research Synthesis](../skills/research-synthesis/research-synthesis-skill.md) — Primary research methodology
+- [UX Design](../skills/ux-design/ux-design-skill.md) — User research methods
+- [Strategic Advisory](../skills/strategic-advisory/strategic-advisory-skill.md) — Research-informed strategy
 
 ---
 

@@ -41,7 +41,7 @@ Research & Synthesis is the discipline of understanding users deeply through str
 
 ## Workflow
 
-> Follow the [Workflow Orchestration Pattern](../../_FRAMEWORKS/workflow-orchestration.md) for the universal workflow approach. Below are the research-specific details for each step.
+> Follow the [Workflow Orchestration Pattern](../../frameworks/workflow-orchestration.md) for the universal workflow approach. Below are the research-specific details for each step.
 
 ### 1. Clarify Before Starting
 

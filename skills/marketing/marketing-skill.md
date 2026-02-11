@@ -41,7 +41,7 @@ Marketing is about earning attention from the right people. Not broadcasting to 
 
 ## Workflow
 
-> Follow the [Workflow Orchestration Pattern](../../_FRAMEWORKS/workflow-orchestration.md) for the universal workflow approach. Below are the marketing-specific details for each step.
+> Follow the [Workflow Orchestration Pattern](../../frameworks/workflow-orchestration.md) for the universal workflow approach. Below are the marketing-specific details for each step.
 
 ### 1. Clarify Before Starting
 

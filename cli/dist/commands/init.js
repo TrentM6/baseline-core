@@ -371,6 +371,7 @@ If the conversation shifts to executing a specific deliverable (e.g., "now write
 - Scope each session to one major task. Multi-task sessions degrade output quality.
 - After completing a major deliverable, recommend starting a fresh session.
 - If the conversation has gone through 3+ revision cycles, proactively suggest a session break.
+- For work that spans multiple sessions, use the Session Planning Framework (\`frameworks/session-planning.md\`) to generate a project plan. The project plan is a standalone markdown file the user brings into each new session — it specifies what to do, what context to load, and what was decided in prior sessions.
 
 ---
 

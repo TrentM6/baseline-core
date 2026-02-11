@@ -64,7 +64,7 @@ Every skill implements this pattern. The steps are the same; only the domain-spe
 
 **If using a tool with plan mode** (e.g., Claude Code), enter plan mode. If the tool doesn't have a formal plan mode, present the plan in conversation and wait for approval before proceeding.
 
-**Multi-session check:** If the task requires multiple distinct deliverables each needing their own skill invocation, involves sequential skill dependencies, or exceeds what can be completed in a single focused session — load `_FRAMEWORKS/session-planning.md` and generate a project plan before proceeding. For single-session tasks, proceed normally.
+**Multi-session check:** If the task requires multiple distinct deliverables each needing their own skill invocation, involves sequential skill dependencies, or exceeds what can be completed in a single focused session — load `frameworks/session-planning.md` and generate a project plan before proceeding. For single-session tasks, proceed normally.
 
 ### Step 1: Clarify Before Starting
 
@@ -83,14 +83,14 @@ Before doing any work, ensure you have clear answers to the clarifying questions
 Before starting, load the context files specified by your skill:
 
 **Core context (always load):**
-- `_CONTEXT/[folder]/core/identity.md` — Product/company knowledge, terminology
-- `_CONTEXT/[folder]/core/voice.md` — Tone, language rules, writing style
+- `context/[folder]/core/identity.md` — Product/company knowledge, terminology
+- `context/[folder]/core/voice.md` — Tone, language rules, writing style
 
 **Extended context:** Load skill-specific files as directed (users, product, technical, competitive, icp, pricing, formatting, visual-identity)
 
 **References and frameworks:** Load as needed for specific tasks
 
-**Location:** Use `_CONTEXT/baseline/` for Baseline work, or `_CONTEXT/[client-name]/` for client work.
+**Location:** Use `context/baseline/` for Baseline work, or `context/[client-name]/` for client work.
 
 ### Step 3: Execute Domain-Specific Work
 

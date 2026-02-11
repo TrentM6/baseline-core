@@ -41,7 +41,7 @@ Skill building is the core methodology for AI Workflows engagements. It's the pr
 
 ## Workflow
 
-> Follow the [Workflow Orchestration Pattern](../../_FRAMEWORKS/workflow-orchestration.md) for the universal workflow approach. Below are the skill building-specific details for each step.
+> Follow the [Workflow Orchestration Pattern](../../frameworks/workflow-orchestration.md) for the universal workflow approach. Below are the skill building-specific details for each step.
 
 ### 1. Discovery: Understand the Process
 
@@ -107,7 +107,7 @@ skill-name/
 ```markdown
 ### 2. Load Relevant Context
 
-**Always load from the appropriate context folder** (`_CONTEXT/baseline/` for Baseline work, or `_CONTEXT/[client-name]/` for client work):
+**Always load from the appropriate context folder** (`context/baseline/` for Baseline work, or `context/[client-name]/` for client work):
 
 **Core context (always load):**
 - `core/identity.md` — Business positioning, services, terminology
@@ -119,8 +119,8 @@ skill-name/
 - `extended/pricing.md` — Service tiers, pricing (for sales skills)
 - `extended/icp.md` — Ideal client profile (for sales/marketing skills)
 
-**Load from _FRAMEWORKS/:**
-- `_FRAMEWORKS/[framework].md` — [When to use]
+**Load from frameworks/:**
+- `frameworks/[framework].md` — [When to use]
 
 **Load when needed:**
 - `references/[file].md` — [Specific situation]
@@ -234,7 +234,7 @@ This separation makes skills portable — same skill works with different contex
 
 **Standard context structure** (use `baseline/` for Baseline, or a client folder name for clients):
 ```
-_CONTEXT/[folder-name]/
+context/[folder-name]/
 ├── core/                    # Always loaded
 │   ├── identity.md          # Services, positioning, terminology
 │   └── voice.md             # Tone, language rules, writing style

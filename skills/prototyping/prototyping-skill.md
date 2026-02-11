@@ -41,7 +41,7 @@ Prototyping is about making ideas tangible fast. Not pixel-perfect production co
 
 ## Workflow
 
-> Follow the [Workflow Orchestration Pattern](../../_FRAMEWORKS/workflow-orchestration.md) for the universal workflow approach. Below are the prototyping-specific details for each step.
+> Follow the [Workflow Orchestration Pattern](../../frameworks/workflow-orchestration.md) for the universal workflow approach. Below are the prototyping-specific details for each step.
 
 ### 1. Clarify Before Starting
 

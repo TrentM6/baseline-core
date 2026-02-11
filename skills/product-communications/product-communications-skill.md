@@ -41,7 +41,7 @@ Product communications is the discipline of writing documents that move work for
 
 ## Workflow
 
-> Follow the [Workflow Orchestration Pattern](../../_FRAMEWORKS/workflow-orchestration.md) for the universal workflow approach. Below are the product communications-specific details for each step.
+> Follow the [Workflow Orchestration Pattern](../../frameworks/workflow-orchestration.md) for the universal workflow approach. Below are the product communications-specific details for each step.
 
 ### 1. Clarify Before Starting
 

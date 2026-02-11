@@ -107,7 +107,7 @@ Generate this as a standalone markdown file. It must work without any prior cont
 
 **Total Sessions:** [N]
 **Skills Used:** [List of skills involved]
-**Client Context:** `_CONTEXT/[client-name]/`
+**Client Context:** `context/[client-name]/`
 
 ### Deliverables
 1. [Deliverable 1] — Session [N]
@@ -136,9 +136,9 @@ Generate this as a standalone markdown file. It must work without any prior cont
 **Objective:** [What this session accomplishes]
 
 **Context to Load:**
-- `_CONTEXT/[client]/core/identity.md`
-- `_CONTEXT/[client]/core/voice.md`
-- `_CONTEXT/[client]/extended/[relevant].md`
+- `context/[client]/core/identity.md`
+- `context/[client]/core/voice.md`
+- `context/[client]/extended/[relevant].md`
 
 **Inputs:** None (first session)
 
@@ -158,9 +158,9 @@ Generate this as a standalone markdown file. It must work without any prior cont
 **Objective:** [What this session accomplishes]
 
 **Context to Load:**
-- `_CONTEXT/[client]/core/identity.md`
-- `_CONTEXT/[client]/core/voice.md`
-- `_CONTEXT/[client]/extended/[relevant].md`
+- `context/[client]/core/identity.md`
+- `context/[client]/core/voice.md`
+- `context/[client]/extended/[relevant].md`
 
 **Inputs:** [File paths or descriptions from Session 1]
 

@@ -41,7 +41,7 @@ UX design is the discipline of understanding users deeply and crafting experienc
 
 ## Workflow
 
-> Follow the [Workflow Orchestration Pattern](../../_FRAMEWORKS/workflow-orchestration.md) for the universal workflow approach. Below are the UX design-specific details for each step.
+> Follow the [Workflow Orchestration Pattern](../../frameworks/workflow-orchestration.md) for the universal workflow approach. Below are the UX design-specific details for each step.
 
 ### 1. Clarify Before Starting
 

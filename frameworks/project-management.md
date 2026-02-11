@@ -470,9 +470,9 @@ Control what's in and out of the project.
 ## Used By Skills
 
 This framework is referenced by:
-- [Project Management](../_SKILLS/project-management/project-management-skill.md) — Primary project management skill
-- [Strategic Advisory](../_SKILLS/strategic-advisory/strategic-advisory-skill.md) — Project planning context
-- [Skill Building](../_SKILLS/skill-building/skill-building-skill.md) — Delivery process management
+- [Project Management](../skills/project-management/project-management-skill.md) — Primary project management skill
+- [Strategic Advisory](../skills/strategic-advisory/strategic-advisory-skill.md) — Project planning context
+- [Skill Building](../skills/skill-building/skill-building-skill.md) — Delivery process management
 
 ---
 

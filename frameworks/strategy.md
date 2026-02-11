@@ -320,9 +320,9 @@ Analyze industry attractiveness:
 ## Used By Skills
 
 This framework is referenced by:
-- [Strategic Advisory](../_SKILLS/strategic-advisory/strategic-advisory-skill.md) — Product strategy and roadmapping
-- [Research Synthesis](../_SKILLS/research-synthesis/research-synthesis-skill.md) — Strategic research synthesis
-- [Project Management](../_SKILLS/project-management/project-management-skill.md) — Strategic planning context
+- [Strategic Advisory](../skills/strategic-advisory/strategic-advisory-skill.md) — Product strategy and roadmapping
+- [Research Synthesis](../skills/research-synthesis/research-synthesis-skill.md) — Strategic research synthesis
+- [Project Management](../skills/project-management/project-management-skill.md) — Strategic planning context
 
 ---
 
