@@ -1,0 +1,19 @@
+skill: project-management
+description: Planning, tracking, sprints, status updates, risk management, and stakeholder communication
+
+# Files loaded every time this skill runs
+always_load:
+  - frameworks/workflow-orchestration.md
+  - skills/project-management/project-management-skill.md
+  - frameworks/project-management.md
+
+# Context files — replace {client} with the actual client folder name
+context:
+  core:
+    - context/{client}/core/identity.md
+    - context/{client}/core/voice.md
+  extended:
+    - context/{client}/extended/product.md
+
+# Reference files — this skill has no additional reference files
+references: []

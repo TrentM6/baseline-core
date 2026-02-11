@@ -1,0 +1,20 @@
+skill: strategic-advisory
+description: Strategic decisions, roadmaps, prioritization, OKRs, and alignment
+
+# Files loaded every time this skill runs
+always_load:
+  - frameworks/workflow-orchestration.md
+  - skills/strategic-advisory/strategic-advisory-skill.md
+
+# Context files — replace {client} with the actual client folder name
+context:
+  core:
+    - context/{client}/core/identity.md
+    - context/{client}/core/voice.md
+  extended:
+    - context/{client}/extended/product.md
+    - context/{client}/extended/competitive.md
+
+# Reference files — load when the task needs detailed guidance
+references:
+  - skills/strategic-advisory/references/strategy-frameworks.md

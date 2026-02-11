@@ -1,0 +1,20 @@
+skill: prototyping
+description: Coded prototypes, demos, POCs, clickable mockups, and technical feasibility proofs
+
+# Files loaded every time this skill runs
+always_load:
+  - frameworks/workflow-orchestration.md
+  - skills/prototyping/prototyping-skill.md
+
+# Context files — replace {client} with the actual client folder name
+context:
+  core:
+    - context/{client}/core/identity.md
+    - context/{client}/core/voice.md
+  extended:
+    - context/{client}/extended/users.md
+    - context/{client}/extended/technical.md
+
+# Reference files — load when the task needs detailed guidance
+references:
+  - skills/prototyping/references/prototyping-tools.md

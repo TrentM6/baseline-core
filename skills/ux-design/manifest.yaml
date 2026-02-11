@@ -1,0 +1,24 @@
+skill: ux-design
+description: Interface design, wireframes, user flows, UI copy, design systems, and accessibility
+
+# Files loaded every time this skill runs
+always_load:
+  - frameworks/workflow-orchestration.md
+  - skills/ux-design/ux-design-skill.md
+
+# Context files — replace {client} with the actual client folder name
+context:
+  core:
+    - context/{client}/core/identity.md
+    - context/{client}/core/voice.md
+  extended:
+    - context/{client}/extended/users.md
+    - context/{client}/extended/visual-identity.md
+    - context/{client}/extended/technical.md
+
+# Reference files — load when the task needs detailed guidance
+references:
+  - skills/ux-design/references/ux-methods.md
+  - skills/ux-design/references/design-principles.md
+  - skills/ux-design/references/ui-patterns.md
+  - skills/ux-design/references/design-systems.md

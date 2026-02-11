@@ -1,0 +1,19 @@
+skill: skill-building
+description: Creating new skills, documenting expertise, and building skill reference files
+
+# Files loaded every time this skill runs
+always_load:
+  - frameworks/workflow-orchestration.md
+  - skills/skill-building/skill-building-skill.md
+
+# Context files — replace {client} with the actual client folder name
+# Skill building may use any client context depending on the target skill being built
+context:
+  core:
+    - context/{client}/core/identity.md
+    - context/{client}/core/voice.md
+  extended: []
+
+# Reference files — load when the task needs detailed guidance
+references:
+  - skills/skill-building/references/skill-architecture.md

@@ -1,0 +1,20 @@
+skill: sales
+description: Outreach, proposals, discovery calls, objection handling, and closing
+
+# Files loaded every time this skill runs
+always_load:
+  - frameworks/workflow-orchestration.md
+  - skills/sales/sales-skill.md
+
+# Context files — replace {client} with the actual client folder name
+context:
+  core:
+    - context/{client}/core/identity.md
+    - context/{client}/core/voice.md
+  extended:
+    - context/{client}/extended/icp.md
+    - context/{client}/extended/pricing.md
+
+# Reference files — load when the task needs detailed guidance
+references:
+  - skills/sales/references/sales-fundamentals.md

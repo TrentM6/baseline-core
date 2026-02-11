@@ -1,0 +1,20 @@
+skill: product-analytics
+description: Metrics, dashboards, funnel analysis, retention analysis, A/B tests, and segmentation
+
+# Files loaded every time this skill runs
+always_load:
+  - frameworks/workflow-orchestration.md
+  - skills/product-analytics/product-analytics-skill.md
+
+# Context files — replace {client} with the actual client folder name
+context:
+  core:
+    - context/{client}/core/identity.md
+    - context/{client}/core/voice.md
+  extended:
+    - context/{client}/extended/users.md
+    - context/{client}/extended/product.md
+
+# Reference files — load when the task needs detailed guidance
+references:
+  - skills/product-analytics/references/metrics-framework.md

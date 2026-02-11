@@ -1,0 +1,84 @@
+# Context Prompts — Questions asked during `baseline init` to populate context files.
+# Each key is a context file path relative to context/.
+# Questions are asked in terminal; answers written into the markdown file.
+
+core/identity.md:
+  title: "Company Identity"
+  questions:
+    - "What is your company name?"
+    - "What does your company do in one sentence?"
+    - "Who are your primary customers?"
+    - "What is your mission or purpose?"
+    - "What stage is your company at (pre-launch, early, growth, mature)?"
+
+core/voice.md:
+  title: "Brand Voice"
+  questions:
+    - "How would you describe your brand's tone? (e.g., professional, casual, technical)"
+    - "What words or phrases do you always use?"
+    - "What words or phrases do you never use?"
+    - "Give an example sentence that sounds like your brand."
+
+extended/product.md:
+  title: "Product Details"
+  questions:
+    - "What is your core product or service?"
+    - "What are the key features or capabilities?"
+    - "What problem does it solve?"
+    - "What is your pricing model?"
+
+extended/users.md:
+  title: "Users & Personas"
+  questions:
+    - "Who are your primary user personas?"
+    - "What are their main goals when using your product?"
+    - "What are their biggest pain points?"
+
+extended/icp.md:
+  title: "Ideal Customer Profile"
+  questions:
+    - "What industry or vertical do your ideal customers operate in?"
+    - "What company size (employees, revenue) is your sweet spot?"
+    - "What role or title is your primary buyer?"
+    - "What triggers them to seek a solution like yours?"
+
+extended/competitive.md:
+  title: "Competitive Landscape"
+  questions:
+    - "Who are your top 3 competitors?"
+    - "What is your primary differentiator?"
+    - "What do competitors do better than you?"
+
+extended/technical.md:
+  title: "Technical Context"
+  questions:
+    - "What is your tech stack?"
+    - "What are your key integrations?"
+    - "Any technical constraints to be aware of?"
+
+extended/pricing.md:
+  title: "Pricing"
+  questions:
+    - "What are your pricing tiers?"
+    - "What is your average deal size?"
+    - "How does your pricing compare to competitors?"
+
+extended/visual-identity.md:
+  title: "Visual Identity"
+  questions:
+    - "What are your brand colors (hex codes if available)?"
+    - "What fonts do you use?"
+    - "Describe your visual style in a few words."
+
+extended/formatting.md:
+  title: "Formatting Preferences"
+  questions:
+    - "What documentation format do you prefer (markdown, Google Docs, Notion, etc.)?"
+    - "Any specific formatting conventions or templates you follow?"
+
+extended/proof-points.md:
+  title: "Proof Points & Social Proof"
+  questions:
+    - "What are your key metrics or results you can share?"
+    - "Do you have notable customers or case studies?"
+    - "Any awards, press mentions, or certifications?"

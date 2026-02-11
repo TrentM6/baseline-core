@@ -1,0 +1,22 @@
+skill: marketing
+description: LinkedIn posts, website copy, case studies, email campaigns, landing pages, and content strategy
+
+# Files loaded every time this skill runs
+always_load:
+  - frameworks/workflow-orchestration.md
+  - skills/marketing/marketing-skill.md
+
+# Context files — replace {client} with the actual client folder name
+context:
+  core:
+    - context/{client}/core/identity.md
+    - context/{client}/core/voice.md
+  extended:
+    - context/{client}/extended/icp.md
+    - context/{client}/extended/competitive.md
+    - context/{client}/extended/proof-points.md
+
+# Reference files — load when the task needs detailed guidance
+references:
+  - skills/marketing/references/content-playbooks.md
+  - skills/marketing/references/content-strategy.md
