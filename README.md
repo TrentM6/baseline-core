@@ -92,24 +92,122 @@ See `scripts/_README.md` for the full list of available scripts.
 
 ---
 
+## Using the System
+
+The Baseline System works with any AI tool. The experience differs by tool — some automate everything, others require manual file loading. Pick your tool below.
+
+### Claude Code (Fully Automated)
+
+Claude Code is the primary supported tool. The `CLAUDE.md` file in your repo root tells Claude Code exactly how to find skills, load manifests, read context, and execute workflows. You don't manage any of this.
+
+**How to use it:**
+1. Open your system folder in Claude Code
+2. Describe what you need — "Write a PRD for the onboarding redesign" or "Help me prioritize Q2 features"
+3. Claude Code automatically identifies the right skill, loads all dependencies, and walks you through Plan → Clarify → Execute → Validate
+
+That's it. No file loading, no manifest reading, no copy-pasting. Just describe the work.
+
+### Cursor / Windsurf / Other Code Editors with AI
+
+These editors can read project files, but they don't auto-execute the `CLAUDE.md` protocol. You need to point the AI to the right files.
+
+**How to use it:**
+1. Open your system folder in the editor
+2. Tell the AI to read the skill's manifest — e.g., "Read `skills/marketing/manifest.yaml`"
+3. Tell the AI to load the files listed in the manifest:
+   - **`always_load`** — the skill file and its framework
+   - **`context`** — your context files (replace `{client}` with your context folder name)
+   - **`references`** — if the task needs detailed guidance (templates, playbooks, etc.)
+4. Describe your task — the skill file contains the workflow, clarifying questions, and quality checks
+
+**Example for writing a LinkedIn post:**
+```
+Read skills/marketing/manifest.yaml.
+Load every file it lists — skill, frameworks, and my context files.
+Then help me write a LinkedIn post about our new feature launch.
+```
+
+Most code editors with AI will follow these instructions and load the files into context.
+
+### ChatGPT / Gemini / Other Chat-Based AI Tools
+
+Chat tools can't read your filesystem, so you upload files directly into the conversation.
+
+**How to use it:**
+1. Open the skill's `manifest.yaml` to see what files it needs
+2. Upload or paste the listed files into your conversation:
+   - The skill file (e.g., `skills/marketing/marketing-skill.md`)
+   - The framework file (e.g., `frameworks/workflow-orchestration.md`)
+   - Your core context files (`context/core/identity.md`, `context/core/voice.md`)
+   - Any extended context files the manifest lists
+   - Reference files if the task needs them
+3. Describe your task — the skill file tells the AI what workflow to follow
+
+**Example for writing a PRD:**
+Upload these files into ChatGPT or Gemini:
+```
+skills/product-communications/product-communications-skill.md
+frameworks/workflow-orchestration.md
+frameworks/messaging.md
+context/core/identity.md
+context/core/voice.md
+context/extended/product.md
+context/extended/users.md
+```
+Then say: "Use the product communications skill to write a PRD for the new dashboard feature."
+
+**Tip:** You can create saved prompt templates or GPTs that pre-load your commonly used skill + context file combinations so you don't re-upload every time.
+
+### What About the Manifest?
+
+Every skill has a `manifest.yaml` that lists exactly what files it needs. Here's what one looks like:
+
+```yaml
+skill: strategic-advisory
+description: Strategic decisions, roadmaps, prioritization
+
+always_load:
+  - frameworks/workflow-orchestration.md
+  - skills/strategic-advisory/strategic-advisory-skill.md
+
+context:
+  core:
+    - context/{client}/core/identity.md
+    - context/{client}/core/voice.md
+  extended:
+    - context/{client}/extended/product.md
+    - context/{client}/extended/competitive.md
+
+references:
+  - skills/strategic-advisory/references/strategy-frameworks.md
+```
+
+- **`always_load`** — Load these every time. Non-negotiable.
+- **`context`** — Replace `{client}` with your context folder name. Load all core files; load extended files if they exist.
+- **`references`** — Load when the task needs detailed guidance. Skip for straightforward tasks.
+
+In Claude Code, this is handled automatically. In other tools, use the manifest as your loading checklist.
+
+---
+
 ## Getting Started
 
 ### Prerequisites
 
-- **Claude Code** (or another AI tool that reads project files)
-- **Node.js** (v18+ for the CLI)
-- **Git** (for updates)
+- **An AI tool** — Claude Code (recommended), Cursor, Windsurf, ChatGPT, Gemini, or any other AI tool
+- **Node.js v18+** — for the CLI (updates, context management)
+- **Git** — for pulling updates from baseline-core
 
 ### Initial Setup
 
-If your system was set up via `baseline init`, you're ready to go. Open the repo in Claude Code and start describing tasks.
+If your system was set up via `baseline init`, you're ready to go. Open the repo in your AI tool and start working (see "Using the System" above).
 
 If you received the system as a folder:
 
-1. Make sure `CLAUDE.md` is in your repo root
+1. Make sure `CLAUDE.md` is in your repo root (required for Claude Code automation; other tools ignore it)
 2. Make sure your context files in `context/` are populated with your business details
-3. Open the repo in Claude Code
-4. Start working — describe a task and the system handles the rest
+3. Open the repo in your AI tool
+4. Start working — describe a task and follow the process for your tool
 
 ### Populating Context
 
@@ -222,7 +320,7 @@ Yes. Run `baseline context add <name>` to create a new file and wire it to the s
 They're all included automatically. You only use the ones relevant to your work. Unused skills take up negligible space.
 
 **What AI tools does this work with?**
-The system is optimized for Claude Code but works with any AI tool that can read project files. The `CLAUDE.md` enforcement layer and scripts are Claude Code-specific, but the skills, context, and frameworks are plain markdown that any tool can use.
+Any AI tool. Claude Code has full automation via `CLAUDE.md` — just describe your task and it handles the rest. Code editors like Cursor and Windsurf can read project files when pointed to the manifest. Chat tools like ChatGPT and Gemini work when you upload the skill and context files directly. See "Using the System" above for tool-specific instructions.
 
 **How do I get help?**
 Contact your Baseline Studio representative or email hello@baselinestudio.design.
