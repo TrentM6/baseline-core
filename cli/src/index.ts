@@ -1,15 +1,19 @@
 import { Command } from "commander";
+import { readFileSync } from "fs";
+import { join } from "path";
 import { status } from "./commands/status.js";
 import { update } from "./commands/update.js";
 import { init } from "./commands/init.js";
 import { context } from "./commands/context.js";
+
+const pkg = JSON.parse(readFileSync(join(__dirname, "..", "package.json"), "utf-8"));
 
 const program = new Command();
 
 program
   .name("baseline")
   .description("Distribute and update the Baseline System")
-  .version("2.2.5");
+  .version(pkg.version);
 
 program
   .command("status")
