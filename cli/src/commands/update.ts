@@ -3,8 +3,9 @@ import { join, basename } from "path";
 import { readConfig, writeConfig } from "../config.js";
 import { getLatestTag, isNewer, cloneAtTag } from "../git.js";
 import { load } from "js-yaml";
+import { execSync } from "child_process";
 
-const SYNC_DIRS = ["skills", "frameworks", "scripts"];
+const SYNC_DIRS = ["skills", "frameworks", "scripts", "cli"];
 
 export function update(): void {
   const config = readConfig();
@@ -37,12 +38,12 @@ export function update(): void {
 
     if (!existsSync(srcDir)) continue;
 
-    // Count items for summary
+    // Count items for summary (skip cli in counts)
     if (dir === "skills") {
       stats.skills = readdirSync(srcDir).filter((f) =>
         statSync(join(srcDir, f)).isDirectory()
       ).length;
-    } else {
+    } else if (dir !== "cli") {
       stats[dir as keyof typeof stats] = readdirSync(srcDir).filter(
         (f) => f.endsWith(".md") || statSync(join(srcDir, f)).isDirectory()
       ).length;
@@ -53,6 +54,22 @@ export function update(): void {
       rmSync(destDir, { recursive: true });
     }
     cpSync(srcDir, destDir, { recursive: true });
+  }
+
+  // Remove CLI source files (clients only need bin/, dist/, package.json)
+  const cliCleanup = ["src", "tsconfig.json", "package-lock.json"];
+  for (const item of cliCleanup) {
+    const p = join(cwd, "cli", item);
+    if (existsSync(p)) rmSync(p, { recursive: true });
+  }
+
+  // Re-install CLI dependencies after update
+  if (existsSync(join(cwd, "package.json"))) {
+    try {
+      execSync("npm install --silent", { cwd, stdio: "pipe" });
+    } catch {
+      // Non-fatal — CLI still works from previous install
+    }
   }
 
   // Check for missing context files

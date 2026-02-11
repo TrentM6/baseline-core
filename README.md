@@ -195,7 +195,7 @@ In Claude Code, this is handled automatically. In other tools, use the manifest 
 ### Prerequisites
 
 - **An AI tool** — Claude Code (recommended), Cursor, Windsurf, ChatGPT, Gemini, or any other AI tool
-- **Node.js v18+** — for the CLI (updates, context management)
+- **Node.js v18+** — for the CLI (bundled in your repo)
 - **Git** — for pulling updates from baseline-core
 
 ### Initial Setup
@@ -220,7 +220,7 @@ The most important thing you can do is fill out your context files thoroughly. T
 **Then extended:**
 3. Fill out whichever extended files are relevant to your work. If you do a lot of sales, prioritize `icp.md` and `pricing.md`. If you're focused on product, prioritize `product.md` and `users.md`.
 
-You can always add more detail later. Run `baseline context` to update existing files or `baseline context add <name>` to create new ones.
+You can always add more detail later. Run `npx baseline context` to update existing files or `npx baseline context add <name>` to create new ones.
 
 ---
 
@@ -231,7 +231,7 @@ The Baseline System improves over time. Skills get refined, new frameworks are a
 ### Check for Updates
 
 ```
-baseline status
+npx baseline status
 ```
 
 Shows your current version and whether an update is available.
@@ -239,36 +239,33 @@ Shows your current version and whether an update is available.
 ### Pull Updates
 
 ```
-baseline update
+npx baseline update
 ```
 
-Updates `skills/`, `frameworks/`, and `scripts/` to the latest version. **Your context files are never touched.** The system will tell you if new skills expect context files you haven't created yet.
+Updates `skills/`, `frameworks/`, `scripts/`, and the CLI itself to the latest version. **Your context files are never touched.** The system will tell you if new skills expect context files you haven't created yet.
 
 ---
 
 ## CLI Reference
 
-The Baseline CLI manages your system. Run it from your repo root.
+The Baseline CLI manages your system. Run all commands from your repo root.
+
+```
+npx baseline <command>
+```
 
 | Command | What It Does |
 |---------|-------------|
-| `baseline status` | Show current version, check for updates |
-| `baseline update` | Pull latest skills, frameworks, and scripts |
-| `baseline init` | Set up a new system from scratch (interactive) |
-| `baseline context` | Re-run context prompts to update existing files |
-| `baseline context add <name>` | Create a new context file and wire it to skills |
+| `npx baseline status` | Show current version, check for updates |
+| `npx baseline update` | Pull latest skills, frameworks, scripts, and CLI |
+| `npx baseline context` | Re-run context prompts to update existing files |
+| `npx baseline context add <name>` | Create a new context file and wire it to skills |
 
-### Running the CLI
+The CLI is bundled into your repo as a local dependency — no global install needed. It works anywhere the repo exists.
 
-If the CLI was installed as a dependency:
-```
-npx baseline status
-```
+### First-Time Setup (for new clients)
 
-If running directly:
-```
-node /path/to/baseline-core/cli/dist/index.js status
-```
+New client systems are created by your Baseline Studio representative using `baseline init`. You receive a ready-to-use repo. Just open it, run `npm install` if needed, and start working.
 
 ---
 
@@ -278,6 +275,8 @@ node /path/to/baseline-core/cli/dist/index.js status
 your-system/
 ├── CLAUDE.md                    # Instructions for Claude Code (don't edit)
 ├── baseline.config.json         # Version tracking and config
+├── package.json                 # Local CLI dependency
+├── cli/                         # Baseline CLI (managed, don't edit)
 ├── skills/                      # 12 domain expertise modules
 │   ├── strategic-advisory/
 │   │   ├── manifest.yaml        # What this skill loads
@@ -301,7 +300,7 @@ your-system/
     └── _README.md
 ```
 
-**You own `context/`.** Everything else is managed by the system and updated via `baseline update`.
+**You own `context/`.** Everything else — skills, frameworks, scripts, and the CLI — is managed by the system and updated via `npx baseline update`.
 
 ---
 
@@ -314,7 +313,7 @@ You can, but your changes will be overwritten on the next `baseline update`. If 
 Skills work with whatever context is available. Missing context means more generic output, but nothing breaks. Fill out files incrementally as you need them.
 
 **Can I add my own context files?**
-Yes. Run `baseline context add <name>` to create a new file and wire it to the skills that should use it. Or create the file manually and update `context/context.yaml`.
+Yes. Run `npx baseline context add <name>` to create a new file and wire it to the skills that should use it. Or create the file manually and update `context/context.yaml`.
 
 **Do I need all 12 skills?**
 They're all included automatically. You only use the ones relevant to your work. Unused skills take up negligible space.

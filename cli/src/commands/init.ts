@@ -13,7 +13,7 @@ import { load } from "js-yaml";
 import { cloneAtTag, getLatestTag } from "../git.js";
 import { execSync } from "child_process";
 
-const SYNC_DIRS = ["skills", "frameworks", "scripts"];
+const SYNC_DIRS = ["skills", "frameworks", "scripts", "cli"];
 
 interface ContextPrompt {
   title: string;
@@ -86,12 +86,19 @@ export async function init(): Promise<void> {
   mkdirSync(join(destDir, "context", "core"), { recursive: true });
   mkdirSync(join(destDir, "context", "extended"), { recursive: true });
 
-  // 4. Copy skills, frameworks, scripts
+  // 4. Copy skills, frameworks, scripts, cli
   for (const dir of SYNC_DIRS) {
     const srcDir = join(tmpDir, dir);
     if (existsSync(srcDir)) {
       cpSync(srcDir, join(destDir, dir), { recursive: true });
     }
+  }
+
+  // Remove CLI source files (clients only need bin/, dist/, package.json)
+  const cliCleanup = ["src", "tsconfig.json", "package-lock.json"];
+  for (const item of cliCleanup) {
+    const p = join(destDir, "cli", item);
+    if (existsSync(p)) rmSync(p, { recursive: true });
   }
 
   // 5. Collect unique context file paths from manifests
@@ -174,7 +181,32 @@ export async function init(): Promise<void> {
     writeFileSync(join(destDir, "CLAUDE.md"), generateClaudeMd(clientName));
   }
 
-  // 11. Initialize git repo
+  // 11. Create root package.json for local CLI access
+  const rootPkg = {
+    name: `${clientName.toLowerCase().replace(/\s+/g, "-")}-system`,
+    version: "1.0.0",
+    private: true,
+    description: `${clientName} Baseline System`,
+    dependencies: {
+      "baseline-cli": "file:cli",
+    },
+  };
+  writeFileSync(
+    join(destDir, "package.json"),
+    JSON.stringify(rootPkg, null, 2) + "\n"
+  );
+
+  // 12. Install CLI locally so npx baseline works
+  console.log(`\n  Installing CLI...`);
+  execSync("npm install --silent", { cwd: destDir, stdio: "pipe" });
+
+  // 13. Create .gitignore
+  writeFileSync(
+    join(destDir, ".gitignore"),
+    "node_modules/\n.DS_Store\n"
+  );
+
+  // 14. Initialize git repo
   execSync("git init", { cwd: destDir, stdio: "pipe" });
   execSync("git add -A", { cwd: destDir, stdio: "pipe" });
   execSync(
@@ -189,11 +221,11 @@ export async function init(): Promise<void> {
   console.log(`  ───────────────────────────────────`);
   console.log(`  ${clientName} system created at ./${folder}`);
   console.log(`  Version: v${latest}`);
-  console.log(`  Skills: ${SYNC_DIRS.map((d) => existsSync(join(destDir, d)) ? readdirSync(join(destDir, d)).filter((f) => !f.startsWith(".") && !f.startsWith("_")).length : 0).join(" | ")}`);
+  console.log(`  Skills: ${SYNC_DIRS.filter((d) => d !== "cli").map((d) => existsSync(join(destDir, d)) ? readdirSync(join(destDir, d)).filter((f) => !f.startsWith(".") && !f.startsWith("_")).length : 0).join(" | ")}`);
   console.log(`\n  Next steps:`);
   console.log(`    cd ${folder}`);
   console.log(`    Edit context/ files to add more detail`);
-  console.log(`    Run \`baseline status\` to check for updates\n`);
+  console.log(`    Run \`npx baseline status\` to check for updates\n`);
 }
 
 /** Scan all skill manifests and return unique context file paths (relative to context/) */
