@@ -56,7 +56,8 @@ export async function init(): Promise<void> {
 
   // Use current directory if empty, otherwise create a subfolder
   const cwd = process.cwd();
-  const cwdEntries = readdirSync(cwd).filter((f) => !f.startsWith("."));
+  const npxArtifacts = new Set(["node_modules", "package-lock.json", "package.json"]);
+  const cwdEntries = readdirSync(cwd).filter((f) => !f.startsWith(".") && !npxArtifacts.has(f));
   const destDir = cwdEntries.length === 0
     ? cwd
     : join(cwd, `${clientName.toLowerCase().replace(/\s+/g, "-")}-system`);

@@ -31,7 +31,8 @@ async function init() {
     const repo = "TrentM6/baseline-core";
     // Use current directory if empty, otherwise create a subfolder
     const cwd = process.cwd();
-    const cwdEntries = (0, fs_1.readdirSync)(cwd).filter((f) => !f.startsWith("."));
+    const npxArtifacts = new Set(["node_modules", "package-lock.json", "package.json"]);
+    const cwdEntries = (0, fs_1.readdirSync)(cwd).filter((f) => !f.startsWith(".") && !npxArtifacts.has(f));
     const destDir = cwdEntries.length === 0
         ? cwd
         : (0, path_1.join)(cwd, `${clientName.toLowerCase().replace(/\s+/g, "-")}-system`);
