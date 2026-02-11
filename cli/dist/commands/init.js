@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.init = init;
+exports.generateAgentsMd = generateAgentsMd;
+exports.generateClaudeMdPointer = generateClaudeMdPointer;
+exports.generateCopilotInstructions = generateCopilotInstructions;
 const readline_1 = require("readline");
 const fs_1 = require("fs");
 const path_1 = require("path");

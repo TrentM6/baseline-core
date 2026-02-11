@@ -324,7 +324,7 @@ function buildContextYaml(coreDir: string, contextFiles: string[]): string {
 }
 
 /** Generate AGENTS.md — canonical AI instructions for all tools */
-function generateAgentsMd(clientName: string): string {
+export function generateAgentsMd(clientName: string): string {
   return `# ${clientName} — Baseline System
 
 > This file provides instructions for AI coding agents. It enforces consistent skill execution across all AI tools.
@@ -466,7 +466,7 @@ If the conversation shifts to executing a specific deliverable (e.g., "now write
 }
 
 /** Generate CLAUDE.md — thin pointer to AGENTS.md for Claude Code */
-function generateClaudeMdPointer(): string {
+export function generateClaudeMdPointer(): string {
   return `# Baseline System
 
 Read and follow all instructions in AGENTS.md in this directory. That file is the canonical source of truth for how this system works, including the Skill Execution Protocol, skill mapping, Co-Founder Mode, and session management guidelines.
@@ -474,7 +474,7 @@ Read and follow all instructions in AGENTS.md in this directory. That file is th
 }
 
 /** Generate .github/copilot-instructions.md — thin pointer to AGENTS.md for GitHub Copilot */
-function generateCopilotInstructions(): string {
+export function generateCopilotInstructions(): string {
   return `# Baseline System
 
 Read and follow all instructions in AGENTS.md at the repository root. That file contains the Skill Execution Protocol, skill mapping table, Co-Founder Mode instructions, and session management guidelines for this project.

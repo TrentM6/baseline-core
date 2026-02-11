@@ -1,7 +1,8 @@
-import { readFileSync, readdirSync, existsSync, rmSync, cpSync, statSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, rmSync, cpSync, statSync } from "fs";
 import { join, basename } from "path";
 import { readConfig, writeConfig } from "../config.js";
 import { getLatestTag, isNewer, cloneAtTag } from "../git.js";
+import { generateAgentsMd, generateClaudeMdPointer, generateCopilotInstructions } from "./init.js";
 import { load } from "js-yaml";
 import { execSync } from "child_process";
 
@@ -71,6 +72,20 @@ export function update(): void {
       // Non-fatal — CLI still works from previous install
     }
   }
+
+  // Regenerate AI instruction files
+  const clientName = config.client.name;
+  const agentsTemplatePath = join(tmpDir, "agents-template.md");
+  if (existsSync(agentsTemplatePath)) {
+    let template = readFileSync(agentsTemplatePath, "utf-8");
+    template = template.replace(/\{client_name\}/g, clientName);
+    writeFileSync(join(cwd, "AGENTS.md"), template);
+  } else {
+    writeFileSync(join(cwd, "AGENTS.md"), generateAgentsMd(clientName));
+  }
+  writeFileSync(join(cwd, "CLAUDE.md"), generateClaudeMdPointer());
+  mkdirSync(join(cwd, ".github"), { recursive: true });
+  writeFileSync(join(cwd, ".github", "copilot-instructions.md"), generateCopilotInstructions());
 
   // Check for missing context files
   const contextPath = config.client.contextPath || "./context";

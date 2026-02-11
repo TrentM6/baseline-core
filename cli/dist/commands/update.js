@@ -5,6 +5,7 @@ const fs_1 = require("fs");
 const path_1 = require("path");
 const config_js_1 = require("../config.js");
 const git_js_1 = require("../git.js");
+const init_js_1 = require("./init.js");
 const js_yaml_1 = require("js-yaml");
 const child_process_1 = require("child_process");
 const SYNC_DIRS = ["skills", "frameworks", "scripts", "cli"];
@@ -60,6 +61,20 @@ function update() {
             // Non-fatal — CLI still works from previous install
         }
     }
+    // Regenerate AI instruction files
+    const clientName = config.client.name;
+    const agentsTemplatePath = (0, path_1.join)(tmpDir, "agents-template.md");
+    if ((0, fs_1.existsSync)(agentsTemplatePath)) {
+        let template = (0, fs_1.readFileSync)(agentsTemplatePath, "utf-8");
+        template = template.replace(/\{client_name\}/g, clientName);
+        (0, fs_1.writeFileSync)((0, path_1.join)(cwd, "AGENTS.md"), template);
+    }
+    else {
+        (0, fs_1.writeFileSync)((0, path_1.join)(cwd, "AGENTS.md"), (0, init_js_1.generateAgentsMd)(clientName));
+    }
+    (0, fs_1.writeFileSync)((0, path_1.join)(cwd, "CLAUDE.md"), (0, init_js_1.generateClaudeMdPointer)());
+    (0, fs_1.mkdirSync)((0, path_1.join)(cwd, ".github"), { recursive: true });
+    (0, fs_1.writeFileSync)((0, path_1.join)(cwd, ".github", "copilot-instructions.md"), (0, init_js_1.generateCopilotInstructions)());
     // Check for missing context files
     const contextPath = config.client.contextPath || "./context";
     checkMissingContext(tmpDir, (0, path_1.join)(cwd, contextPath));
