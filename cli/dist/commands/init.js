@@ -29,18 +29,8 @@ async function init() {
     // 1. Gather basic info
     const clientName = await ask(rl, "  What's your company or project name? ");
     const repo = "TrentM6/baseline-core";
-    // Use current directory if empty, otherwise create a subfolder
-    const cwd = process.cwd();
-    const npxArtifacts = new Set(["node_modules", "package-lock.json", "package.json"]);
-    const cwdEntries = (0, fs_1.readdirSync)(cwd).filter((f) => !f.startsWith(".") && !npxArtifacts.has(f));
-    const destDir = cwdEntries.length === 0
-        ? cwd
-        : (0, path_1.join)(cwd, `${clientName.toLowerCase().replace(/\s+/g, "-")}-system`);
-    if (destDir !== cwd && (0, fs_1.existsSync)(destDir)) {
-        console.error(`\n  Error: ${destDir} already exists.\n`);
-        rl.close();
-        process.exit(1);
-    }
+    // Always scaffold in the current directory
+    const destDir = process.cwd();
     // 2. Fetch latest from core
     console.log(`\n  Fetching latest from ${repo}...`);
     const latest = (0, git_js_1.getLatestTag)(repo);
@@ -157,18 +147,14 @@ async function init() {
     // Clean up
     (0, fs_1.rmSync)(tmpDir, { recursive: true });
     rl.close();
-    const displayPath = destDir === cwd ? "." : `./${clientName.toLowerCase().replace(/\s+/g, "-")}-system`;
     const skillCount = (0, fs_1.existsSync)((0, path_1.join)(destDir, "skills")) ? (0, fs_1.readdirSync)((0, path_1.join)(destDir, "skills")).filter((f) => !f.startsWith(".") && !f.startsWith("_")).length : 0;
     const frameworkCount = (0, fs_1.existsSync)((0, path_1.join)(destDir, "frameworks")) ? (0, fs_1.readdirSync)((0, path_1.join)(destDir, "frameworks")).filter((f) => !f.startsWith(".") && !f.startsWith("_")).length : 0;
     const scriptCount = (0, fs_1.existsSync)((0, path_1.join)(destDir, "scripts")) ? (0, fs_1.readdirSync)((0, path_1.join)(destDir, "scripts")).filter((f) => !f.startsWith(".") && !f.startsWith("_")).length : 0;
     console.log(`  ───────────────────────────────────`);
-    console.log(`  ${clientName} system created at ${displayPath}`);
+    console.log(`  ${clientName} system ready!`);
     console.log(`  Version: v${latest}`);
     console.log(`  ${skillCount} skills | ${frameworkCount} frameworks | ${scriptCount} scripts`);
     console.log(`\n  Next steps:`);
-    if (destDir !== cwd) {
-        console.log(`    cd ${clientName.toLowerCase().replace(/\s+/g, "-")}-system`);
-    }
     console.log(`    Edit context/ files to add more detail`);
     console.log(`    Run \`npx baseline status\` to check for updates\n`);
 }
