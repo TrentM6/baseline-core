@@ -30,12 +30,22 @@ interface Manifest {
   context?: ManifestContext;
 }
 
+let rlClosed = false;
+
 function ask(rl: ReturnType<typeof createInterface>, question: string): Promise<string> {
-  return new Promise((resolve) => rl.question(question, resolve));
+  if (rlClosed) return Promise.resolve("");
+  return new Promise((resolve) => {
+    try {
+      rl.question(question, resolve);
+    } catch {
+      resolve("");
+    }
+  });
 }
 
 export async function init(): Promise<void> {
   const rl = createInterface({ input: process.stdin, output: process.stdout });
+  rl.on("close", () => { rlClosed = true; });
 
   console.log(`\n  Baseline System — New Client Setup`);
   console.log(`  ───────────────────────────────────\n`);
