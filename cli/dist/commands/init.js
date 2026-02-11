@@ -114,16 +114,22 @@ async function init() {
         },
     };
     (0, fs_1.writeFileSync)((0, path_1.join)(destDir, "baseline.config.json"), JSON.stringify(config, null, 2) + "\n");
-    // 10. Create CLAUDE.md
-    const templatePath = (0, path_1.join)(tmpDir, "claude-template.md");
-    if ((0, fs_1.existsSync)(templatePath)) {
-        let template = (0, fs_1.readFileSync)(templatePath, "utf-8");
+    // 10. Create AI instruction files
+    // 10a. AGENTS.md — canonical instructions for all AI tools
+    const agentsTemplatePath = (0, path_1.join)(tmpDir, "agents-template.md");
+    if ((0, fs_1.existsSync)(agentsTemplatePath)) {
+        let template = (0, fs_1.readFileSync)(agentsTemplatePath, "utf-8");
         template = template.replace(/\{client_name\}/g, clientName);
-        (0, fs_1.writeFileSync)((0, path_1.join)(destDir, "CLAUDE.md"), template);
+        (0, fs_1.writeFileSync)((0, path_1.join)(destDir, "AGENTS.md"), template);
     }
     else {
-        (0, fs_1.writeFileSync)((0, path_1.join)(destDir, "CLAUDE.md"), generateClaudeMd(clientName));
+        (0, fs_1.writeFileSync)((0, path_1.join)(destDir, "AGENTS.md"), generateAgentsMd(clientName));
     }
+    // 10b. CLAUDE.md — pointer for Claude Code
+    (0, fs_1.writeFileSync)((0, path_1.join)(destDir, "CLAUDE.md"), generateClaudeMdPointer());
+    // 10c. .github/copilot-instructions.md — pointer for GitHub Copilot Chat
+    (0, fs_1.mkdirSync)((0, path_1.join)(destDir, ".github"), { recursive: true });
+    (0, fs_1.writeFileSync)((0, path_1.join)(destDir, ".github", "copilot-instructions.md"), generateCopilotInstructions());
     // 11. Create root package.json for local CLI access
     const rootPkg = {
         name: `${clientName.toLowerCase().replace(/\s+/g, "-")}-system`,
@@ -244,11 +250,11 @@ function buildContextYaml(coreDir, contextFiles) {
     }
     return yaml;
 }
-/** Generate a CLAUDE.md for the client if no template exists in core */
-function generateClaudeMd(clientName) {
+/** Generate AGENTS.md — canonical AI instructions for all tools */
+function generateAgentsMd(clientName) {
     return `# ${clientName} — Baseline System
 
-> This file is automatically loaded at the start of every Claude Code session. It enforces consistent skill execution.
+> This file provides instructions for AI coding agents. It enforces consistent skill execution across all AI tools.
 
 ---
 
@@ -383,5 +389,19 @@ If the conversation shifts to executing a specific deliverable (e.g., "now write
 - **Proceed without clarifying** — Ask the skill's questions before executing.
 - **Skip quality checks** — Run every check defined by the skill.
 - **Overload the session** — One major task per session. Recommend fresh sessions after milestones.
+`;
+}
+/** Generate CLAUDE.md — thin pointer to AGENTS.md for Claude Code */
+function generateClaudeMdPointer() {
+    return `# Baseline System
+
+Read and follow all instructions in AGENTS.md in this directory. That file is the canonical source of truth for how this system works, including the Skill Execution Protocol, skill mapping, Co-Founder Mode, and session management guidelines.
+`;
+}
+/** Generate .github/copilot-instructions.md — thin pointer to AGENTS.md for GitHub Copilot */
+function generateCopilotInstructions() {
+    return `# Baseline System
+
+Read and follow all instructions in AGENTS.md at the repository root. That file contains the Skill Execution Protocol, skill mapping table, Co-Founder Mode instructions, and session management guidelines for this project.
 `;
 }

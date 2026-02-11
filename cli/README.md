@@ -36,7 +36,10 @@ Updates come from git tags via `npx baseline update`, not from npm.
 
 ```
 your-system/
-├── CLAUDE.md              # Claude Code automation (don't edit)
+├── AGENTS.md              # AI instructions for all coding tools (don't edit)
+├── CLAUDE.md              # Claude Code pointer to AGENTS.md
+├── .github/
+│   └── copilot-instructions.md  # GitHub Copilot pointer to AGENTS.md
 ├── baseline.config.json   # Version tracking
 ├── skills/                # 12 domain expertise modules
 ├── context/               # Your business knowledge (you own this)

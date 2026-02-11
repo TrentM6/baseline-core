@@ -93,13 +93,13 @@ Some skills have similar names or adjacent responsibilities. Here's how to choos
 
 ## How to Use a Skill
 
-### Claude Code
+### AI Coding Tools (Claude Code, Codex, Cursor, Windsurf, Copilot, JetBrains AI)
 
-Just say which skill to use (e.g., "use my marketing skill to write a LinkedIn post"). Claude Code auto-loads `CLAUDE.md`, which reads the skill's `manifest.yaml` and loads every dependency automatically. No manual file loading required.
+Just say which skill to use (e.g., "use my marketing skill to write a LinkedIn post"). These tools auto-read `AGENTS.md`, which reads the skill's `manifest.yaml` and loads every dependency automatically. No manual file loading required.
 
-### Other AI Tools (ChatGPT, Gemini, Cursor, etc.)
+### Chat Tools (ChatGPT, Gemini, etc.)
 
-These platforms can't auto-resolve dependencies, so you need to load files manually. Each skill has a `manifest.yaml` that lists exactly which files it needs. Check it for the complete list, then load the files into your conversation:
+Chat tools can't auto-read project files, so you need to load files manually. Each skill has a `manifest.yaml` that lists exactly which files it needs. Check it for the complete list, then load the files into your conversation:
 
 1. **Load the skill file** and its framework — from `always_load` in the manifest
 2. **Load your context** — from `context` in the manifest (files in `context/`)

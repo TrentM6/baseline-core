@@ -1,6 +1,6 @@
 {
   "name": "@baseline-studio/cli",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "description": "CLI for distributing and updating the Baseline System — an AI-powered workflow system for product teams",
   "keywords": [
     "baseline",
@@ -8,7 +8,12 @@
     "cli",
     "workflow",
     "product-management",
-    "claude-code"
+    "agents-md",
+    "claude-code",
+    "cursor",
+    "copilot",
+    "windsurf",
+    "codex"
   ],
   "homepage": "https://github.com/TrentM6/baseline-core#readme",
   "repository": {

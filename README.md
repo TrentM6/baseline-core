@@ -43,7 +43,7 @@ Skills are universal. Context is yours. When you run a skill, it loads both — 
 3. **The skill loads its files** — The skill's `manifest.yaml` lists what to load: the skill file, frameworks, and your context
 4. **The system executes** — Plan, clarify, execute, validate
 
-In Claude Code, this is fully automated via the `CLAUDE.md` file. Just describe what you need.
+In AI coding tools, this is fully automated via the `AGENTS.md` file. Just describe what you need.
 
 ### The 12 Skills
 
@@ -68,27 +68,17 @@ See [`skills/_README.md`](skills/_README.md) for detailed documentation on each 
 
 ## Using the System
 
-### Claude Code (Fully Automated)
+### AI Coding Tools (Automated)
 
-Claude Code is the primary supported tool. The `CLAUDE.md` file tells Claude Code exactly how to find skills, load manifests, read context, and execute workflows.
+The `AGENTS.md` file tells AI tools exactly how to find skills, load manifests, read context, and execute workflows. It's automatically read by Claude Code, Codex, Cursor, Windsurf, GitHub Copilot, JetBrains AI, and others.
 
-1. Open your system folder in Claude Code
+1. Open your system folder in your AI coding tool
 2. Describe what you need
-3. Done — Claude Code handles the rest
-
-### Cursor / Windsurf / Other Code Editors
-
-These editors can read project files but don't auto-execute the `CLAUDE.md` protocol. Point the AI to the skill's manifest:
-
-```
-Read skills/marketing/manifest.yaml.
-Load every file it lists — skill, frameworks, and my context files.
-Then help me write a LinkedIn post about our new feature launch.
-```
+3. Done — the tool reads `AGENTS.md` and handles the rest
 
 ### ChatGPT / Gemini / Other Chat Tools
 
-Upload or paste the files listed in the skill's `manifest.yaml` into your conversation, then describe your task.
+Chat tools can't auto-read project files. Upload or paste the files listed in the skill's `manifest.yaml` into your conversation, then describe your task.
 
 ---
 
@@ -133,7 +123,10 @@ See [`cli/README.md`](cli/README.md) for the full CLI documentation.
 
 ```
 your-system/
-├── CLAUDE.md                    # Instructions for Claude Code (don't edit)
+├── AGENTS.md                    # AI instructions for all coding tools (don't edit)
+├── CLAUDE.md                    # Claude Code pointer to AGENTS.md
+├── .github/
+│   └── copilot-instructions.md  # GitHub Copilot pointer to AGENTS.md
 ├── baseline.config.json         # Version tracking and config
 ├── skills/                      # 12 domain expertise modules
 ├── context/                     # YOUR business knowledge (you own this)
@@ -160,7 +153,7 @@ Skills work with whatever context is available. Missing context means more gener
 Yes. Run `npx baseline context add <name>` to create a new file and wire it to skills.
 
 **What AI tools does this work with?**
-Any AI tool. Claude Code has full automation. Code editors like Cursor work when pointed to the manifest. Chat tools like ChatGPT work when you upload skill and context files.
+Any AI tool. The `AGENTS.md` file is automatically read by Claude Code, Codex, Cursor, Windsurf, GitHub Copilot, JetBrains AI, and others. Chat tools like ChatGPT work when you upload skill and context files.
 
 **How do I get help?**
 Email trent@baselinestudio.design.

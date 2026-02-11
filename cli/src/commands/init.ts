@@ -164,15 +164,26 @@ export async function init(): Promise<void> {
     JSON.stringify(config, null, 2) + "\n"
   );
 
-  // 10. Create CLAUDE.md
-  const templatePath = join(tmpDir, "claude-template.md");
-  if (existsSync(templatePath)) {
-    let template = readFileSync(templatePath, "utf-8");
+  // 10. Create AI instruction files
+  // 10a. AGENTS.md — canonical instructions for all AI tools
+  const agentsTemplatePath = join(tmpDir, "agents-template.md");
+  if (existsSync(agentsTemplatePath)) {
+    let template = readFileSync(agentsTemplatePath, "utf-8");
     template = template.replace(/\{client_name\}/g, clientName);
-    writeFileSync(join(destDir, "CLAUDE.md"), template);
+    writeFileSync(join(destDir, "AGENTS.md"), template);
   } else {
-    writeFileSync(join(destDir, "CLAUDE.md"), generateClaudeMd(clientName));
+    writeFileSync(join(destDir, "AGENTS.md"), generateAgentsMd(clientName));
   }
+
+  // 10b. CLAUDE.md — pointer for Claude Code
+  writeFileSync(join(destDir, "CLAUDE.md"), generateClaudeMdPointer());
+
+  // 10c. .github/copilot-instructions.md — pointer for GitHub Copilot Chat
+  mkdirSync(join(destDir, ".github"), { recursive: true });
+  writeFileSync(
+    join(destDir, ".github", "copilot-instructions.md"),
+    generateCopilotInstructions()
+  );
 
   // 11. Create root package.json for local CLI access
   const rootPkg = {
@@ -312,11 +323,11 @@ function buildContextYaml(coreDir: string, contextFiles: string[]): string {
   return yaml;
 }
 
-/** Generate a CLAUDE.md for the client if no template exists in core */
-function generateClaudeMd(clientName: string): string {
+/** Generate AGENTS.md — canonical AI instructions for all tools */
+function generateAgentsMd(clientName: string): string {
   return `# ${clientName} — Baseline System
 
-> This file is automatically loaded at the start of every Claude Code session. It enforces consistent skill execution.
+> This file provides instructions for AI coding agents. It enforces consistent skill execution across all AI tools.
 
 ---
 
@@ -451,5 +462,21 @@ If the conversation shifts to executing a specific deliverable (e.g., "now write
 - **Proceed without clarifying** — Ask the skill's questions before executing.
 - **Skip quality checks** — Run every check defined by the skill.
 - **Overload the session** — One major task per session. Recommend fresh sessions after milestones.
+`;
+}
+
+/** Generate CLAUDE.md — thin pointer to AGENTS.md for Claude Code */
+function generateClaudeMdPointer(): string {
+  return `# Baseline System
+
+Read and follow all instructions in AGENTS.md in this directory. That file is the canonical source of truth for how this system works, including the Skill Execution Protocol, skill mapping, Co-Founder Mode, and session management guidelines.
+`;
+}
+
+/** Generate .github/copilot-instructions.md — thin pointer to AGENTS.md for GitHub Copilot */
+function generateCopilotInstructions(): string {
+  return `# Baseline System
+
+Read and follow all instructions in AGENTS.md at the repository root. That file contains the Skill Execution Protocol, skill mapping table, Co-Founder Mode instructions, and session management guidelines for this project.
 `;
 }
