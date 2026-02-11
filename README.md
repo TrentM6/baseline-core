@@ -70,11 +70,17 @@ See [`skills/_README.md`](skills/_README.md) for detailed documentation on each 
 
 ### AI Coding Tools (Automated)
 
-The `AGENTS.md` file tells AI tools exactly how to find skills, load manifests, read context, and execute workflows. It's automatically read by Claude Code, Codex, Cursor, Windsurf, GitHub Copilot, JetBrains AI, and others.
+`AGENTS.md` is the canonical instruction file. It tells AI tools how to find skills, load manifests, read context, and execute workflows. Here's how each tool picks it up:
+
+| Tool | How It Works |
+|------|-------------|
+| **Codex, Cursor, Windsurf, JetBrains AI** | Reads `AGENTS.md` directly |
+| **Claude Code** | Reads `CLAUDE.md`, which points to `AGENTS.md` |
+| **GitHub Copilot Chat** | Reads `.github/copilot-instructions.md`, which points to `AGENTS.md` |
 
 1. Open your system folder in your AI coding tool
 2. Describe what you need
-3. Done — the tool reads `AGENTS.md` and handles the rest
+3. Done — the tool reads `AGENTS.md` (directly or via pointer) and handles the rest
 
 ### ChatGPT / Gemini / Other Chat Tools
 
