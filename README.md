@@ -105,7 +105,7 @@ Context is what makes the system yours. The system's output quality is directly 
 - `context/extended/technical.md` — Tech stack, integrations, constraints
 - `context/extended/visual-identity.md` — Colors, fonts, visual style
 - `context/extended/formatting.md` — Document structure, heading rules
-- `context/extended/proof-points.md` — Metrics, case studies, credibility
+- `context/extended/proof-points.md` — Metrics, case studies, market research, validation data
 
 Start with `identity.md` and `voice.md`, then fill out extended files as needed. Run `npx baseline context` to update files or `npx baseline context add <name>` to create new ones.
 

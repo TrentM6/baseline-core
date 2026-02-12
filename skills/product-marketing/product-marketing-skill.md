@@ -63,7 +63,7 @@ Before creating any product marketing deliverable, answer:
 **Extended context (load for product marketing):**
 - `extended/icp.md` — Ideal client profile, personas, what they care about
 - `extended/competitive.md` — Competitive landscape, positioning gaps
-- `extended/proof-points.md` — Evidence, metrics, client outcomes
+- `extended/proof-points.md` — Evidence, metrics, client outcomes, market research, industry data
 
 **Load when needed:**
 - [Product Messaging Playbooks](references/product-messaging-playbooks.md) — Templates for specific deliverable types

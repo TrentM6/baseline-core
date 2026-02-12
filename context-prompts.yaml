@@ -157,7 +157,7 @@ extended/co-founder.md:
     - "Describe your decision-making philosophy in 2-3 sentences. How do you make hard calls?"
 
 extended/proof-points.md:
-  title: "Proof Points & Social Proof"
+  title: "Proof Points & Validation Data"
   questions:
     - "What are your strongest metrics or outcomes? List specific numbers."
     - "For each key customer persona, what proof points matter most to them?"
@@ -165,5 +165,8 @@ extended/proof-points.md:
     - "For your best client engagement, describe the situation, what you did, and the outcome."
     - "What credibility statements can you make? (Years of experience, credentials, background)"
     - "What are the most common objections prospects raise, and what evidence counters each one?"
-    - "Are there industry statistics that support why your product/service matters?"
     - "Any awards, press mentions, partnerships, or certifications?"
+    - "What industry or analyst reports support the problem you solve or the market you're in? (e.g., Gartner, Forrester, McKinsey — include source and year)"
+    - "What market size, growth, or adoption statistics validate your space? (Include source and year)"
+    - "Are there third-party surveys, benchmarks, or academic research that back up your value proposition?"
+    - "What regulatory, compliance, or industry trends create urgency for what you offer?"

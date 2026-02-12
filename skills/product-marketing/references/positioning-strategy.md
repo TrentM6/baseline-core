@@ -184,7 +184,7 @@ Within 30 days of launch:
 ## Related Files
 
 - [Product Messaging Playbooks](product-messaging-playbooks.md) — Templates for specific deliverable types
-- [Proof Points](../../../context/{client}/extended/proof-points.md) — All metrics, evidence, and client data
+- [Proof Points](../../../context/{client}/extended/proof-points.md) — All metrics, evidence, client data, and market research
 - [ICP](../../../context/{client}/extended/icp.md) — Target audience and qualifying criteria
 - [Competitive](../../../context/{client}/extended/competitive.md) — Competitor positioning and differentiation
 - [Voice](../../../context/{client}/core/voice.md) — Tone, style, and language rules
