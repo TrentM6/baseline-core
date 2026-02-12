@@ -440,10 +440,10 @@ We chose [Option X].
 |-------------------|----------------|--------|
 | Write a PRD | Product Communications | Technical Documentation (different audience) |
 | Write user-facing docs | Technical Documentation | Product Communications (internal focus) |
-| Write marketing copy | Marketing | Product Communications (external vs. internal) |
+| Write marketing copy | Product Marketing | Product Communications (external vs. internal) |
 | Facilitate a decision | Strategic Advisory | Product Communications (may use both) |
 | Document research findings | Research & Synthesis | Product Communications (different format) |
-| Create a presentation | Brand Design | Product Communications (visual vs. written) |
+| Create a presentation | Visual Communication | Product Communications (visual vs. written) |
 
 ---
 

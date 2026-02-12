@@ -7,7 +7,7 @@
 - Strategic Advisory (opportunity trees, roadmaps, decision frameworks)
 - Research & Synthesis (journey maps, affinity diagrams, synthesis visuals)
 - UX Design (user flows, journey maps, wireframe flows)
-- Brand Design (process diagrams, visual frameworks)
+- Visual Communication (process diagrams, visual frameworks)
 
 ## When to Use
 

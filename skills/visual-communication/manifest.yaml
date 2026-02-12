@@ -1,10 +1,10 @@
-skill: sales
-description: Outreach, proposals, discovery calls, objection handling, and closing
+skill: visual-communication
+description: Presentations, diagrams, decision visualizations, data storytelling, and product narrative decks
 
 # Files loaded every time this skill runs
 always_load:
   - frameworks/workflow-orchestration.md
-  - skills/sales/sales-skill.md
+  - skills/visual-communication/visual-communication-skill.md
 
 # Context files — replace {client} with the actual client folder name
 context:
@@ -12,9 +12,8 @@ context:
     - context/{client}/core/identity.md
     - context/{client}/core/voice.md
   extended:
-    - context/{client}/extended/icp.md
-    - context/{client}/extended/pricing.md
+    - context/{client}/extended/visual-identity.md
 
 # Reference files — load when the task needs detailed guidance
 references:
-  - skills/sales/references/sales-fundamentals.md
+  - skills/visual-communication/references/visual-design-fundamentals.md

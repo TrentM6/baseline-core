@@ -341,11 +341,11 @@ For deeper guidance on tokens, component architecture, and governance, see [Desi
 
 | If you need to... | Use this skill | Not... |
 |-------------------|----------------|--------|
-| Design interfaces | UX Design | Brand Design (interaction, not static) |
+| Design interfaces | UX Design | Visual Communication (interaction, not static) |
 | Create user flows | UX Design | Project Management (user experience focus) |
-| Write UI copy | UX Design | Marketing (interface copy, not marketing copy) |
+| Write UI copy | UX Design | Product Marketing (interface copy, not marketing copy) |
 | Conduct user research | UX Design or Research & Synthesis | Research for discovery, UX for design validation |
-| Create presentations | Brand Design | UX Design (different deliverable) |
+| Create presentations | Visual Communication | UX Design (different deliverable) |
 | Document features | Technical Documentation | UX Design (user-facing docs) |
 
 ---

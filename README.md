@@ -57,9 +57,9 @@ In AI coding tools, this is fully automated via the `AGENTS.md` file. Just descr
 | **Prototyping** | Coded prototypes, demos, proof-of-concepts |
 | **Project Management** | Sprint planning, tracking, retrospectives |
 | **Technical Documentation** | User guides, API docs, release notes, help content |
-| **Brand Design** | Presentations, graphics, visual design direction |
-| **Marketing** | LinkedIn posts, website copy, campaigns, case studies |
-| **Sales** | Outreach emails, proposals, discovery call prep |
+| **Visual Communication** | Presentations, diagrams, decision visualization, data storytelling |
+| **Product Marketing** | Positioning, messaging frameworks, launch briefs, competitive messaging |
+| **Go-to-Market Planning** | Pricing strategy, launch planning, channel strategy, distribution |
 | **Skill Building** | Create new custom skills for your team |
 
 See [`skills/_README.md`](skills/_README.md) for detailed documentation on each skill.

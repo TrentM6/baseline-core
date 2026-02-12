@@ -5,9 +5,9 @@
 ## Works With Skills
 
 - Strategic Advisory (strategy presentations, roadmap decks)
-- Brand Design (branded presentations, visual decks)
-- Marketing (pitch decks, campaign presentations)
-- Sales (proposals, client presentations)
+- Visual Communication (branded presentations, visual decks)
+- Product Marketing (pitch decks, campaign presentations)
+- Go-to-Market Planning (proposals, strategy presentations)
 
 ## When to Use
 

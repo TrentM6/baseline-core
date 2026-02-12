@@ -1,10 +1,10 @@
-skill: marketing
-description: LinkedIn posts, website copy, case studies, email campaigns, landing pages, and content strategy
+skill: product-marketing
+description: Positioning, messaging frameworks, launch briefs, competitive messaging, case studies, and audience segmentation for product decisions
 
 # Files loaded every time this skill runs
 always_load:
   - frameworks/workflow-orchestration.md
-  - skills/marketing/marketing-skill.md
+  - skills/product-marketing/product-marketing-skill.md
 
 # Context files — replace {client} with the actual client folder name
 context:
@@ -18,5 +18,5 @@ context:
 
 # Reference files — load when the task needs detailed guidance
 references:
-  - skills/marketing/references/content-playbooks.md
-  - skills/marketing/references/content-strategy.md
+  - skills/product-marketing/references/product-messaging-playbooks.md
+  - skills/product-marketing/references/positioning-strategy.md

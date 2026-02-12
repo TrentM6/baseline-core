@@ -1,8 +1,8 @@
 # Visual Design Fundamentals
 
-> Core visual design principles for brand work. Reference when creating visual assets.
+> Core visual design principles for visual communication work. Reference when creating visual assets.
 
-**Part of:** [Brand Design](brand-design/brand-design-skill.md)
+**Part of:** [Visual Communication](visual-communication/visual-communication-skill.md)
 
 ---
 

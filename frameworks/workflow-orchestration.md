@@ -184,7 +184,7 @@ For complex work with multiple independent components, use parallel execution to
 ### Example
 
 For a product launch:
-- **Parallel:** Write docs, prepare marketing, update help center
+- **Parallel:** Write docs, prepare product marketing, update help center
 - **Sequential:** Finalize feature → then write docs about it
 - **Synthesis:** Review all materials together for consistency
 

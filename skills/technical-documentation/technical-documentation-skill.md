@@ -257,12 +257,12 @@ Before writing documentation, understand:
 
 | If you need to... | Use this skill | Not... |
 |-------------------|----------------|--------|
-| Write user guides | Technical Documentation | Marketing (helping vs. selling) |
-| Write help center content | Technical Documentation | Marketing (task-focused) |
-| Write feature documentation | Technical Documentation | Marketing (explaining vs. promoting) |
-| Write release notes | Technical Documentation | Marketing (informing vs. selling) |
+| Write user guides | Technical Documentation | Product Marketing (helping vs. selling) |
+| Write help center content | Technical Documentation | Product Marketing (task-focused) |
+| Write feature documentation | Technical Documentation | Product Marketing (explaining vs. promoting) |
+| Write release notes | Technical Documentation | Product Marketing (informing vs. selling) |
 | Write onboarding guides | Technical Documentation | UX Design (docs vs. interface) |
-| Write marketing copy | Marketing | Technical Documentation (different goal) |
+| Write marketing copy | Product Marketing | Technical Documentation (different goal) |
 | Write research findings | Research & Synthesis | Technical Documentation (different format) |
 
 ---

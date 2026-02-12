@@ -285,7 +285,7 @@ We're optimizing for [outcome].
 | Prioritize roadmap | Strategic Advisory | Project Management (strategic, not tactical) |
 | Understand users | Research & Synthesis | Strategic Advisory (research first) |
 | Plan project execution | Project Management | Strategic Advisory (different scope) |
-| Facilitate workshops | Strategic Advisory | Marketing (different purpose) |
+| Facilitate workshops | Strategic Advisory | Product Marketing (different purpose) |
 
 ---
 

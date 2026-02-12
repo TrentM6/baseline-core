@@ -4,10 +4,10 @@
 
 ## Works With Skills
 
-- Brand Design (whitepapers, branded documents, visual reports)
+- Visual Communication (whitepapers, branded documents, visual reports)
 - Technical Documentation (styled specs, formatted guides)
 - Product Communications (formatted PRDs, briefs)
-- Marketing (landing page exports, campaign materials)
+- Product Marketing (landing page exports, positioning materials)
 
 ## When to Use
 
@@ -91,7 +91,7 @@ Puppeteer auto-installs via `npx` on first use — no manual setup required. The
 
 ## Example
 
-**Scenario:** User created a branded whitepaper using the Brand Design skill. The output is a styled HTML file with CSS.
+**Scenario:** User created a branded whitepaper using the Visual Communication skill. The output is a styled HTML file with CSS.
 
 **User:** "Convert this whitepaper to PDF"
 

@@ -21,7 +21,7 @@ The Baseline System uses a **centralized architecture**:
 ┌─────────────────────────────────────────────────────────────────┐
 │                         skills/                                │
 │   ┌─────────────┐  ┌─────────────┐  ┌─────────────┐           │
-│   │  marketing  │  │    sales    │  │  research   │  ...      │
+│   │  prod-mktg  │  │  gtm-plan  │  │  research   │  ...      │
 │   │   skill.md  │  │   skill.md  │  │   skill.md  │           │
 │   │ (domain     │  │ (domain     │  │ (domain     │           │
 │   │  expertise) │  │  expertise) │  │  expertise) │           │
@@ -265,7 +265,7 @@ These are the personal standards and judgment rules that make the difference bet
 
 **Not:**
 ```
-1. Write good marketing copy that resonates with the target audience.
+1. Write good product marketing copy that resonates with the target audience.
 ```
 
 ### Industry Principles
@@ -419,8 +419,8 @@ Skills reference context files for business-specific knowledge:
 **Extended context (load when needed):**
 - `extended/formatting.md` — Document structure (for documentation skills)
 - `extended/visual-identity.md` — Colors, typography (for design skills)
-- `extended/pricing.md` — Service tiers, pricing (for sales skills)
-- `extended/icp.md` — Ideal client profile (for sales/marketing skills)
+- `extended/pricing.md` — Service tiers, pricing (for go-to-market planning skills)
+- `extended/icp.md` — Ideal client profile (for product-marketing/go-to-market planning skills)
 ```
 
 ### Context vs. Skill
@@ -440,8 +440,8 @@ Skills reference context files for business-specific knowledge:
 Same skill works with different contexts:
 
 ```
-marketing/SKILL.md + context/baseline/ = Baseline marketing
-marketing/SKILL.md + context/client-x/ = Client X marketing
+product-marketing/SKILL.md + context/baseline/ = Baseline product marketing
+product-marketing/SKILL.md + context/client-x/ = Client X product marketing
 ```
 
 The skill's workflow stays the same. The context provides business-specific information.

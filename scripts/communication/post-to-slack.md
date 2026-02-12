@@ -5,7 +5,7 @@
 ## Works With Skills
 
 - Product Communications (stakeholder updates, announcements)
-- Marketing (campaign updates, content sharing)
+- Product Marketing (launch updates, positioning updates)
 
 ## When to Use
 

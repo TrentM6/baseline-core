@@ -368,7 +368,7 @@ Recommendation: Ship variant to 100%
 | Understand user motivation | Research & Synthesis | Product Analytics (qual for "why") |
 | Prioritize roadmap | Strategic Advisory + Product Analytics | May need both |
 | Write about metrics | Product Communications | Product Analytics (analysis vs. doc) |
-| Design dashboards | Product Analytics | Brand Design (data viz, not aesthetics) |
+| Design dashboards | Product Analytics | Visual Communication (data viz, not aesthetics) |
 
 ---
 

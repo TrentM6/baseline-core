@@ -54,7 +54,7 @@ Use for: Landing pages, email sequences, feature announcements, ads.
 
 **Problem → Agitate → Solution**
 
-Use for: Cold outreach, sales emails, problem-aware content, ads.
+Use for: Outreach messaging, problem-aware content, ads.
 
 ### Structure
 
@@ -184,8 +184,8 @@ Example flow:
 ## Used By Skills
 
 This framework is referenced by:
-- [Marketing](../skills/marketing/marketing-skill.md) — For all content creation
-- [Sales](../skills/sales/sales-skill.md) — For outreach messaging
+- [Product Marketing](../skills/product-marketing/product-marketing-skill.md) — For positioning and messaging
+- [Go-to-Market Planning](../skills/go-to-market-planning/go-to-market-planning-skill.md) — For GTM messaging strategy
 
 ---
 

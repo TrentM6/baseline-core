@@ -141,9 +141,9 @@ Each script requires a connection to its external tool (e.g., Figma for Figma sc
 | **Prototyping** | [create-wireframe-spec](figma/create-wireframe-spec.md), [create-jira-epic](atlassian/create-jira-epic.md) |
 | **Project Management** | [create-project](asana/create-project.md), [create-sprint](asana/create-sprint.md), [create-jira-epic](atlassian/create-jira-epic.md), [create-roadmap](monday/create-roadmap.md) |
 | **Technical Documentation** | [create-confluence-page](atlassian/create-confluence-page.md), [create-doc](google/create-doc.md), [write-markdown](file-system/write-markdown.md), [html-to-pdf](file-system/html-to-pdf.md) |
-| **Brand Design** | [create-presentation](canva/create-presentation.md), [create-figjam-diagram](figma/create-figjam-diagram.md), [html-to-pdf](file-system/html-to-pdf.md) |
-| **Marketing** | [create-presentation](canva/create-presentation.md), [post-to-slack](communication/post-to-slack.md), [draft-email](communication/draft-email.md), [html-to-pdf](file-system/html-to-pdf.md) |
-| **Sales** | [create-presentation](canva/create-presentation.md), [draft-email](communication/draft-email.md), [create-doc](google/create-doc.md) |
+| **Visual Communication** | [create-presentation](canva/create-presentation.md), [create-figjam-diagram](figma/create-figjam-diagram.md), [html-to-pdf](file-system/html-to-pdf.md) |
+| **Product Marketing** | [create-presentation](canva/create-presentation.md), [post-to-slack](communication/post-to-slack.md), [html-to-pdf](file-system/html-to-pdf.md) |
+| **Go-to-Market Planning** | [create-presentation](canva/create-presentation.md), [create-doc](google/create-doc.md) |
 
 ---
 

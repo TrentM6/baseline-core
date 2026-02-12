@@ -4,8 +4,8 @@
 
 ## Works With Skills
 
-- Marketing (outreach emails, campaign communications)
-- Sales (proposals, follow-ups, outreach)
+- Product Marketing (launch announcements, positioning communications)
+- Go-to-Market Planning (partnership outreach, channel communications)
 
 ## When to Use
 

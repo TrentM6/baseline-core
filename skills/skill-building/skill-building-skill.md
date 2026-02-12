@@ -116,8 +116,8 @@ skill-name/
 **Extended context (load when needed):**
 - `extended/formatting.md` — Document structure (for documentation skills)
 - `extended/visual-identity.md` — Colors, typography (for design skills)
-- `extended/pricing.md` — Service tiers, pricing (for sales skills)
-- `extended/icp.md` — Ideal client profile (for sales/marketing skills)
+- `extended/pricing.md` — Service tiers, pricing (for go-to-market planning skills)
+- `extended/icp.md` — Ideal client profile (for product-marketing/go-to-market planning skills)
 
 **Load from frameworks/:**
 - `frameworks/[framework].md` — [When to use]
@@ -186,7 +186,7 @@ Skills work through prompts. Understanding prompt engineering improves skill qua
 - Good: "Write a LinkedIn post (150-200 words) that opens with a contrarian observation"
 
 **Provide context:**
-- Bad: "Help with marketing"
+- Bad: "Help with product marketing"
 - Good: "You're helping a B2B consultancy write thought leadership for product leaders"
 
 **Show examples:**
@@ -239,8 +239,8 @@ context/[folder-name]/
 │   ├── identity.md          # Services, positioning, terminology
 │   └── voice.md             # Tone, language rules, writing style
 ├── extended/                # Loaded per skill
-│   ├── icp.md               # Ideal client profile (Sales, Marketing)
-│   ├── pricing.md           # Pricing structure (Sales)
+│   ├── icp.md               # Ideal client profile (Product Marketing, Go-to-Market Planning)
+│   ├── pricing.md           # Pricing structure (Go-to-Market Planning)
 │   ├── formatting.md        # Document structure (Tech Docs)
 │   └── visual-identity.md   # Colors, typography (Design skills)
 └── examples/                # Sample good outputs to reference

@@ -404,7 +404,7 @@ Users perceive attractive designs as more usable.
 
 This framework is referenced by:
 - [UX Design](../skills/ux-design/ux-design-skill.md) — Usability evaluation and accessibility
-- [Brand Design](../skills/brand-design/brand-design-skill.md) — Accessible visual design
+- [Visual Communication](../skills/visual-communication/visual-communication-skill.md) — Accessible visual design
 - [Technical Documentation](../skills/technical-documentation/technical-documentation-skill.md) — Accessible documentation
 
 ---

@@ -264,7 +264,7 @@ Before building any prototype, answer:
 | Create wireframes | UX Design | Prototyping (unless interactive) |
 | Design user flows | UX Design | Prototyping (design before prototype) |
 | Write feature specs | Product Communications | Prototyping (docs, not demos) |
-| Present to stakeholders | Prototyping + Brand Design | May need both for high-stakes |
+| Present to stakeholders | Prototyping + Visual Communication | May need both for high-stakes |
 
 ---
 

@@ -274,9 +274,9 @@ Competitive analysis uses research methodology to understand market context. It 
 | If you need to... | Use this skill | Not... |
 |-------------------|----------------|--------|
 | Understand user problems | Research & Synthesis | UX Design (design comes after) |
-| Test if a concept resonates | Research & Synthesis | Sales (not selling, validating) |
+| Test if a concept resonates | Research & Synthesis | Go-to-Market Planning (not selling, validating) |
 | Decide what to prioritize | Research & Synthesis + Strategic Advisory | Strategic Advisory alone (needs evidence) |
-| Understand competitive landscape | Research & Synthesis | Marketing (different lens) |
+| Understand competitive landscape | Research & Synthesis | Product Marketing (different lens) |
 | Write up research findings | Research & Synthesis | Technical Documentation (different format) |
 
 ---

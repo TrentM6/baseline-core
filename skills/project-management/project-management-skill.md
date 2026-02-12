@@ -404,7 +404,7 @@ Then [expected result].
 |-------------------|----------------|--------|
 | Plan project timeline | Project Management | Strategic Advisory (tactical, not strategic) |
 | Track deliverables | Project Management | Technical Documentation (tracking, not writing) |
-| Communicate status | Project Management | Marketing (internal, not external) |
+| Communicate status | Project Management | Product Marketing (internal, not external) |
 | Define product strategy | Strategic Advisory | Project Management (strategy, not execution) |
 | Prioritize roadmap | Strategic Advisory | Project Management (strategic prioritization) |
 | Facilitate decisions | Project Management or Strategic Advisory | Depends on scope |

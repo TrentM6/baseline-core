@@ -7,7 +7,7 @@
 - Research & Synthesis (research reports, synthesis documents)
 - Product Communications (PRDs, product briefs, specs)
 - Technical Documentation (user guides, help articles)
-- Sales (proposals, case studies)
+- Go-to-Market Planning (GTM strategy documents, pricing analysis)
 
 ## When to Use
 

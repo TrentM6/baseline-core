@@ -52,9 +52,9 @@ Skills draw on the other components of the Baseline System:
 | [Prototyping](prototyping/prototyping-skill.md) | Coded prototypes, clickable demos, POCs, feasibility testing |
 | [Project Management](project-management/project-management-skill.md) | Planning, tracking, status updates, sprint facilitation |
 | [Technical Documentation](technical-documentation/technical-documentation-skill.md) | User guides, help center, feature docs, release notes |
-| [Brand Design](brand-design/brand-design-skill.md) | Presentations, social graphics, diagrams, brand assets |
-| [Marketing](marketing/marketing-skill.md) | LinkedIn content, website copy, case studies, email campaigns |
-| [Sales](sales/sales-skill.md) | Outreach, discovery calls, proposals, pipeline management |
+| [Visual Communication](visual-communication/visual-communication-skill.md) | Presentations, diagrams, decision visualization, data storytelling |
+| [Product Marketing](product-marketing/product-marketing-skill.md) | Positioning, messaging frameworks, launch briefs, competitive messaging |
+| [Go-to-Market Planning](go-to-market-planning/go-to-market-planning-skill.md) | Pricing strategy, launch planning, channel strategy, distribution |
 | [Skill Building](skill-building/skill-building-skill.md) | Creating new AI skills, prompt engineering |
 
 ---
@@ -71,9 +71,9 @@ Skills draw on the other components of the Baseline System:
 | Build interactive prototypes | [Prototyping](prototyping/prototyping-skill.md) |
 | Plan and track projects | [Project Management](project-management/project-management-skill.md) |
 | Write user documentation | [Technical Documentation](technical-documentation/technical-documentation-skill.md) |
-| Create visual assets | [Brand Design](brand-design/brand-design-skill.md) |
-| Create content and copy | [Marketing](marketing/marketing-skill.md) |
-| Sell and close deals | [Sales](sales/sales-skill.md) |
+| Visualize decisions and data | [Visual Communication](visual-communication/visual-communication-skill.md) |
+| Position and message products | [Product Marketing](product-marketing/product-marketing-skill.md) |
+| Plan go-to-market strategy | [Go-to-Market Planning](go-to-market-planning/go-to-market-planning-skill.md) |
 | Build new skills | [Skill Building](skill-building/skill-building-skill.md) |
 
 ---
@@ -143,9 +143,9 @@ Scripts push outputs directly to external tools after a skill produces content. 
 | **Prototyping** | Wireframe specs, Jira epics |
 | **Project Management** | Asana projects/sprints, Jira epics, monday.com roadmaps |
 | **Technical Documentation** | Confluence pages, Google Docs, markdown files |
-| **Brand Design** | Canva presentations, FigJam diagrams |
-| **Marketing** | Canva presentations, Slack posts, email drafts |
-| **Sales** | Canva presentations, email drafts, Google Docs |
+| **Visual Communication** | Canva presentations, FigJam diagrams |
+| **Product Marketing** | Canva presentations, Slack posts |
+| **Go-to-Market Planning** | Canva presentations, Google Docs |
 | **Skill Building** | — |
 
 See [Scripts](../scripts/_README.md) for the full list and setup requirements.
