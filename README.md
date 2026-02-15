@@ -1,6 +1,12 @@
 # The Baseline System
 
+[![npm version](https://img.shields.io/npm/v/@baseline-studio/cli.svg)](https://www.npmjs.com/package/@baseline-studio/cli)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/TrentM6/baseline-core.svg?style=social)](https://github.com/TrentM6/baseline-core)
+
 > A complete AI system for product teams. Skills provide methodology. Context makes it yours. Frameworks give structure. Scripts deliver to your tools.
+
+Open source. MIT licensed. [baselinestudio.design](https://baselinestudio.design)
 
 ## Quick Start
 
@@ -161,5 +167,12 @@ Yes. Run `npx baseline context add <name>` to create a new file and wire it to s
 **What AI tools does this work with?**
 Any AI tool. The `AGENTS.md` file is automatically read by Claude Code, Codex, Cursor, Windsurf, GitHub Copilot, JetBrains AI, and others. Chat tools like ChatGPT work when you upload skill and context files.
 
+**How do I contribute?**
+See [CONTRIBUTING.md](CONTRIBUTING.md). Open an issue first, then submit a PR.
+
 **How do I get help?**
-Email trent@baselinestudio.design.
+[Open an issue](https://github.com/TrentM6/baseline-core/issues) or email trent@baselinestudio.design.
+
+---
+
+Built by [Trent Mitchell](https://www.linkedin.com/in/trentjmitchell/). Baseline Studio researches how teams work with AI and ships the tools that come out of it.
