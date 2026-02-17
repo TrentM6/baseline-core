@@ -17,3 +17,5 @@ context:
 # Reference files — load when the task needs detailed guidance
 references:
   - skills/visual-communication/references/visual-design-fundamentals.md
+  - skills/visual-communication/references/presentation-patterns.md
+  - skills/visual-communication/references/diagramming-guide.md

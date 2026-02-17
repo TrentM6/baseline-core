@@ -62,6 +62,8 @@ Before any analytics work, answer:
 
 **Load when needed:**
 - [Metrics Framework](references/metrics-framework.md) — North Star, HEART, pirate metrics
+- [Experimentation Guide](references/experimentation-guide.md) — A/B testing, statistical foundations, test design
+- [Data Storytelling](references/data-storytelling.md) — Chart selection, narrative structure, audience adaptation
 - [Research & Synthesis Skill](../research-synthesis/research-synthesis-skill.md) — For pairing qual with quant
 - [Strategic Advisory Skill](../strategic-advisory/strategic-advisory-skill.md) — For strategic metric decisions
 - Existing metrics definitions and dashboards

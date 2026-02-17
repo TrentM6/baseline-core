@@ -63,6 +63,8 @@ Before any advisory work, understand:
 
 **Load when needed:**
 - [Strategy Frameworks](references/strategy-frameworks.md) — Deep framework details (RICE, MoSCoW, OKRs, JTBD, etc.)
+- [Stakeholder Management](references/stakeholder-management.md) — Stakeholder mapping, managing up, building buy-in
+- [Business Model Frameworks](references/business-model-frameworks.md) — Business Model Canvas, unit economics, revenue models
 
 ### 3. Choose the Right Approach
 

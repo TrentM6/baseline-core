@@ -67,6 +67,7 @@ Before building any prototype, answer:
 
 **Load when needed:**
 - [Prototyping Tools](references/prototyping-tools.md) — Tool selection guidance
+- [Prototyping Methods](references/prototyping-methods.md) — Fidelity selection, testing methods, scope management, handoff
 - [UX Design Skill](../ux-design/ux-design-skill.md) — For research-informed design decisions
 
 ### 3. Choose the Right Fidelity

@@ -67,6 +67,7 @@ Before writing any product document, answer:
 
 **Load when needed:**
 - [Document Templates](references/document-templates.md) — PRD, brief, spec templates
+- [Communication Dynamics](references/communication-dynamics.md) — Audience adaptation, executive summaries, difficult conversations
 - [Strategic Advisory Skill](../strategic-advisory/strategic-advisory-skill.md) — For strategy framing
 - [Research & Synthesis Skill](../research-synthesis/research-synthesis-skill.md) — For research-backed context
 

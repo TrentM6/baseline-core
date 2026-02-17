@@ -54,18 +54,18 @@ In AI coding tools, this is fully automated via the `AGENTS.md` file. Just descr
 
 | Skill | What It Does |
 |-------|-------------|
-| **Strategic Advisory** | Roadmaps, prioritization, OKRs, strategic decisions |
-| **Research Synthesis** | User interviews, research reports, validation testing |
-| **Product Communications** | PRDs, specs, briefs, stakeholder updates |
-| **UX Design** | Wireframes, user flows, UI copy, design critique |
-| **Product Analytics** | Metrics frameworks, dashboards, A/B test plans |
-| **Prototyping** | Coded prototypes, demos, proof-of-concepts |
-| **Project Management** | Sprint planning, tracking, retrospectives |
-| **Technical Documentation** | User guides, API docs, release notes, help content |
-| **Visual Communication** | Presentations, diagrams, decision visualization, data storytelling |
-| **Product Marketing** | Positioning, messaging frameworks, launch briefs, competitive messaging |
-| **Go-to-Market Planning** | Pricing strategy, launch planning, channel strategy, distribution |
-| **Skill Building** | Create new custom skills for your team |
+| **Strategic Advisory** | Strategic decisions, roadmaps, prioritization, OKRs, alignment |
+| **Research & Synthesis** | User research, interviews, competitive analysis, synthesis |
+| **Product Communications** | PRDs, feature specs, product briefs, stakeholder updates, decision docs |
+| **UX Design** | Interface design, wireframes, user flows, UI copy, design systems, accessibility |
+| **Product Analytics** | Metrics, dashboards, funnel analysis, A/B tests, segmentation |
+| **Prototyping** | Coded prototypes, clickable demos, POCs, technical feasibility |
+| **Project Management** | Planning, tracking, sprints, status updates, risk management |
+| **Technical Documentation** | User guides, help center, API docs, release notes, how-to guides |
+| **Visual Communication** | Presentations, diagrams, decision visualization, data storytelling, narrative decks |
+| **Product Marketing** | Positioning, messaging frameworks, launch briefs, competitive messaging, case studies |
+| **Go-to-Market Planning** | Pricing strategy, launch planning, channel strategy, competitive positioning |
+| **Skill Building** | Create new skills, document expertise, build reference files |
 
 See [`skills/_README.md`](skills/_README.md) for detailed documentation on each skill.
 

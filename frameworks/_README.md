@@ -34,6 +34,9 @@ Skill says "prioritize features"  →  Loads prioritization.md  →  Applies RIC
 | [UX Heuristics](ux-heuristics.md) | Nielsen's Heuristics, WCAG, Cognitive Load | UX Design |
 | [Project Management](project-management.md) | RACI, Risk Matrix, Estimation | Project Management |
 | [Session Planning](session-planning.md) | Multi-session decomposition, project plan generation | All skills (via Workflow Orchestration) |
+| [Stakeholder Communication](stakeholder-communication.md) | Stakeholder mapping, communication cadence, managing up, difficult conversations | Strategic Advisory, Product Comms, PM, GTM |
+| [Facilitation](facilitation.md) | Workshop design, facilitation techniques, group dynamics, remote facilitation | Research, UX Design, Strategic Advisory, PM |
+| [Change Management](change-management.md) | Adoption curves, resistance patterns, Kotter's model, ADKAR, measuring adoption | PM, GTM Planning, Strategic Advisory |
 
 ---
 

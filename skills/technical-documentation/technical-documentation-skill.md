@@ -66,6 +66,7 @@ Before writing documentation, understand:
 
 **Load when needed:**
 - [Documentation Standards](references/documentation-standards.md) — Style guide standards, formatting conventions
+- [Information Architecture](references/information-architecture.md) — Content organization, navigation, taxonomy, scaling docs
 - Similar existing docs (for pattern consistency)
 - Product specifications (for accuracy)
 

@@ -18,3 +18,5 @@ context:
 # Reference files — load when the task needs detailed guidance
 references:
   - skills/strategic-advisory/references/strategy-frameworks.md
+  - skills/strategic-advisory/references/stakeholder-management.md
+  - skills/strategic-advisory/references/business-model-frameworks.md

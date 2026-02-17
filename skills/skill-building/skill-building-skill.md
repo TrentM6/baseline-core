@@ -123,7 +123,7 @@ skill-name/
 - `frameworks/[framework].md` — [When to use]
 
 **Load when needed:**
-- `references/[file].md` — [Specific situation]
+- [Skill Architecture](references/skill-architecture.md) — Detailed skill structure, components, and design patterns
 ```
 
 ### 4. Test: Validate with Real Tasks

@@ -60,10 +60,12 @@ Before conducting any research, answer:
 - `core/identity.md` — Product, positioning, audiences, terminology
 - `core/voice.md` — Tone, language rules for written deliverables
 
-**Load from templates/:**
-- [Interview Guide](templates/interview-guide.md) — When creating interview guides
-- [Research Report](templates/research-report.md) — When writing research reports
-- [Validation Report](templates/validation-report.md) — When writing validation reports
+**Load when needed:**
+- [Interview Guide](references/interview-guide.md) — When creating interview guides
+- [Research Report](references/research-report.md) — When writing research reports
+- [Validation Report](references/validation-report.md) — When writing validation reports
+- [Synthesis Methods](references/synthesis-methods.md) — Affinity mapping, thematic analysis, insight hierarchy
+- [Competitive Analysis](references/competitive-analysis.md) — Competitive landscape mapping, intel gathering, frameworks
 
 ### 3. Choose the Right Method
 

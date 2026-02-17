@@ -64,6 +64,8 @@ Before any project management work, understand:
 
 **Load when needed:**
 - [Project Management Framework](../../frameworks/project-management.md) — RACI, Risk Matrix, Estimation
+- [PM Templates](references/pm-templates.md) — Sprint planning, retros, RACI, risk register, status reports
+- [Agile Practices](references/agile-practices.md) — User stories, estimation, backlog grooming, sprint health
 - Client context folder (their situation, team, constraints)
 
 ### 3. Choose the Right Approach

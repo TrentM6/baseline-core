@@ -66,6 +66,8 @@ Before any visual communication work, answer:
 
 **Load when needed:**
 - [Visual Design Fundamentals](references/visual-design-fundamentals.md) — Design principles, color theory, data visualization
+- [Presentation Patterns](references/presentation-patterns.md) — Slide design, deck structures, data slides, delivery
+- [Diagramming Guide](references/diagramming-guide.md) — Diagram types, notation standards, best practices
 - Existing visual materials (for pattern consistency)
 - Templates for the deliverable type
 

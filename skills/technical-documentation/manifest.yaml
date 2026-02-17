@@ -18,3 +18,4 @@ context:
 # Reference files — load when the task needs detailed guidance
 references:
   - skills/technical-documentation/references/documentation-standards.md
+  - skills/technical-documentation/references/information-architecture.md

@@ -18,3 +18,5 @@ context:
 # Reference files — load when the task needs detailed guidance
 references:
   - skills/product-analytics/references/metrics-framework.md
+  - skills/product-analytics/references/experimentation-guide.md
+  - skills/product-analytics/references/data-storytelling.md

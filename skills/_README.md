@@ -42,18 +42,18 @@ Skills draw on the other components of the Baseline System:
 
 | Skill | Purpose |
 |-------|---------|
-| [Strategic Advisory](strategic-advisory/strategic-advisory-skill.md) | Prioritization, roadmaps, decision support, advisory sessions |
-| [Research & Synthesis](research-synthesis/research-synthesis-skill.md) | Discovery interviews, validation, competitive analysis, research reports |
-| [Product Communications](product-communications/product-communications-skill.md) | PRDs, product briefs, feature specs, launch briefs, stakeholder updates |
-| [UX Design](ux-design/ux-design-skill.md) | User research, journey maps, wireframes, UI copy, design systems |
-| [Product Analytics](product-analytics/product-analytics-skill.md) | KPIs, success metrics, dashboards, A/B tests, funnel analysis |
-| [Prototyping](prototyping/prototyping-skill.md) | Coded prototypes, clickable demos, POCs, feasibility testing |
-| [Project Management](project-management/project-management-skill.md) | Planning, tracking, status updates, sprint facilitation |
-| [Technical Documentation](technical-documentation/technical-documentation-skill.md) | User guides, help center, feature docs, release notes |
-| [Visual Communication](visual-communication/visual-communication-skill.md) | Presentations, diagrams, decision visualization, data storytelling |
-| [Product Marketing](product-marketing/product-marketing-skill.md) | Positioning, messaging frameworks, launch briefs, competitive messaging |
-| [Go-to-Market Planning](go-to-market-planning/go-to-market-planning-skill.md) | Pricing strategy, launch planning, channel strategy, distribution |
-| [Skill Building](skill-building/skill-building-skill.md) | Creating new AI skills, prompt engineering |
+| [Strategic Advisory](strategic-advisory/strategic-advisory-skill.md) | Strategic decisions, roadmaps, prioritization, OKRs, alignment |
+| [Research & Synthesis](research-synthesis/research-synthesis-skill.md) | User research, interviews, competitive analysis, synthesis |
+| [Product Communications](product-communications/product-communications-skill.md) | PRDs, feature specs, product briefs, stakeholder updates, decision docs |
+| [UX Design](ux-design/ux-design-skill.md) | Interface design, wireframes, user flows, UI copy, design systems, accessibility |
+| [Product Analytics](product-analytics/product-analytics-skill.md) | Metrics, dashboards, funnel analysis, A/B tests, segmentation |
+| [Prototyping](prototyping/prototyping-skill.md) | Coded prototypes, clickable demos, POCs, technical feasibility |
+| [Project Management](project-management/project-management-skill.md) | Planning, tracking, sprints, status updates, risk management |
+| [Technical Documentation](technical-documentation/technical-documentation-skill.md) | User guides, help center, API docs, release notes, how-to guides |
+| [Visual Communication](visual-communication/visual-communication-skill.md) | Presentations, diagrams, decision visualization, data storytelling, narrative decks |
+| [Product Marketing](product-marketing/product-marketing-skill.md) | Positioning, messaging frameworks, launch briefs, competitive messaging, case studies |
+| [Go-to-Market Planning](go-to-market-planning/go-to-market-planning-skill.md) | Pricing strategy, launch planning, channel strategy, competitive positioning |
+| [Skill Building](skill-building/skill-building-skill.md) | Creating new skills, documenting expertise, building reference files |
 
 ---
 
@@ -61,18 +61,18 @@ Skills draw on the other components of the Baseline System:
 
 | If you need to... | Use |
 |-------------------|-----|
-| Make strategic decisions | [Strategic Advisory](strategic-advisory/strategic-advisory-skill.md) |
-| Research users (qualitative) | [Research & Synthesis](research-synthesis/research-synthesis-skill.md) |
-| Write PRDs and specs | [Product Communications](product-communications/product-communications-skill.md) |
-| Design interfaces and flows | [UX Design](ux-design/ux-design-skill.md) |
-| Define and analyze metrics | [Product Analytics](product-analytics/product-analytics-skill.md) |
-| Build interactive prototypes | [Prototyping](prototyping/prototyping-skill.md) |
-| Plan and track projects | [Project Management](project-management/project-management-skill.md) |
-| Write user documentation | [Technical Documentation](technical-documentation/technical-documentation-skill.md) |
-| Visualize decisions and data | [Visual Communication](visual-communication/visual-communication-skill.md) |
-| Position and message products | [Product Marketing](product-marketing/product-marketing-skill.md) |
-| Plan go-to-market strategy | [Go-to-Market Planning](go-to-market-planning/go-to-market-planning-skill.md) |
-| Build new skills | [Skill Building](skill-building/skill-building-skill.md) |
+| Make strategic decisions, prioritize roadmap | [Strategic Advisory](strategic-advisory/strategic-advisory-skill.md) |
+| Research users, run competitive analysis | [Research & Synthesis](research-synthesis/research-synthesis-skill.md) |
+| Write PRDs, specs, or decision docs | [Product Communications](product-communications/product-communications-skill.md) |
+| Design interfaces, flows, or design systems | [UX Design](ux-design/ux-design-skill.md) |
+| Define metrics, run A/B tests, analyze funnels | [Product Analytics](product-analytics/product-analytics-skill.md) |
+| Build interactive prototypes or POCs | [Prototyping](prototyping/prototyping-skill.md) |
+| Plan sprints, track progress, manage risks | [Project Management](project-management/project-management-skill.md) |
+| Write user guides, API docs, help content | [Technical Documentation](technical-documentation/technical-documentation-skill.md) |
+| Create presentations, diagrams, data stories | [Visual Communication](visual-communication/visual-communication-skill.md) |
+| Position products, write case studies | [Product Marketing](product-marketing/product-marketing-skill.md) |
+| Plan pricing, launches, channel strategy | [Go-to-Market Planning](go-to-market-planning/go-to-market-planning-skill.md) |
+| Build new skills for your team | [Skill Building](skill-building/skill-building-skill.md) |
 
 ---
 

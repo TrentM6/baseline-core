@@ -14,7 +14,9 @@ context:
   extended:
     - context/{client}/extended/users.md
     - context/{client}/extended/technical.md
+    - context/{client}/extended/visual-identity.md
 
 # Reference files — load when the task needs detailed guidance
 references:
   - skills/prototyping/references/prototyping-tools.md
+  - skills/prototyping/references/prototyping-methods.md

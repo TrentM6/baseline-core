@@ -17,6 +17,8 @@ context:
 
 # Reference files — load when the task needs detailed guidance
 references:
-  - skills/research-synthesis/templates/interview-guide.md
-  - skills/research-synthesis/templates/research-report.md
-  - skills/research-synthesis/templates/validation-report.md
+  - skills/research-synthesis/references/interview-guide.md
+  - skills/research-synthesis/references/research-report.md
+  - skills/research-synthesis/references/validation-report.md
+  - skills/research-synthesis/references/synthesis-methods.md
+  - skills/research-synthesis/references/competitive-analysis.md

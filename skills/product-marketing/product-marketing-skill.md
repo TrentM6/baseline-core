@@ -68,6 +68,7 @@ Before creating any product marketing deliverable, answer:
 **Load when needed:**
 - [Product Messaging Playbooks](references/product-messaging-playbooks.md) — Templates for specific deliverable types
 - [Positioning Strategy](references/positioning-strategy.md) — Strategic frameworks for positioning and pillar planning
+- [Content Strategy](references/content-strategy.md) — Content pillars, funnel mapping, editorial planning, SEO
 
 ### 3. Choose the Right Approach
 

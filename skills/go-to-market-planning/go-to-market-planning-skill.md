@@ -66,6 +66,7 @@ Before any GTM planning work, answer:
 
 **Load when needed:**
 - [GTM Fundamentals](references/gtm-fundamentals.md) — GTM motions, launch frameworks, channel evaluation
+- [Sales Enablement](references/sales-enablement.md) — Sales decks, discovery frameworks, objection handling, collateral
 
 ### 3. Choose the Right GTM Motion
 

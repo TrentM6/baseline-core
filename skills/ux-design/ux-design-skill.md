@@ -70,6 +70,8 @@ Before any UX work, answer:
 - [Design Principles](references/design-principles.md) — Foundational principles, UX laws
 - [UI Patterns](references/ui-patterns.md) — Interface patterns and when to use them
 - [Design Systems](references/design-systems.md) — Token architecture, component design, governance
+- [Design Critique](references/design-critique.md) — Giving/receiving feedback, running critique sessions
+- [Ideation Methods](references/ideation-methods.md) — Design studio, Crazy 8s, HMW, SCAMPER, convergence
 
 ### 3. Understand Users
 

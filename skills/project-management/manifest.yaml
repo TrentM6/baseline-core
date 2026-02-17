@@ -15,5 +15,7 @@ context:
   extended:
     - context/{client}/extended/product.md
 
-# Reference files — this skill has no additional reference files
-references: []
+# Reference files — load when the task needs detailed guidance
+references:
+  - skills/project-management/references/pm-templates.md
+  - skills/project-management/references/agile-practices.md
