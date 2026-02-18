@@ -37,7 +37,7 @@ Updates come from git tags via `npx baseline update`, not from npm.
 ```
 your-system/
 ├── AGENTS.md              # AI instructions for all coding tools (don't edit)
-├── CLAUDE.md              # Claude Code pointer to AGENTS.md
+├── CLAUDE.md              # Claude Code instructions (skill mapping, Co-Founder Mode)
 ├── .github/
 │   └── copilot-instructions.md  # GitHub Copilot pointer to AGENTS.md
 ├── baseline.config.json   # Version tracking
@@ -46,6 +46,27 @@ your-system/
 ├── frameworks/            # Reusable methodologies
 └── cli/                   # Bundled CLI for daily use
 ```
+
+## The 12 Skills
+
+| Skill | What It Does |
+|-------|-------------|
+| **Strategic Advisory** | Strategic decisions, roadmaps, prioritization, OKRs, alignment |
+| **Research & Synthesis** | User research, interviews, competitive analysis, synthesis |
+| **Product Communications** | PRDs, feature specs, product briefs, stakeholder updates, decision docs |
+| **UX Design** | Interface design, wireframes, user flows, UI copy, design systems, accessibility |
+| **Product Analytics** | Metrics, dashboards, funnel analysis, A/B tests, segmentation |
+| **Prototyping** | Coded prototypes, clickable demos, POCs, technical feasibility |
+| **Project Management** | Planning, tracking, sprints, status updates, risk management |
+| **Technical Documentation** | User guides, help center, API docs, release notes, how-to guides |
+| **Visual Communication** | Presentations, diagrams, decision visualization, data storytelling |
+| **Product Marketing** | Positioning, messaging frameworks, launch briefs, competitive messaging |
+| **Go-to-Market Planning** | Pricing strategy, launch planning, channel strategy, competitive positioning |
+| **Skill Building** | Create new skills, document expertise, build reference files |
+
+## Co-Founder Mode
+
+Say "brainstorm" or "let's strategize" without naming a skill, and the system activates Co-Founder Mode — a strategic thinking partner that loads your business context and asks probing questions.
 
 ## Learn More
 
