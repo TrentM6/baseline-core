@@ -4,6 +4,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub stars](https://img.shields.io/github/stars/TrentM6/baseline-core.svg?style=social)](https://github.com/TrentM6/baseline-core)
 
+<a href="https://www.producthunt.com/products/baseline-core?utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-baseline-core" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1081234&theme=dark&t=1771423052386" alt="Baseline Core - Featured on Product Hunt" width="250" height="54" /></a>
+
 > A complete AI system for product teams. Skills provide methodology. Context makes it yours. Frameworks give structure.
 
 Open source. MIT licensed. [baselinestudio.design](https://baselinestudio.design)
