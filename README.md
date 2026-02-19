@@ -99,6 +99,8 @@ Chat tools can't auto-read project files. Upload or paste the files listed in th
 
 Context is what makes the system yours. The system's output quality is directly proportional to the quality of your context.
 
+You may know this pattern as soul.md — a single file that defines who your AI is. Baseline's context layer is the same idea, broken into modules. Identity, voice, personas, competitive positioning, and business knowledge each get their own file, so different skills can load exactly what they need. Same principle. More control.
+
 **Core context** (loaded by every skill):
 - `context/core/identity.md` — Who you are, what you do, positioning, differentiators
 - `context/core/voice.md` — How you sound, language rules, tone by channel
