@@ -4,8 +4,8 @@ export declare function init(): Promise<void>;
 export declare function buildSkillTable(skillsDir: string): string;
 /** Generate AGENTS.md — canonical AI instructions for all tools */
 export declare function generateAgentsMd(clientName: string, skillsDir?: string): string;
-/** Generate CLAUDE.md — full instructions for Claude Code (not a pointer) */
-export declare function generateClaudeMdPointer(skillsDir?: string): string;
+/** Generate CLAUDE.md — pointer to AGENTS.md for Claude Code */
+export declare function generateClaudeMdPointer(_skillsDir?: string): string;
 /** Generate .github/copilot-instructions.md — thin pointer to AGENTS.md for GitHub Copilot */
 export declare function generateCopilotInstructions(): string;
 /** Generate README.md for client systems */

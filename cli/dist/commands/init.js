@@ -522,51 +522,26 @@ If the conversation shifts to executing a specific deliverable (e.g., "now write
 - **Overload the session** — One major task per session. Recommend fresh sessions after milestones.
 `;
 }
-/** Generate CLAUDE.md — full instructions for Claude Code (not a pointer) */
-function generateClaudeMdPointer(skillsDir) {
-    // Claude Code reads CLAUDE.md at session start but does NOT auto-follow
-    // "read AGENTS.md" redirects. So CLAUDE.md must contain the full instructions
-    // rather than a thin pointer. AGENTS.md still exists for Cursor/Codex/Windsurf/Copilot.
-    const skillTable = skillsDir ? buildSkillTable(skillsDir) : buildSkillTable("");
+/** Generate CLAUDE.md — pointer to AGENTS.md for Claude Code */
+function generateClaudeMdPointer(_skillsDir) {
+    // CLAUDE.md tells Claude Code to read AGENTS.md, which is the single source
+    // of truth for the skill table and execution protocol. We intentionally do NOT
+    // duplicate the skill table here — doing so caused clients to see every skill
+    // listed twice (once in CLAUDE.md, once in AGENTS.md), which the AI interprets
+    // as duplicates.
     return `# Baseline System
 
-Read and follow all instructions in AGENTS.md in this directory. That file is the canonical source of truth for how this system works, including the Skill Execution Protocol, skill mapping, Co-Founder Mode, and session management guidelines.
+Read AGENTS.md in this directory. That is the canonical source of truth for this system.
 
-**IMPORTANT — read AGENTS.md NOW before responding to the user.** The instructions below are a summary. AGENTS.md contains the full Skill Execution Protocol, skill mapping table, and Co-Founder Mode instructions that you MUST follow.
+**IMPORTANT — you MUST read AGENTS.md NOW, before responding to the user.**
 
----
+AGENTS.md contains:
+- The Skill Execution Protocol (how to identify, load, and execute skills)
+- The complete skill mapping table (which tasks map to which skills)
+- Co-Founder Mode instructions (for brainstorming and strategic thinking)
+- Session management guidelines
 
-## Quick Reference (full details in AGENTS.md)
-
-### Skill Mapping
-
-${skillTable}
-
-### Skill Execution Protocol
-
-1. **Identify the skill** from the table above
-2. **Read the manifest** at \`skills/[skill-name]/manifest.yaml\`
-3. **Load ALL files** listed in the manifest (\`always_load\`, \`context\`, \`references\`)
-4. **Execute the workflow**: Plan → Clarify → Execute → Validate
-
-### Co-Founder Mode
-
-When the user wants to brainstorm, strategize, or think through problems WITHOUT invoking a specific skill, activate Co-Founder Mode:
-
-**Activate when the user:**
-- Asks to "brainstorm" or "strategize" without naming a skill
-- Wants to "talk through" a problem or decision
-- Asks for strategic advice or a thinking partner
-- Phrases requests as open-ended questions about direction or approach
-
-**How to use:**
-1. Load \`context/core/identity.md\`, \`context/core/voice.md\`, and \`context/extended/co-founder.md\`
-2. Adopt the persona from the co-founder file
-3. NO workflow structure — no Plan/Clarify/Execute/Validate. Just strategic thinking partnership.
-4. Ask probing questions from the co-founder file to surface blind spots
-5. Reference principles when the conversation touches on strategic decisions
-
-**Exit when** the conversation shifts to a specific deliverable — switch to the appropriate skill.
+Do not respond to the user until you have read AGENTS.md in full.
 `;
 }
 /** Generate .github/copilot-instructions.md — thin pointer to AGENTS.md for GitHub Copilot */
