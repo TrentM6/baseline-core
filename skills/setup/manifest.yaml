@@ -1,0 +1,32 @@
+skill: setup
+description: Guided context setup — ingest existing docs, parse them into context files, then ask gap-filling questions for what's missing
+
+# Files loaded every time this skill runs
+always_load:
+  - frameworks/workflow-orchestration.md
+  - skills/setup/setup-skill.md
+
+# Context files — replace {client} with the actual client folder name.
+# This skill loads all context files so it can read existing content (skip
+# already-filled sections) and write extracted/answered content into them.
+context:
+  core:
+    - context/{client}/core/identity.md
+    - context/{client}/core/voice.md
+  extended:
+    - context/{client}/extended/product.md
+    - context/{client}/extended/users.md
+    - context/{client}/extended/icp.md
+    - context/{client}/extended/competitive.md
+    - context/{client}/extended/pricing.md
+    - context/{client}/extended/technical.md
+    - context/{client}/extended/visual-identity.md
+    - context/{client}/extended/formatting.md
+    - context/{client}/extended/proof-points.md
+    - context/{client}/extended/co-founder.md
+
+# Reference files — load when the task needs detailed guidance
+references:
+  - skills/setup/references/doc-ingestion-guide.md
+  - skills/setup/references/gap-filling-questions.md
+  - skills/setup/references/voice-elicitation.md

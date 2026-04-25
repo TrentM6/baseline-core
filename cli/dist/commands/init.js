@@ -103,75 +103,28 @@ async function init() {
     }
     // 5. Collect unique context file paths from manifests
     const contextFiles = collectContextPaths(tmpDir);
-    // 6. Load prompts
-    // init-prompts.yaml has the slim essential questions for onboarding
-    // context-prompts.yaml has the full question set (used for template titles + fallback)
-    const initPromptsPath = (0, path_1.join)(tmpDir, "init-prompts.yaml");
+    // 6. Load context-prompts.yaml for context-file titles
     const fullPromptsPath = (0, path_1.join)(tmpDir, "context-prompts.yaml");
-    let initPrompts = {};
     let fullPrompts = {};
     if ((0, fs_1.existsSync)(fullPromptsPath)) {
         fullPrompts = (0, js_yaml_1.load)((0, fs_1.readFileSync)(fullPromptsPath, "utf-8"));
     }
-    if ((0, fs_1.existsSync)(initPromptsPath)) {
-        initPrompts = (0, js_yaml_1.load)((0, fs_1.readFileSync)(initPromptsPath, "utf-8"));
-    }
-    else {
-        // Fallback: if init-prompts.yaml doesn't exist (older tag), use core
-        // sections from the full prompts so init never skips questions entirely
-        for (const [key, val] of Object.entries(fullPrompts)) {
-            if (key.startsWith("core/")) {
-                initPrompts[key] = val;
-            }
-        }
-    }
-    // 7. Ask essential questions (slim init)
-    console.log();
-    ui.info("Let's set up your core context — the essential info that powers every skill.");
-    ui.skipHint();
-    const initSections = Object.keys(initPrompts);
-    let sectionIndex = 0;
-    for (const ctxFile of initSections) {
-        const prompt = initPrompts[ctxFile];
-        if (!prompt)
-            continue;
-        sectionIndex++;
-        ui.sectionHeader(prompt.title, sectionIndex, initSections.length);
-        const answers = [];
-        let answeredCount = 0;
-        // Pre-fill company name into identity file
-        if (ctxFile === "core/identity.md") {
-            answers.push(`**What is your company name?**\n${clientName}`);
-        }
-        for (let qi = 0; qi < prompt.questions.length; qi++) {
-            const q = prompt.questions[qi];
-            const answer = await ask(rl, ui.formatPromptWithProgress(q, qi + 1, prompt.questions.length));
-            if (answer.trim()) {
-                answers.push(`**${q}**\n${answer.trim()}`);
-                answeredCount++;
-            }
-            console.log();
-        }
-        const fullPath = (0, path_1.join)(destDir, "context", ctxFile);
-        (0, fs_1.mkdirSync)((0, path_1.dirname)(fullPath), { recursive: true });
-        if (answers.length > 0) {
-            (0, fs_1.writeFileSync)(fullPath, `# ${prompt.title}\n\n${answers.join("\n\n")}\n`);
-        }
-        else {
-            (0, fs_1.writeFileSync)(fullPath, `# ${prompt.title}\n\n<!-- Add your content here -->\n`);
-        }
-        ui.sectionComplete(prompt.title, answeredCount, prompt.questions.length);
-    }
-    // 8. Create empty templates for all remaining context files
+    // 7. Create placeholder context files. Identity gets the company name
+    // pre-filled so the setup skill (or `npx baseline context`) doesn't have
+    // to re-ask. Every other file is pure placeholder; the setup skill fills
+    // them in conversationally on first use.
     for (const ctxFile of contextFiles) {
-        if (initPrompts[ctxFile])
-            continue; // Already handled above
         const fullPath = (0, path_1.join)(destDir, "context", ctxFile);
         if ((0, fs_1.existsSync)(fullPath))
             continue; // Don't overwrite
         (0, fs_1.mkdirSync)((0, path_1.dirname)(fullPath), { recursive: true });
         const title = fullPrompts[ctxFile]?.title || ctxFile;
-        (0, fs_1.writeFileSync)(fullPath, `# ${title}\n\n<!-- Add your content here -->\n`);
+        if (ctxFile === "core/identity.md") {
+            (0, fs_1.writeFileSync)(fullPath, `# ${title}\n\n**What is your company name?**\n${clientName}\n\n<!-- Add your content here -->\n`);
+        }
+        else {
+            (0, fs_1.writeFileSync)(fullPath, `# ${title}\n\n<!-- Add your content here -->\n`);
+        }
     }
     // 9. Create context.yaml
     const contextYaml = buildContextYaml(tmpDir, contextFiles);
@@ -241,27 +194,18 @@ async function init() {
         ["Skills:", `${skillCount}`],
         ["Frameworks:", `${frameworkCount}`],
     ]);
-    // Context importance + file listing
-    console.log(`  ${ui.bold("Context is what makes the system yours.")}`);
-    console.log(`  Every skill uses your context to produce personalized output.`);
-    console.log(`  The more detailed your context, the better every skill performs.\n`);
-    console.log(`  ${ui.dim("Your context files:")}`);
-    console.log(`    ${ui.accent("core/identity.md")}         ${ui.dim("— who you are, what you do, differentiators")}`);
-    console.log(`    ${ui.accent("core/voice.md")}            ${ui.dim("— tone, language rules, brand personality")}`);
-    console.log(`    ${ui.accent("extended/product.md")}       ${ui.dim("— features, workflows, technical details")}`);
-    console.log(`    ${ui.accent("extended/users.md")}         ${ui.dim("— personas, goals, pain points")}`);
-    console.log(`    ${ui.accent("extended/icp.md")}           ${ui.dim("— ideal customer profile, buyer psychology")}`);
-    console.log(`    ${ui.accent("extended/competitive.md")}   ${ui.dim("— competitors, positioning, alternatives")}`);
-    console.log(`    ${ui.accent("extended/pricing.md")}       ${ui.dim("— tiers, objection handling, value props")}`);
-    console.log(`    ${ui.accent("extended/technical.md")}     ${ui.dim("— tech stack, integrations, constraints")}`);
-    console.log(`    ${ui.accent("extended/visual-identity.md")} ${ui.dim("— colors, fonts, visual style")}`);
-    console.log(`    ${ui.accent("extended/formatting.md")}    ${ui.dim("— document structure, heading rules")}`);
+    // What's next — point at the setup skill
     console.log();
-    ui.nextSteps([
-        `Fill in your context files — start with ${ui.accent("identity")}, ${ui.accent("voice")}, ${ui.accent("product")}, ${ui.accent("users")}`,
-        `Run ${ui.accent("npx baseline context")} for guided prompts to help you fill them in`,
-        `Open this folder in your AI tool and start using skills`,
-    ]);
+    console.log(`  ${ui.bold("What's next:")}`);
+    console.log();
+    console.log(`  ${ui.brand("→")} Open this folder in your AI tool (Claude Code, Cursor, Codex, etc.)`);
+    console.log(`     and run the ${ui.accent("setup")} skill — say ${ui.accent('"run the setup skill"')}.`);
+    console.log();
+    console.log(`     ${ui.dim("Setup walks you through filling in your business context.")}`);
+    console.log(`     ${ui.dim("Bring any docs you have — pitch deck, one-pager, brand guide.")}`);
+    console.log(`     ${ui.dim("It'll parse them into your context files and ask only for gaps.")}`);
+    console.log();
+    console.log(`  ${ui.dim("Prefer the terminal?")} Run ${ui.accent("npx baseline context")} ${ui.dim("instead.")}`);
     console.log();
 }
 /** Scan all skill manifests and return unique context file paths (relative to context/) */
@@ -429,6 +373,8 @@ Match the user's request to a skill using this table:
 
 ${skillsDir ? buildSkillTable(skillsDir) : buildSkillTable("")}
 
+**First-run hint:** If the user's first request is ambiguous (e.g., "what can you do?", "how does this work?", "let's start") and most context files in \`context/{client}/\` contain only \`<!-- Add your content here -->\`, suggest the \`setup\` skill before proceeding. Output quality scales with context completeness, and \`setup\` is designed to fill context conversationally — including ingesting docs the user already has.
+
 ### Step 2: Read the Manifest
 
 Every skill has a \`manifest.yaml\` in its folder that lists every file the skill needs. Read it:
@@ -559,6 +505,10 @@ function generateReadme(clientName) {
 
 ## Getting Started
 
+**First time?** Open this folder in your AI tool (Claude Code, Cursor, Codex, etc.) and run the **Setup** skill — say *"run the setup skill."* It walks you through filling in your business context. Bring any docs you have (pitch deck, brand guide, one-pager) — Setup parses them into your context files and asks short follow-ups for what's missing.
+
+**Existing system?**
+
 \`\`\`bash
 npx baseline status    # Check for updates
 npx baseline update    # Pull latest version
@@ -593,7 +543,15 @@ Skills are universal. Context is yours. When you run a skill, it loads both — 
 
 In AI coding tools, this is fully automated via the \`AGENTS.md\` file. Just describe what you need.
 
-### The 12 Skills
+### The Skills
+
+**Run once to set up:**
+
+| Skill | What It Does |
+|-------|-------------|
+| **Setup** | Guided context setup — parse your existing docs into context files, ask gap-filling questions for what's missing |
+
+**Run as needed for daily work:**
 
 | Skill | What It Does |
 |-------|-------------|
@@ -640,6 +598,8 @@ Chat tools can't auto-read project files. Upload or paste the files listed in th
 
 Context is what makes the system yours. The system's output quality is directly proportional to the quality of your context.
 
+**The fastest way to fill it in:** run the **Setup** skill in your AI tool. It asks for any docs you have (pitch deck, brand guide, etc.), parses them into your context files, then asks short follow-ups for whatever's missing.
+
 **Core context** (loaded by every skill):
 - \`context/core/identity.md\` — Who you are, what you do, positioning, differentiators
 - \`context/core/voice.md\` — How you sound, language rules, tone by channel
@@ -655,7 +615,7 @@ Context is what makes the system yours. The system's output quality is directly 
 - \`context/extended/formatting.md\` — Document structure, heading rules
 - \`context/extended/proof-points.md\` — Metrics, case studies, market research, validation data
 
-Start with \`identity.md\` and \`voice.md\`, then fill out extended files as needed. Run \`npx baseline context\` to update files or \`npx baseline context add <name>\` to create new ones.
+Skills work with whatever context is available — missing context produces more generic output, not broken output. **Prefer the terminal?** Run \`npx baseline context\` for a guided CLI questionnaire (alternative to the Setup skill). Use \`npx baseline context add <name>\` to create a new context file.
 
 ---
 
@@ -665,7 +625,7 @@ Start with \`identity.md\` and \`voice.md\`, then fill out extended files as nee
 |---------|-------------|
 | \`npx baseline status\` | Show current version, check for updates |
 | \`npx baseline update\` | Pull latest skills, frameworks, and CLI |
-| \`npx baseline context\` | Re-run context prompts to update existing files |
+| \`npx baseline context\` | Terminal questionnaire for filling context (alternative to the Setup skill) |
 | \`npx baseline context add <name>\` | Create a new context file and wire it to skills |
 
 ---
@@ -679,7 +639,7 @@ ${clientName.toLowerCase().replace(/\\s+/g, "-")}-system/
 ├── .github/
 │   └── copilot-instructions.md  # GitHub Copilot pointer to AGENTS.md
 ├── baseline.config.json         # Version tracking and config
-├── skills/                      # 12 domain expertise modules
+├── skills/                      # 13 domain expertise modules (Setup + 12 daily-work skills)
 ├── context/                     # YOUR business knowledge (you own this)
 │   ├── core/                    # Identity and voice (loaded by every skill)
 │   └── extended/                # Product, users, pricing, etc.

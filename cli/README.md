@@ -10,7 +10,7 @@ Create a new Baseline System:
 npx @baseline-studio/cli init
 ```
 
-You'll be asked for your company name, then guided through context questions to personalize your system. When it's done, you'll have a complete system with skills, frameworks, and context files — ready to use with Claude Code, Cursor, ChatGPT, or any AI tool.
+`init` asks for your company name and scaffolds your system in ~60 seconds — skills, frameworks, context templates, a fresh git repo. Then open the folder in your AI tool (Claude Code, Cursor, Codex, etc.) and run the **Setup** skill to fill in your business context. Bring any docs you have (pitch deck, brand guide, etc.) — Setup parses them into your context files and asks short follow-ups for what's missing.
 
 ## Commands
 
@@ -20,7 +20,7 @@ Once you have a Baseline System, the CLI is bundled locally. Run commands from y
 |---------|-------------|
 | `npx baseline status` | Show current version and check for updates |
 | `npx baseline update` | Pull latest skills, frameworks, and CLI |
-| `npx baseline context` | Re-run context prompts to update existing files |
+| `npx baseline context` | Terminal questionnaire for filling context (alternative to the Setup skill) |
 | `npx baseline context add <name>` | Create a new context file and wire it to skills |
 
 ## How It Works
@@ -41,13 +41,21 @@ your-system/
 ├── .github/
 │   └── copilot-instructions.md  # GitHub Copilot pointer to AGENTS.md
 ├── baseline.config.json   # Version tracking
-├── skills/                # 12 domain expertise modules
+├── skills/                # 13 domain expertise modules (Setup + 12 daily-work skills)
 ├── context/               # Your business knowledge (you own this)
 ├── frameworks/            # Reusable methodologies
 └── cli/                   # Bundled CLI for daily use
 ```
 
-## The 12 Skills
+## The Skills
+
+**Run once to set up:**
+
+| Skill | What It Does |
+|-------|-------------|
+| **Setup** | Guided context setup — ingest your existing docs, parse them into context files, ask gap-filling questions for what's missing |
+
+**Run as needed for daily work:**
 
 | Skill | What It Does |
 |-------|-------------|
