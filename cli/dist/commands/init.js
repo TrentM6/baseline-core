@@ -42,6 +42,7 @@ exports.generateReadme = generateReadme;
 const readline_1 = require("readline");
 const fs_1 = require("fs");
 const path_1 = require("path");
+const os_1 = require("os");
 const js_yaml_1 = require("js-yaml");
 const git_js_1 = require("../git.js");
 const child_process_1 = require("child_process");
@@ -51,14 +52,38 @@ let rlClosed = false;
 function ask(rl, question) {
     if (rlClosed)
         return Promise.resolve("");
-    return new Promise((resolve) => {
+    return new Promise((resolveFn) => {
         try {
-            rl.question(question, resolve);
+            rl.question(question, resolveFn);
         }
         catch {
-            resolve("");
+            resolveFn("");
         }
     });
+}
+/** Sanitize a user-provided client name into a safe folder name.
+ *  Falls back to "baseline-system" if sanitization yields an empty string. */
+function sanitizeForPath(name) {
+    const cleaned = name
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9-]/g, "")
+        .replace(/-+/g, "-")
+        .replace(/^-|-$/g, "");
+    return cleaned || "baseline-system";
+}
+/** Turn a user-typed path (or empty string) into an absolute path.
+ *  - Empty input → use the default
+ *  - Leading `~` is expanded to the user's home directory
+ *  - Relative paths are resolved against the current working directory */
+function resolveScaffoldPath(input, defaultPath) {
+    if (!input)
+        return defaultPath;
+    let expanded = input;
+    if (expanded.startsWith("~/") || expanded === "~") {
+        expanded = expanded.replace(/^~/, (0, os_1.homedir)());
+    }
+    return (0, path_1.isAbsolute)(expanded) ? expanded : (0, path_1.resolve)(expanded);
 }
 async function init() {
     const rl = (0, readline_1.createInterface)({ input: process.stdin, output: process.stdout });
@@ -67,8 +92,31 @@ async function init() {
     ui.banner("New Client Setup");
     const clientName = await ask(rl, ui.formatPrompt("What's your company or project name?"));
     const repo = "TrentM6/baseline-core";
-    // Always scaffold in the current directory
-    const destDir = process.cwd();
+    // Default the scaffold to ~/Desktop/<sanitized-name>/ so init never clobbers
+    // whatever directory the user happened to be in (running init from $HOME or
+    // an existing project folder used to scaffold there silently — see v2.10.0).
+    const defaultPath = (0, path_1.join)((0, os_1.homedir)(), "Desktop", sanitizeForPath(clientName));
+    console.log();
+    console.log(`  ${ui.dim("Your system will be created at:")} ${ui.accent(defaultPath)}`);
+    const pathAnswer = await ask(rl, ui.formatPrompt("Press Enter to use this path, or type a different one:"));
+    const destDir = resolveScaffoldPath(pathAnswer.trim(), defaultPath);
+    // Refuse to scaffold into an existing non-empty directory. Creating into a
+    // populated folder used to overwrite README.md / package.json / .gitignore
+    // and run `git init` over the user's existing files.
+    if ((0, fs_1.existsSync)(destDir)) {
+        const contents = (0, fs_1.readdirSync)(destDir).filter((f) => f !== ".DS_Store");
+        if (contents.length > 0) {
+            console.log();
+            ui.error(`Directory exists and isn't empty: ${destDir}`);
+            ui.info("Choose an empty directory or remove existing contents and try again.");
+            console.log();
+            rl.close();
+            process.exit(1);
+        }
+    }
+    else {
+        (0, fs_1.mkdirSync)(destDir, { recursive: true });
+    }
     // 2. Fetch latest from core
     console.log();
     const spin1 = ui.spinner("Fetching latest version...");
@@ -193,19 +241,25 @@ async function init() {
         ["Version:", `v${latest}`],
         ["Skills:", `${skillCount}`],
         ["Frameworks:", `${frameworkCount}`],
+        ["Location:", destDir],
     ]);
-    // What's next — point at the setup skill
+    // What's next — show the path and point at the setup skill
+    console.log();
+    console.log(`  ${ui.bold("Your system is here:")}`);
+    console.log(`  ${ui.accent(destDir)}`);
     console.log();
     console.log(`  ${ui.bold("What's next:")}`);
     console.log();
-    console.log(`  ${ui.brand("→")} Open this folder in your AI tool (Claude Code, Cursor, Codex, etc.)`);
-    console.log(`     and run the ${ui.accent("setup")} skill — say ${ui.accent('"run the setup skill"')}.`);
+    console.log(`  ${ui.brand("→")} Open this folder in your AI tool, then say ${ui.accent('"run the setup skill"')}.`);
+    console.log();
+    console.log(`     ${ui.dim("Quick start for Claude Code:")}`);
+    console.log(`     ${ui.accent(`cd "${destDir}" && claude`)}`);
     console.log();
     console.log(`     ${ui.dim("Setup walks you through filling in your business context.")}`);
     console.log(`     ${ui.dim("Bring any docs you have — pitch deck, one-pager, brand guide.")}`);
     console.log(`     ${ui.dim("It'll parse them into your context files and ask only for gaps.")}`);
     console.log();
-    console.log(`  ${ui.dim("Prefer the terminal?")} Run ${ui.accent("npx baseline context")} ${ui.dim("instead.")}`);
+    console.log(`  ${ui.dim("Prefer the terminal?")} Run ${ui.accent("npx baseline context")} ${ui.dim("from inside the folder.")}`);
     console.log();
 }
 /** Scan all skill manifests and return unique context file paths (relative to context/) */
