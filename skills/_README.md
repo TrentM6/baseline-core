@@ -38,7 +38,23 @@ Skills draw on the other components of the Baseline System:
 
 ---
 
+## Start here
+
+**First time?** Run the **Setup** skill. It asks for any docs you already have (pitch deck, brand guide, one-pager, product spec, etc.), parses them into your context files, and asks gap-filling questions only for what's missing. The fastest way to get from a fresh `npx init` to a fully personalized system.
+
+To run it: open this folder in your AI tool and say *"run the setup skill."*
+
+---
+
 ## Available Skills
+
+**Run once to set up:**
+
+| Skill | Purpose |
+|-------|---------|
+| [Setup](setup/setup-skill.md) | Guided context setup — ingest existing docs, parse them into context files, ask gap-filling questions for what's missing |
+
+**Run as needed for daily work:**
 
 | Skill | Purpose |
 |-------|---------|
@@ -61,6 +77,7 @@ Skills draw on the other components of the Baseline System:
 
 | If you need to... | Use |
 |-------------------|-----|
+| Fill in your business context after a fresh `npx init` | [Setup](setup/setup-skill.md) |
 | Make strategic decisions, prioritize roadmap | [Strategic Advisory](strategic-advisory/strategic-advisory-skill.md) |
 | Research users, run competitive analysis | [Research & Synthesis](research-synthesis/research-synthesis-skill.md) |
 | Write PRDs, specs, or decision docs | [Product Communications](product-communications/product-communications-skill.md) |

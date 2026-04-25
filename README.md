@@ -17,6 +17,10 @@ Open source. MIT licensed. [baselinestudio.design](https://baselinestudio.design
 npx @baseline-studio/cli init
 ```
 
+`init` asks for your company name, scaffolds the system (skills, frameworks, context templates), runs `npm install`, and commits a fresh git repo. ~60 seconds.
+
+**Then:** open the folder in your AI tool (Claude Code, Cursor, Codex, etc.) and say *"run the setup skill."* Setup walks you through filling in your business context — bring any docs you already have (pitch deck, one-pager, brand guide) and it'll parse them into your context files, asking only for what's missing.
+
 **Existing users:**
 ```bash
 npx baseline status    # Check for updates
@@ -52,7 +56,15 @@ Skills are universal. Context is yours. When you run a skill, it loads both — 
 
 In AI coding tools, this is fully automated via the `AGENTS.md` file. Just describe what you need.
 
-### The 12 Skills
+### The Skills
+
+**Run once to set up:**
+
+| Skill | What It Does |
+|-------|-------------|
+| **Setup** | Guided context setup — ingest your existing docs, parse them into context files, ask gap-filling questions for what's missing |
+
+**Run as needed for daily work:**
 
 | Skill | What It Does |
 |-------|-------------|
@@ -99,6 +111,8 @@ Chat tools can't auto-read project files. Upload or paste the files listed in th
 
 Context is what makes the system yours. The system's output quality is directly proportional to the quality of your context.
 
+**The fastest way to fill it in:** run the **Setup** skill in your AI tool. It asks for any docs you have (pitch deck, brand guide, etc.), parses them into your context files, then asks short follow-ups for whatever's missing. Identity + voice + co-founder persona — enough to start using the system meaningfully — typically takes ~10 minutes.
+
 You may know this pattern as soul.md — a single file that defines who your AI is. Baseline's context layer is the same idea, broken into modules. Identity, voice, personas, competitive positioning, and business knowledge each get their own file, so different skills can load exactly what they need. Same principle. More control.
 
 **Core context** (loaded by every skill):
@@ -116,7 +130,9 @@ You may know this pattern as soul.md — a single file that defines who your AI 
 - `context/extended/formatting.md` — Document structure, heading rules
 - `context/extended/proof-points.md` — Metrics, case studies, market research, validation data
 
-Start with `identity.md` and `voice.md`, then fill out extended files as needed. Run `npx baseline context` to update files or `npx baseline context add <name>` to create new ones.
+Skills work with whatever context is available. Missing context produces more generic output, but nothing breaks — fill what matters most first.
+
+**Prefer the terminal?** Run `npx baseline context` for a guided CLI questionnaire (alternative to the Setup skill). Use `npx baseline context add <name>` to create a new context file.
 
 ---
 
@@ -129,7 +145,7 @@ See [`cli/README.md`](cli/README.md) for the full CLI documentation.
 | `npx @baseline-studio/cli init` | Create a new Baseline System |
 | `npx baseline status` | Show current version, check for updates |
 | `npx baseline update` | Pull latest skills, frameworks, and CLI |
-| `npx baseline context` | Re-run context prompts to update existing files |
+| `npx baseline context` | Terminal questionnaire for filling context (alternative to the Setup skill) |
 | `npx baseline context add <name>` | Create a new context file and wire it to skills |
 
 ---
@@ -143,7 +159,7 @@ your-system/
 ├── .github/
 │   └── copilot-instructions.md  # GitHub Copilot pointer to AGENTS.md
 ├── baseline.config.json         # Version tracking and config
-├── skills/                      # 12 domain expertise modules
+├── skills/                      # 13 domain expertise modules (Setup + 12 daily-work skills)
 ├── context/                     # YOUR business knowledge (you own this)
 │   ├── core/                    # Identity and voice (loaded by every skill)
 │   └── extended/                # Product, users, pricing, etc.
