@@ -1,0 +1,30 @@
+name: Build check
+
+# Required status check that gates agent auto-merge -- catches a broken CLI
+# build before it lands on main. Added 2026-08-24.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: cli
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: cli/package-lock.json
+
+      - name: Install
+        run: npm ci
+
+      - name: Build (tsc)
+        run: npm run build
