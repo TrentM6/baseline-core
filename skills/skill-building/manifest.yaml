@@ -17,3 +17,4 @@ context:
 # Reference files — load when the task needs detailed guidance
 references:
   - skills/skill-building/references/skill-architecture.md
+  - skills/skill-building/references/skill-discovery.md

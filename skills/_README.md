@@ -133,12 +133,16 @@ Use the [Skill Building](skill-building/skill-building-skill.md) skill and its r
 |----------|---------|
 | [Skill Building Skill](skill-building/skill-building-skill.md) | Complete workflow for creating skills |
 | [Skill Architecture](skill-building/references/skill-architecture.md) | Structure and components of a skill |
+| [Skill Discovery & Curation](skill-building/references/skill-discovery.md) | Finding candidates in your own work, when *not* to add a skill, keeping a growing library routable |
+
+**Before building one, check that it should exist.** Most requests for a new skill are better served by extending an existing one, or by a context file. The curate step in [Skill Building](skill-building/skill-building-skill.md) is the gate: three real instances of the work, no existing skill owning the domain, judgment to encode rather than steps to follow.
 
 **Key requirements for new skills:**
 - Reference [workflow-orchestration.md](../frameworks/workflow-orchestration.md) for meta-workflow patterns
 - Include domain-specific quality criteria
 - Define what context files are needed
 - Keep universal (no Claude-specific features in the skill itself)
+- Write a `manifest.yaml` `description` that lists the artifacts users ask for — it's the routing key `AGENTS.md` is generated from
 
 **Related:** See [Workflow Orchestration](../frameworks/workflow-orchestration.md) for the meta-framework all skills follow.
 

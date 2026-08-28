@@ -11,37 +11,73 @@ Skill building is the core methodology for AI Workflows engagements. It's the pr
 
 ## Core Principles
 
-1. **Skills encode judgment, not just procedures.** A skill shouldn't just say "do X, Y, Z." It should teach how to think about the domain — principles, trade-offs, when to escalate.
+1. **Curation is the architecture.** A library's value is not the number of skills in it. Every skill added makes picking the right one harder, so the default answer to "should this be a skill?" is no until the evidence says otherwise.
 
-2. **Portable across contexts.** A good skill works with different business contexts. The skill stays the same; the context swaps (Baseline vs. client, client A vs. client B).
+2. **Mine, don't import.** Skills worth having come from your own corrections, rewrites, and repeated explanations. Someone else's library encodes their judgment about their work — the transferable part is the format, not the value.
 
-3. **Lean core, deep references.** SKILL.md should be 270-550 lines — the essential workflow. Deep content (frameworks, terminology, examples) lives in reference files that load on demand.
+3. **Skills encode judgment, not just procedures.** A skill shouldn't just say "do X, Y, Z." It should teach how to think about the domain — principles, trade-offs, when to escalate.
 
-4. **Progressive disclosure.** Don't overwhelm. Core principles first, detailed methodology when needed, reference material for specific situations.
+4. **Portable across contexts.** A good skill works with different business contexts. The skill stays the same; the context swaps (Baseline vs. client, client A vs. client B).
 
-5. **Quality checks are measurable.** "Is it good?" isn't a quality check. "Does the main point land in 5 seconds?" is.
+5. **Lean core, deep references.** SKILL.md should be 270-550 lines — the essential workflow. Deep content (frameworks, terminology, examples) lives in reference files that load on demand.
 
-6. **Anti-patterns come from real mistakes.** Don't invent theoretical failures. Document what actually goes wrong.
+6. **Progressive disclosure.** Don't overwhelm. Core principles first, detailed methodology when needed, reference material for specific situations.
 
-7. **Skills must be maintainable.** If the client can't update and extend the skill after handoff, it will decay. Design for maintenance.
+7. **Quality checks are measurable.** "Is it good?" isn't a quality check. "Does the main point land in 5 seconds?" is.
+
+8. **Anti-patterns come from real mistakes.** Don't invent theoretical failures. Document what actually goes wrong.
+
+9. **Skills must be maintainable.** If the client can't update and extend the skill after handoff, it will decay. Design for maintenance.
 
 ### Industry Principles
 
-8. **User-centered design.** Who will use this skill? What are they trying to accomplish? Design for them.
+10. **User-centered design.** Who will use this skill? What are they trying to accomplish? Design for them.
 
-9. **Test before delivery.** Run the skill through real tasks. Does it produce quality output?
+11. **Test before delivery.** Run the skill through real tasks. Does it produce quality output?
 
-10. **Documentation is part of the deliverable.** A skill without clear documentation is incomplete.
+12. **Documentation is part of the deliverable.** A skill without clear documentation is incomplete.
 
-11. **Train the team.** Skills alone aren't enough. Teams need training on how and when to use them.
+13. **Train the team.** Skills alone aren't enough. Teams need training on how and when to use them.
 
-12. **Iterate based on usage.** First version is never perfect. Build in feedback loops.
+14. **Iterate based on usage.** First version is never perfect. Build in feedback loops.
 
 ---
 
 ## Workflow
 
 > Follow the [Workflow Orchestration Pattern](../../frameworks/workflow-orchestration.md) for the universal workflow approach. Below are the skill building-specific details for each step.
+
+### 0. Curate: Decide Whether the Skill Should Exist
+
+Most requests for a new skill shouldn't produce one. Run this before any discovery work.
+
+**Find the candidate in your own work.** The strongest sources, in order:
+
+1. **Repeated corrections** — you fixed the same thing in AI output twice this week. The correction is the skill content.
+2. **Redone outputs** — you rewrote AI output before shipping. The diff between what it produced and what you shipped is the skill.
+3. **Prompts you keep retyping** — anything pasted from a notes app weekly.
+4. **Explanations you repeat** — what you tell every new person doing this work.
+5. **Post-mortems** — "we should have checked X" is an anti-pattern and a quality check, already written.
+
+**Then apply the gate.** Do not build a skill when:
+
+| Signal | Do this instead |
+|--------|-----------------|
+| The model already does it well unprompted | Nothing, or a one-line prompt |
+| You've done the task once | Wait for the third time |
+| It's facts about the business, not method | `context/extended/[topic].md` |
+| It's a step inside an existing skill's workflow | Extend that skill |
+| Its triggers overlap an existing skill by ~80% | Add a section + trigger words to that skill |
+| It's a checklist with no judgment calls | A template in `references/` or a `frameworks/` file |
+| It's someone else's skill that looked good | Mine your own equivalent |
+
+**Rule of three:** don't create a skill until the work has been done three times, or a second person needs to do it your way. **Improve in place:** extending the skill that already owns the domain beats adding a neighbour to it.
+
+**Then make it routable.** `AGENTS.md` is generated from every skill's `manifest.yaml` — the `description` field is the only text the AI matches a request against, so write it as the artifacts a user would ask for ("PRDs, feature specs, decision docs"), not as a mission statement, and don't share task words with another skill.
+
+**Deliverable:** a one-paragraph case — the artifacts the candidate was mined from, the three instances, why no existing skill owns it, and the draft manifest `description`.
+
+> Detail, including the extraction protocol, the routing mechanism, and how custom skills survive `npx baseline update`: [Skill Discovery & Curation](references/skill-discovery.md).
 
 ### 1. Discovery: Understand the Process
 
@@ -124,6 +160,7 @@ skill-name/
 
 **Load when needed:**
 - [Skill Architecture](references/skill-architecture.md) — Detailed skill structure, components, and design patterns
+- [Skill Discovery & Curation](references/skill-discovery.md) — Mining candidates, the don't-build gate, routing a growing library
 ```
 
 ### 4. Test: Validate with Real Tasks
@@ -258,6 +295,9 @@ context/[folder-name]/
 
 ### Skill Design Quality
 
+- [ ] Mined from at least three real instances of the work (not one, not a hunch)?
+- [ ] No existing skill owns this domain, and none of its triggers overlap by ~80%?
+- [ ] Manifest `description` lists artifacts a user would ask for, and shares no task words with another skill?
 - [ ] Scope is clear and bounded?
 - [ ] Principles teach judgment, not just steps?
 - [ ] Workflow is complete and followable?
@@ -286,6 +326,9 @@ context/[folder-name]/
 
 | Anti-Pattern | Problem | Instead |
 |--------------|---------|---------|
+| **A skill for every task** | Library bloats, routing gets ambiguous, the wrong skill fires | Rule of three; extend the skill that owns the domain |
+| **Importing someone else's library** | Encodes their judgment about their work, not yours | Mine your own corrections and rewrites |
+| **Vague manifest description** | It's the routing key — vague means it matches everything or nothing | List the artifacts a user would ask for |
 | **Procedure without principles** | Can't handle novel situations | Teach judgment, not just steps |
 | **Vague quality checks** | No way to know if output is good | Specific, measurable checks |
 | **Too long/comprehensive** | Overwhelming, ignored | Lean core, deep references |
