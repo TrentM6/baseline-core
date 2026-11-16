@@ -25,21 +25,23 @@ Skill building is the core methodology for AI Workflows engagements. It's the pr
 
 7. **Quality checks are measurable.** "Is it good?" isn't a quality check. "Does the main point land in 5 seconds?" is.
 
-8. **Anti-patterns come from real mistakes.** Don't invent theoretical failures. Document what actually goes wrong.
+8. **A written rule is the weakest lever.** Prose in a skill file is a request the model can decline; a check that fails the build is not. For any rule the skill wants to hold, work down the [Enforcement Ladder](#the-enforcement-ladder) and write prose only when the rungs above it can't carry it.
 
-9. **Skills must be maintainable.** If the client can't update and extend the skill after handoff, it will decay. Design for maintenance.
+9. **Anti-patterns come from real mistakes.** Don't invent theoretical failures. Document what actually goes wrong.
+
+10. **Skills must be maintainable.** If the client can't update and extend the skill after handoff, it will decay. Design for maintenance.
 
 ### Industry Principles
 
-10. **User-centered design.** Who will use this skill? What are they trying to accomplish? Design for them.
+11. **User-centered design.** Who will use this skill? What are they trying to accomplish? Design for them.
 
-11. **Test before delivery.** Run the skill through real tasks. Does it produce quality output?
+12. **Test before delivery.** Run the skill through real tasks. Does it produce quality output?
 
-12. **Documentation is part of the deliverable.** A skill without clear documentation is incomplete.
+13. **Documentation is part of the deliverable.** A skill without clear documentation is incomplete.
 
-13. **Train the team.** Skills alone aren't enough. Teams need training on how and when to use them.
+14. **Train the team.** Skills alone aren't enough. Teams need training on how and when to use them.
 
-14. **Iterate based on usage.** First version is never perfect. Build in feedback loops.
+15. **Iterate based on usage.** First version is never perfect. Build in feedback loops.
 
 ---
 
@@ -70,6 +72,7 @@ Most requests for a new skill shouldn't produce one. Run this before any discove
 | Its triggers overlap an existing skill by ~80% | Add a section + trigger words to that skill |
 | It's a checklist with no judgment calls | A template in `references/` or a `frameworks/` file |
 | It's someone else's skill that looked good | Mine your own equivalent |
+| The rule it wants to enforce is mechanically checkable | A lint rule or test — see [The Enforcement Ladder](#the-enforcement-ladder) |
 
 **Rule of three:** don't create a skill until the work has been done three times, or a second person needs to do it your way. **Improve in place:** extending the skill that already owns the domain beats adding a neighbour to it.
 
@@ -109,6 +112,7 @@ Design the skill structure before writing content.
 - **Context requirements:** What business knowledge does this skill need?
 - **Triggers:** When should someone use this skill?
 - **Quality criteria:** How will outputs be evaluated?
+- **Enforcement:** For every rule the skill states, which rung of [The Enforcement Ladder](#the-enforcement-ladder) carries it? Do this before writing any prose — the answer often removes the section you were about to write.
 
 **Skill Structure:**
 ```
@@ -203,6 +207,57 @@ skill-name/
 
 ---
 
+## The Enforcement Ladder
+
+A skill file is the weakest place to put a rule. The model reads it, agrees with it, and then declines it under pressure — a long context, a conflicting instruction, a task that's easier the forbidden way. Nothing fails when it does.
+
+So for every rule a skill wants to hold, start at the top of this ladder and take the highest rung that can carry it. Prose is rung 4 of 5, not rung 1.
+
+| Rung | Mechanism | Cost | Why it's stronger |
+|------|-----------|------|-------------------|
+| 1 | **Impossible by construction** | High (design work) | The wrong thing can't be expressed. No check to run and nothing to enforce. |
+| 2 | **A lint rule or type check** | Low, once | Fails the build. Deterministic, same answer every run, no tokens. |
+| 3 | **The agent proves its own work** | Low | The skill demands an artifact — the command output, the diff, the failing-then-passing test — so the claim carries its own evidence. |
+| 4 | **A written rule** | Near zero | Only reaches the model that read it, and only if it's still paying attention. |
+| 5 | **Human review** | Highest | Catches anything, scales to nothing. Reserve it for taste and judgment, never for mechanics. |
+
+### Why the order is this way
+
+**Rung 1 beats everything, when it's available.** The rule you never have to enforce is the one the shape of the thing forbids. A function that takes a validated type can't receive an unvalidated value; no lint rule needed, no instruction needed. Most of the time this rung is unavailable and you move down one — but check first, because it's the only rung with zero ongoing cost.
+
+**Rung 2 is where most "rules" belong, and it's the one teams skip.** Lauren Tan's team went from 7 lint rules to 167 in four months as they turned each repeated AI mistake into a check — and the striking part is that most of her agent fixes never touch `AGENTS.md` at all. The instruction file stayed roughly the same size while enforcement grew 24×. The correction became a rule that fails the build rather than a paragraph that asks nicely.
+
+The bar for rung 2 is lower than it looks. A dumb `grep` for the forbidden pattern in the diff is a rung-2 check, and it catches more than a second model asked to review the same diff would: it's deterministic, it costs nothing, and it can't be talked out of its answer. Don't reach for an LLM judge where a string match does the job.
+
+**Rung 3 is for rules a check can't express but evidence can.** "Verify the fix works" is unenforceable prose. "Paste the test output showing it failing before and passing after" is a demand for an artifact — the agent either produces it or visibly doesn't. The skill's job is to name the artifact precisely.
+
+**Rung 4 is a polite suggestion.** As `lumzell` put it in the same sweep: `claude.md` is a polite suggestion and a harness is a hard lock. Prose still earns its place for genuine judgment — when to escalate, what trade-off to prefer, what "good" looks like in a domain. That's exactly the content a check can't hold. Use it there and nowhere else.
+
+**Rung 5 scales to nothing.** A human reviewer catches what the four rungs above missed, which by then should be taste, not mechanics. If you're relying on review to catch a mechanical error, you've mis-filed a rung-2 problem.
+
+### Working the ladder in practice
+
+Take each rule the skill wants to state and ask the rungs in order:
+
+1. Can the wrong thing be made inexpressible? → design it out.
+2. Can a check decide it mechanically, even a crude one? → write the check; `grep` counts.
+3. Can the agent be made to produce evidence? → name the exact artifact.
+4. Is it genuine judgment? → prose, and keep it short.
+5. None of the above? → human review, and say so explicitly.
+
+Worked example — "don't mock the module under test":
+
+- **Rung 1:** restructure so the dependency is injected and there's nothing to mock. Best fix, biggest change.
+- **Rung 2:** `grep` the diff for `vi.mock` and fail. Minutes to write, holds forever.
+- **Rung 3:** make the skill require the test output showing the real implementation ran.
+- **Rung 4:** a paragraph in SKILL.md explaining why mocking the subject hides the bug.
+
+Rung 2 is the answer here, and it's one line. A skill that only wrote rung 4 did the most visible work and the least effective.
+
+**When you build a rung 1-3 mechanism, the skill should say where it lives** — the lint rule's name, the script's path — so the next person extends the mechanism instead of adding another paragraph beside it.
+
+---
+
 ## Prompt Engineering for Skills
 
 Skills work through prompts. Understanding prompt engineering improves skill quality.
@@ -255,6 +310,7 @@ Skills work through prompts. Understanding prompt engineering improves skill qua
 | No constraints | Output is off-target | Add explicit constraints |
 | Overwhelming | Confused, partial output | Break into steps, progressive disclosure |
 | No examples | Inconsistent quality | Add good/bad examples |
+| Rule keeps getting ignored | Same violation recurs across runs | Stop rewording the prompt — move it up [The Enforcement Ladder](#the-enforcement-ladder) |
 
 ---
 
@@ -298,6 +354,8 @@ context/[folder-name]/
 - [ ] Mined from at least three real instances of the work (not one, not a hunch)?
 - [ ] No existing skill owns this domain, and none of its triggers overlap by ~80%?
 - [ ] Manifest `description` lists artifacts a user would ask for, and shares no task words with another skill?
+- [ ] Every rule in the skill sits on the highest [ladder](#the-enforcement-ladder) rung that can carry it — and no rule stayed prose that a `grep`, a lint rule, or a demanded artifact could enforce?
+- [ ] Where a rung 1-3 mechanism exists, the skill names it (rule name or script path)?
 - [ ] Scope is clear and bounded?
 - [ ] Principles teach judgment, not just steps?
 - [ ] Workflow is complete and followable?
@@ -329,6 +387,9 @@ context/[folder-name]/
 | **A skill for every task** | Library bloats, routing gets ambiguous, the wrong skill fires | Rule of three; extend the skill that owns the domain |
 | **Importing someone else's library** | Encodes their judgment about their work, not yours | Mine your own corrections and rewrites |
 | **Vague manifest description** | It's the routing key — vague means it matches everything or nothing | List the artifacts a user would ask for |
+| **Prose where a check belongs** | The rule only holds while the model is paying attention; nothing fails when it breaks | Take the highest rung on [The Enforcement Ladder](#the-enforcement-ladder) — often a one-line `grep` |
+| **Rewording a rule that keeps getting broken** | Louder prose is still prose; the third rewrite fails like the first two | Move it up a rung — make it a check or demand an artifact |
+| **An LLM judge for a mechanical check** | Non-deterministic, costs tokens, can be argued out of its answer | A string match or lint rule, every time |
 | **Procedure without principles** | Can't handle novel situations | Teach judgment, not just steps |
 | **Vague quality checks** | No way to know if output is good | Specific, measurable checks |
 | **Too long/comprehensive** | Overwhelming, ignored | Lean core, deep references |
